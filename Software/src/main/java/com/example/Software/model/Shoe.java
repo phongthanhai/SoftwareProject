@@ -2,7 +2,7 @@ package com.example.Software.model;
 
 import com.example.Software.constant.OriginCountry;
 import com.example.Software.constant.ShoeColor;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Document(collection = "shoe")
+@Data
 public class Shoe {
 
     @Id
@@ -51,5 +52,4 @@ public class Shoe {
 
     @Field("details")
     private List<String> details;
-
 }
