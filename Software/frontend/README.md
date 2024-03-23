@@ -1,4 +1,5 @@
 # React + Vite
+To run frontend cd to the folder frontend run `npm install` to download all libraries finally run `npm run dev`
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
