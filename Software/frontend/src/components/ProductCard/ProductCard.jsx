@@ -28,15 +28,12 @@ const ProductCard = ({ product }) => {
     return (
         <Col className='productList' md={2} >
             <div key={product.id} className='productCard'>
-                <div  onClick={viewDetail} style={{flex: 1}}>
+                <div  onClick={viewDetail} style={{flex: 1, display:'flex', flexDirection:'column'}}>
                     <img src={product.image.original} alt='product-img' className='productImage'></img>
 
                     <div className='productCard__content'>
                         <h3 className='productName'>{product.name}</h3>
-                        <div className='displayStack__1'>
-                            <div className='productPrice'>${product.retailPrice}</div>
-                            <div className='productSales'>{product.estimatedMarketValue} units sold</div>
-                        </div>
+                        
                         {/* <div className='displayStack__2'>
                             <div className='productRating'>
                                 {
@@ -52,6 +49,10 @@ const ProductCard = ({ product }) => {
                             </div>
                         </div> */}
                     </div>
+                    <div className='displayStack__1'>
+                            <div className='productPrice'><del>${product.retailPrice}</del></div>
+                            <div className='productSales'>${product.discountPrice}</div>
+                        </div>
                 </div>
                 <button className='cart-btn' onClick={addToCart}>
                     {cartList && cartList.length > 0 && cartList.findIndex(

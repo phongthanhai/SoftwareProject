@@ -3,7 +3,7 @@ export const data = [
         "id": "42ee4c78-321b-4d4c-a3b8-bfeb2879938b",
         "brand": "Nike",
         "colorway": "Summit White/Green Stone",
-        "estimatedMarketValue": 188,
+        "discountPrice": 120,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/097/856/567/original/FQ2942_100.png.png"
@@ -18,7 +18,7 @@ export const data = [
         "id": "695a74db-cea0-4570-bce6-da6c2865e9e6",
         "brand": "Nike",
         "colorway": "White/Royal Blue/Neutral Grey/Black",
-        "estimatedMarketValue": 122,
+        "discountPrice": 122,
         "gender": "women",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/099/005/514/original/1310660_00.png.png"
@@ -33,7 +33,7 @@ export const data = [
         "id": "41f3abee-2c50-4e98-88b5-1dbc403af4ba",
         "brand": "adidas",
         "colorway": "Craft Green/Pantone/Shadow Green",
-        "estimatedMarketValue": 131,
+        "discountPrice": 110,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/993/481/original/1320666_00.png.png"
@@ -48,7 +48,7 @@ export const data = [
         "id": "db4ba6f0-aa37-4668-9c31-a79344ba6641",
         "brand": "Nike",
         "colorway": "White/Neutral Grey/Black/Game Royal",
-        "estimatedMarketValue": 80,
+        "discountPrice": 45,
         "gender": "toddler",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/989/884/original/DZ3309_104.png.png"
@@ -63,7 +63,7 @@ export const data = [
         "id": "14865636-f0d9-4bc3-a0c0-7a9dbbf0f0e1",
         "brand": "Jordan",
         "colorway": "White/Pine Green-Light Smoke Grey",
-        "estimatedMarketValue": 186,
+        "discountPrice": 130,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/989/874/original/DD9315_112.png.png"
@@ -78,7 +78,7 @@ export const data = [
         "id": "b978a975-43ac-4afd-87fa-d848c10b2102",
         "brand": "Nike",
         "colorway": "White/Neutral Grey/Black/Game Royal",
-        "estimatedMarketValue": 99,
+        "discountPrice": 99,
         "gender": "child",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/989/881/original/DZ3307_104.png.png"
@@ -93,7 +93,7 @@ export const data = [
         "id": "d83554e9-1f2a-434a-ba12-e8122b84993c",
         "brand": "Nike",
         "colorway": "White/Neutral Grey/Black/Game Royal",
-        "estimatedMarketValue": 90,
+        "discountPrice": 60,
         "gender": "preschool",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/989/882/original/DZ3308_104.png.png"
@@ -108,7 +108,7 @@ export const data = [
         "id": "108fac96-c8a1-4fec-9bc0-c755de65a599",
         "brand": "ASICS",
         "colorway": "Cream/White",
-        "estimatedMarketValue": 120,
+        "discountPrice": 100,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/824/992/original/1203A414_100.png.png"
@@ -116,14 +116,14 @@ export const data = [
         "name": "Gel 1090V2 'Imperfection Pack'",
         "releaseDate": "2024-03-22",
         "releaseYear": "2024",
-        "retailPrice": 75,
+        "retailPrice": 120,
         "story": ""
     },
     {
         "id": "28bf2a7b-9331-4046-8526-d3b59d52c134",
         "brand": "ASICS",
         "colorway": "White/Cream",
-        "estimatedMarketValue": 139,
+        "discountPrice": 150,
         "gender": "women",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/824/991/original/1202A483_100.png.png"
@@ -131,14 +131,14 @@ export const data = [
         "name": "Wmns Japan S Platform 'Imperfection Pack'",
         "releaseDate": "2024-03-22",
         "releaseYear": "2024",
-        "retailPrice": 125,
+        "retailPrice": 300,
         "story": ""
     },
     {
         "id": "752d49dc-fd6a-40bd-9401-a220b4d00840",
         "brand": "ASICS",
         "colorway": "Black/Cream",
-        "estimatedMarketValue": 200,
+        "discountPrice": 120,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/824/993/original/1203A415_001.png.png"
@@ -146,14 +146,14 @@ export const data = [
         "name": "GT 2160 'Imperfection Pack'",
         "releaseDate": "2024-03-22",
         "releaseYear": "2024",
-        "retailPrice": 200,
+        "retailPrice": 250,
         "story": ""
     },
     {
         "id": "3f603922-3dad-4e01-99b2-bfd77c4ccd2a",
         "brand": "ASICS",
         "colorway": "Cream/Oatmeal",
-        "estimatedMarketValue": 173,
+        "discountPrice": 120,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/824/998/original/1203A426_100.png.png"
@@ -168,7 +168,7 @@ export const data = [
         "id": "4477f20f-273e-44ef-8cf3-420944c6b05c",
         "brand": "Reebok",
         "colorway": "Lilac Frost/Purple Fog/Smoke Indigo",
-        "estimatedMarketValue": 200,
+        "discountPrice": 90,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/957/988/original/100069919.png.png"
@@ -183,7 +183,7 @@ export const data = [
         "id": "a8d57f7a-9b24-42db-ad91-0338bee8494c",
         "brand": "Reebok",
         "colorway": "Pure Grey/Luxe Blue/Super Neutral",
-        "estimatedMarketValue": 399,
+        "discountPrice": 110,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/957/989/original/100201777.png.png"
@@ -198,7 +198,7 @@ export const data = [
         "id": "3ec2c475-d63d-4dbd-b841-cc9484d19e67",
         "brand": "Nike",
         "colorway": "Black/Black-White",
-        "estimatedMarketValue": 260,
+        "discountPrice": 200,
         "gender": "men",
         "image": {
             "original": "https://images.stockx.com/images/Nike-ACG-Mountain-Fly-2-Low-Comme-des-Garcons-Homme-Plus-Black.jpg?fit=fill&bg=FFFFFF&w=500&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1710961987"
@@ -213,7 +213,7 @@ export const data = [
         "id": "d05eeb67-331d-4a86-8a0b-5eee6ea606ac",
         "brand": "Nike",
         "colorway": "Black/White-Black",
-        "estimatedMarketValue": 500,
+        "discountPrice": 240,
         "gender": "men",
         "image": {
             "original": "https://images.stockx.com/images/Nike-ACG-Mountain-Fly-2-Low-Comme-des-Garcons-Homme-Plus-White-Black.jpg?fit=fill&bg=FFFFFF&w=500&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1710962024"
@@ -228,7 +228,7 @@ export const data = [
         "id": "d35e3376-8815-4748-b837-8616fe031842",
         "brand": "Nike",
         "colorway": "White/Black-White",
-        "estimatedMarketValue": 260,
+        "discountPrice": 180,
         "gender": "men",
         "image": {
             "original": "https://images.stockx.com/images/Nike-ACG-Mountain-Fly-2-Low-Comme-des-Garcons-Homme-Plus-White.jpg?fit=fill&bg=FFFFFF&w=500&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1710961995"
@@ -248,7 +248,7 @@ export const data = [
         "releaseYear": "2024",
         "releaseDate": "2024-03-21",
         "retailPrice": 70,
-        "estimatedMarketValue": 81,
+        "discountPrice": 50,
         "story": "The 2022 reissue of the Yeezy Slide \u2018Resin\u2019 brings back one of the introductory colorways of the futuristic comfort sandal. Made with injected-molded EVA foam, the one-piece build features a pale green finish throughout the lightly textured exterior. Branding is confined to a tonal adidas logo debossed on the soft footbed. Underfoot, deep horizontal ridges cut throughout the outsole, resulting in an aggressive sawtooth pattern that offers impact protection and grip.",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/077/575/678/original/1019746_00.png.png"
@@ -258,7 +258,7 @@ export const data = [
         "id": "f35e8d44-0ff9-4c57-8748-e20f45499399",
         "brand": "adidas",
         "colorway": "Slate Grey/Slate Grey/Slate Grey",
-        "estimatedMarketValue": 68,
+        "discountPrice": 68,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/082/110/528/original/1082662_00.png.png"
@@ -273,7 +273,7 @@ export const data = [
         "id": "be9ad2c4-af72-4355-bb43-efde61d92b78",
         "brand": "Jordan",
         "colorway": "Sail/Black-Varsity Red-Muslin",
-        "estimatedMarketValue": 373,
+        "discountPrice": 120,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/961/100/original/1336269_00.png.png"
@@ -288,7 +288,7 @@ export const data = [
         "id": "f89db4bd-1078-49ec-9143-9a8cd87d6e06",
         "brand": "adidas",
         "colorway": "Slate Grey/Slate Grey/Slate Grey",
-        "estimatedMarketValue": 68,
+        "discountPrice": 20,
         "gender": "infant",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/099/003/332/original/ID2355.png"
@@ -303,7 +303,7 @@ export const data = [
         "id": "264e2603-7275-47be-a255-314d5b56595f",
         "brand": "adidas",
         "colorway": "Slate Grey/Slate Grey/Slate Grey",
-        "estimatedMarketValue": 150,
+        "discountPrice": 45,
         "gender": "youth",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/099/003/354/original/ID2353.png"
@@ -318,7 +318,7 @@ export const data = [
         "id": "72877e87-2420-4606-8a57-8338b3c5a212",
         "brand": "Converse",
         "colorway": "Black/Egret/White",
-        "estimatedMarketValue": 200,
+        "discountPrice": 180,
         "gender": "women",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/433/307/original/A08651C.png.png"
@@ -326,14 +326,14 @@ export const data = [
         "name": "Martine Ali x Wmns Chuck 70 XX High 'Black'",
         "releaseDate": "2024-03-21",
         "releaseYear": "2024",
-        "retailPrice": 205,
+        "retailPrice": 200,
         "story": ""
     },
     {
         "id": "68a5b585-1823-4b2b-b475-00e4b8b88825",
         "brand": "Puma",
         "colorway": "Sugared Almond/Silver Mist",
-        "estimatedMarketValue": 200,
+        "discountPrice": 65,
         "gender": "women",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/856/490/original/396381_02.png.png"
@@ -348,7 +348,7 @@ export const data = [
         "id": "8460ac3b-c2fc-4f6f-b35c-9fca32e7830f",
         "brand": "Puma",
         "colorway": "Putty/Warm White",
-        "estimatedMarketValue": 229,
+        "discountPrice": 65,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/856/487/original/395205_05.png.png"
@@ -363,7 +363,7 @@ export const data = [
         "id": "d6c0320b-c60e-46c4-a5a7-2a70be82d9e4",
         "brand": "Puma",
         "colorway": "Olive Green/White",
-        "estimatedMarketValue": 199,
+        "discountPrice": 65,
         "gender": "women",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/856/488/original/396381_01.png.png"
@@ -378,7 +378,7 @@ export const data = [
         "id": "e8c7045b-90b8-47bd-a426-a9119d17002b",
         "brand": "Jordan",
         "colorway": "White/Playful Pink/Cacao Wow/Green Strike",
-        "estimatedMarketValue": 262,
+        "discountPrice": 130,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/989/891/original/FQ3228_100.png.png"
@@ -393,7 +393,7 @@ export const data = [
         "id": "75322551-41a8-4a43-ab5b-afe8b1dd8e94",
         "brand": "adidas",
         "colorway": "Brown/Brown",
-        "estimatedMarketValue": 206,
+        "discountPrice": 100,
         "gender": "men",
         "image": {
             "original": "https://images.stockx.com/images/adidas-Dublin-size-Exclusive-Brown.jpg?fit=fill&bg=FFFFFF&w=500&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1710926801"
@@ -413,7 +413,7 @@ export const data = [
         "releaseYear": "2024",
         "releaseDate": "2024-03-20",
         "retailPrice": 70,
-        "estimatedMarketValue": 86,
+        "discountPrice": 50,
         "story": "The adidas Yeezy Slide \u2018Flax\u2019 complements the slip-on\u2019s minimalist design with a monochrome finish in a dark beige hue. The pared-down sandal provides a comfortable fit, thanks to a molded one-piece build made with injected EVA. In addition to being lightweight and durable, the foam compound features natural cushioning properties for a smooth ride. The outsole utilizes a series of horizontal grooves, strategically placed for optimal traction and impact protection.",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/076/971/437/original/994557_00.png.png"
@@ -423,7 +423,7 @@ export const data = [
         "id": "cc398671-6d3f-4aee-a4c0-a585f56bbf34",
         "brand": "Jordan",
         "colorway": "Flint Grey/Stealth Grey/White",
-        "estimatedMarketValue": 182,
+        "discountPrice": 182,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/384/032/original/1228709_00.png.png"
@@ -438,7 +438,7 @@ export const data = [
         "id": "d44700ae-a44e-41ac-85e9-ab19c9478a92",
         "brand": "Jordan",
         "colorway": "Sail/University Red/Coconut Milk/Sandstone/Smoke Grey",
-        "estimatedMarketValue": 137,
+        "discountPrice": 137,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/097/962/451/original/FQ1759_100.png.png"
@@ -453,7 +453,7 @@ export const data = [
         "id": "f0c3084a-f7df-49d7-8ab2-96997fff63e0",
         "brand": "Nike",
         "colorway": "Pure Platinum/Deep Royal Blue/Vivid Purple/White/Gum Yellow",
-        "estimatedMarketValue": 146,
+        "discountPrice": 105,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/096/866/406/original/1320672_00.png.png"
@@ -468,7 +468,7 @@ export const data = [
         "id": "1dc0355c-5378-4739-a680-22c476ecf456",
         "brand": "Nike",
         "colorway": "University Blue/White",
-        "estimatedMarketValue": 147,
+        "discountPrice": 65,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/097/134/019/original/FD9884_400.png.png"
@@ -483,7 +483,7 @@ export const data = [
         "id": "907e5f56-8706-4d52-a4d4-1a334730f8e7",
         "brand": "Nike",
         "colorway": "Barely Green/Mint Foam/White",
-        "estimatedMarketValue": 90,
+        "discountPrice": 90,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/097/796/288/original/FZ4123_394.png.png"
@@ -498,7 +498,7 @@ export const data = [
         "id": "e138e688-669f-4f50-83ae-1a13d406a5da",
         "brand": "Jordan",
         "colorway": "Legend Light Brown/Metallic Gold",
-        "estimatedMarketValue": 165,
+        "discountPrice": 115,
         "gender": "women",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/097/962/442/original/FN5032_200.png.png"
@@ -513,7 +513,7 @@ export const data = [
         "id": "a9a0e5d2-2ce4-45f3-a46f-0dd741e90537",
         "brand": "Jordan",
         "colorway": "Flint Grey/Stealth Grey/White",
-        "estimatedMarketValue": 124,
+        "discountPrice": 124,
         "gender": "child",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/989/892/original/FQ8165_012.png.png"
@@ -528,7 +528,7 @@ export const data = [
         "id": "ffd2b4f7-a8d2-44ac-81b1-b88712ed1921",
         "brand": "Nike",
         "colorway": "White/Lilac/Photon Dust/Cool Grey",
-        "estimatedMarketValue": 130,
+        "discountPrice": 100,
         "gender": "women",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/989/875/original/DH8010_103.png.png"
@@ -543,7 +543,7 @@ export const data = [
         "id": "45a1fbba-fa33-4bf5-b5ed-d68f06905c39",
         "brand": "Jordan",
         "colorway": "Black/Cement Grey/White/Fire Red",
-        "estimatedMarketValue": 287,
+        "discountPrice": 110,
         "gender": "men",
         "image": {
             "original": "https://images.stockx.com/images/Air-Jordan-1-Low-Flyease-Fire-Red-Cement-Grey.jpg?fit=fill&bg=FFFFFF&w=500&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1710961987"
@@ -558,7 +558,7 @@ export const data = [
         "id": "0ac6d822-037b-472e-a65b-cbf8d2cb41fb",
         "brand": "Jordan",
         "colorway": "White/Green Glow/Black",
-        "estimatedMarketValue": 84,
+        "discountPrice": 84,
         "gender": "men",
         "image": {
             "original": "https://images.stockx.com/images/Air-Jordan-1-Low-Green-Glow.jpg?fit=fill&bg=FFFFFF&w=500&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1710962017"
@@ -573,7 +573,7 @@ export const data = [
         "id": "f2a73eed-6999-487e-857e-6c26c09e0d25",
         "brand": "Jordan",
         "colorway": "White/Green Glow/Black",
-        "estimatedMarketValue": 130,
+        "discountPrice": 120,
         "gender": "men",
         "image": {
             "original": "https://images.stockx.com/images/Air-Jordan-1-Low-Flyease-Green-Glow.jpg?fit=fill&bg=FFFFFF&w=500&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1710962014"
@@ -588,7 +588,7 @@ export const data = [
         "id": "1742da95-7805-4088-9795-393a86948a0b",
         "brand": "adidas",
         "colorway": "Off White/Cream White/Black",
-        "estimatedMarketValue": 287,
+        "discountPrice": 287,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/553/659/original/IG4053.png.png"
@@ -603,7 +603,7 @@ export const data = [
         "id": "0a599fc6-b4bb-46e6-83e5-f10aa80630ec",
         "brand": "adidas",
         "colorway": "Black/Black/Black",
-        "estimatedMarketValue": 287,
+        "discountPrice": 287,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/553/631/original/IE5700.png.png"
@@ -618,7 +618,7 @@ export const data = [
         "id": "e25532c5-4020-4efb-b6a9-cbd6bc2dd93a",
         "brand": "MSCHF",
         "colorway": "Camel",
-        "estimatedMarketValue": 420,
+        "discountPrice": 380,
         "gender": "men",
         "image": {
             "original": "https://image.goat.com/attachments/product_template_pictures/images/098/630/387/original/1382364_00.png"

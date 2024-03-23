@@ -26,9 +26,14 @@
 .productRating {
   color: #ffce3d;
 }
+.productCard__content {
+  display: flex;
+  flex-direction: column;
+  height: 64%;
+}
 .displayStack__1,
 .displayStack__2 {
-
+  margin-top: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;

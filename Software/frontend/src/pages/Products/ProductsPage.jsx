@@ -96,12 +96,12 @@ const ProductsPage = () => {
     function handleSortChange(event) {
         setSortByOption(false);
         const priceOrder = event.target.value;
-    
+
         if (priceOrder === "low-to-high") {
-            const sortedProducts = [...products].sort((a, b) => a.retailPrice - b.retailPrice);
+            const sortedProducts = [...products].sort((a, b) => a.discountPrice - b.discountPrice);
             setProducts(sortedProducts);
         } else if (priceOrder === "high-to-low") {
-            const sortedProducts = [...products].sort((a, b) => b.retailPrice - a.retailPrice);
+            const sortedProducts = [...products].sort((a, b) => b.discountPrice - a.discountPrice);
             setProducts(sortedProducts);
         }
     }
@@ -142,20 +142,24 @@ const ProductsPage = () => {
             )} */}
             <Container>
                 <Row>
-                    <Col md={3}>
+                    <Col md={2}>
                         <Sidebar
                             handleBrandChange={handleBrandChange}
                             handlePriceChange={handlePriceChange}
                             handleColorChange={handleColorChange}
                             handleGenderChange={handleGenderChange} />
-                        <button disabled={radioResetButtonDisabled} onClick={handleResetRadio}>RESET</button>
+                        <button style={{ width: '100%', padding: '1rem 0', marginTop: '2rem', }}
+                            disabled={radioResetButtonDisabled}
+                            onClick={handleResetRadio}>
+                            CLEAR ALL
+                        </button>
 
                     </Col>
-                    <Col md={9}>
+                    <Col md={10}>
                         <Row>
                             <Col md={10}><Searchbar query={query} handleProductInputChange={handleProductInputChange} /></Col>
-                            <Col md={2}><Sortbar sortByOption={sortByOption} handleSortChange={handleSortChange}/></Col>
-                            
+                            <Col md={2}><Sortbar sortByOption={sortByOption} handleSortChange={handleSortChange} /></Col>
+
                         </Row>
                         <Row>
                             <Row>Items count: {result.length}</Row>

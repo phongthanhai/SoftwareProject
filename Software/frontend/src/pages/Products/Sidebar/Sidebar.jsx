@@ -2,7 +2,8 @@ import Brand from "./Brand/Brand";
 import Price from "./Price/Price";
 import Color from "./Color/Color";
 import Gender from "./Gender/Gender";
-// import "./Sidebar.css";
+import { IoFilter } from "react-icons/io5";
+import "./Sidebar.css";
 
 const Sidebar = ({ handleBrandChange, handlePriceChange, handleColorChange, handleGenderChange }) => {
   
@@ -10,15 +11,17 @@ const Sidebar = ({ handleBrandChange, handlePriceChange, handleColorChange, hand
     <>
       <section className="sidebar">
         <div className="logo-container">
-          <h1>🛒</h1>
+          <h2><IoFilter /> SEARCH FILTER</h2>
         </div>
         <Brand handleBrandChange={handleBrandChange} />
 
-        <Price handlePriceChange={handlePriceChange} />
 
         <Color handleColorChange={handleColorChange} />
 
         <Gender handleGenderChange={handleGenderChange} /> 
+
+        {/* <Price handlePriceChange={handlePriceChange} /> */}
+
       </section>
     </>
   );
