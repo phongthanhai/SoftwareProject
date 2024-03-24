@@ -1,58 +1,76 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { GlobalContext } from '../../context/AppContext';
 import './ProductDetail.css'
 import Loader from '../../components/Loader/Loader';
-import axios from 'axios';
+import { BsCartPlus } from "react-icons/bs";
+import { Container, Row, Col } from 'react-bootstrap'
 import { data } from '../../data/data'
 const ProductPage = () => {
+  const [product, setProduct] = useState({});
   const { id } = useParams();
-  console.log(id);
-  const { product, setProduct, isLoading, setIsLoading } = useContext(GlobalContext);
-  // useEffect(() => {
-  //     const fetchData = async () => {
-  //       try {
-  //         console.log(id);
-  //           setIsLoading(true);
-  //           const res = await axios.get(`https://fakestoreapi.com/products/${id}`)
-  //           .then(res => {
-  //               setIsLoading(false);
-  //               setProduct(res.data);
-  //           });
-  //       } catch (e) {
-  //           setIsLoading(false); // Stop loading in case of error
-  //           console.error(e);
-  //       }
-  //   }
-  //   fetchData();
-  // }, [])
+  const { addToCart } = useContext(GlobalContext);
   useEffect(() => {
     setProduct(data.find(productId => productId.id === id))
     console.log(product);
   }, [])
   return (
-    // <> {isLoading ? <Loader/> :
-    //   <div className='product-detail'>
-    //     <div className="img-container"> <img src={product.image} alt="" /></div>
-    //     <span><strong>Title:</strong> {product.title}</span>
-    //     <span><strong>Price:</strong> {product.price}</span>
-    //     <p><strong>Description:</strong> {product.description}</p>
-    //     <span><strong>Category:</strong> {product.category}</span>
-      // </div>}
-    // </>
-    <>{product?.image?.original === undefined ? <Loader/> : (<div className='product-detail'>
-    <div className="img-container"> <img src={product?.image?.original} alt="" /> {console.log(product.image.original)}</div>
-    <span><strong>Title:</strong> {product.name}</span> 
-    <span><strong>Price:</strong> {product.retailPrice}</span>
-    <span><strong>Story:</strong> {product.story || 'No story yet! but a great shoe tho '}</span>
-    <span><strong>Brand:</strong> {product.brand}</span>
-    <span><strong>Release year:</strong> {product.releaseYear}</span>
-    <span><strong>Release date:</strong> {product.releaseDate}</span>
-    <span><strong>Colorway:</strong> {product.colorway}</span>
-    <span><strong>Gender:</strong> {product.gender}</span>
-  </div>)}</>
-    
-    
+    <>{product?.image?.original === undefined ? <Loader /> : (
+      <Container>
+        <Row>
+          <Col md={6}>
+            <div className="img-detail-container"> <img src={product?.image?.original} alt="" /> {console.log(product.image.original)}</div>
+          </Col>
+          <Col md={6} className='product-detail-content'>
+            <div className="product-name"><h1>{product.name}</h1></div>
+            <div className="product-price">
+              <del>${product.retailPrice}</del>
+              <h1>${product.discountPrice}</h1>
+            </div>
+            <Row>
+              <Row>
+                <Col className='pDetail-field' md={2}><span>Story:</span></Col>
+                <Col className='pDetail-data'>{product.story || 'No story yet! but a great shoe tho '}</Col>
+              </Row>
+              <Row>
+                <Col className='pDetail-field' md={2}><span>Brand:</span></Col>
+                <Col className='pDetail-data'>{product.brand}</Col>
+              </Row>
+              <Row>
+                <Col className='pDetail-field' md={2}><span>Release year:</span></Col>
+                <Col className='pDetail-data'>{product.releaseYear}</Col>
+              </Row>
+              <Row>
+                <Col className='pDetail-field' md={2}><span>Release date:</span></Col>
+                <Col className='pDetail-data'>{product.releaseDate}</Col>
+              </Row>
+              <Row>
+                <Col className='pDetail-field' md={2}><span>Colorway:</span></Col>
+                <Col className='pDetail-data'>{product.colorway}</Col>
+              </Row>
+              <Row>
+                <Col className='pDetail-field' md={2}><span>Gender:</span></Col>
+                <Col className='pDetail-data'>{product.gender}</Col>
+              </Row>
+              {/* <Row>
+                <Col className='pDetail-field' md={2}><span>Quantity:</span></Col>
+                <Col className='pDetail-data'><QuantityButton /></Col>
+              </Row> */}
+            </Row>
+            <div style={{ display: 'flex', justifyContent: 'left', marginTop: '3rem' }}>
+              <button className='cart-btn' onClick={() => addToCart(product)}>
+              <BsCartPlus />
+                ADD TO CART
+              </button>
+            </div>
+
+          </Col>
+        </Row>
+      </Container>
+    )}
+    </>
+
+
   )
 }
 

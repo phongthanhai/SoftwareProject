@@ -5,26 +5,12 @@ import { useNavigate } from 'react-router-dom'
 import { GlobalContext } from '../../context/AppContext'
 import { FaStar, FaRegStar } from 'react-icons/fa';
 const ProductCard = ({ product }) => {
-    const { cartList, setCartList } = useContext(GlobalContext);
+    const { cartList, setCartList, addToCart } = useContext(GlobalContext);
     const navigate = useNavigate();
     function viewDetail() {
         navigate(`/product/${product.id}`);
     }
-    function addToCart() {
-        let cpyCartList = [...cartList];
-        const index = cpyCartList.findIndex(item => item.id === product.id)
-        console.log(cpyCartList, 'cpycartlist');
-        console.log(cartList, 'cartList');
-
-        if (index === -1) {
-            cpyCartList.push(product)
-        } else {
-            cpyCartList = cpyCartList.filter(item => item.id !== product.id)
-            console.log(product.id, 'here');
-        }
-        setCartList(cpyCartList);
-        // setCartList(cartList.filter(p => p.id !== product.id))
-    }
+    
     return (
         <Col className='productList' md={2} >
             <div key={product.id} className='productCard'>
@@ -54,11 +40,7 @@ const ProductCard = ({ product }) => {
                             <div className='productSales'>${product.discountPrice}</div>
                         </div>
                 </div>
-                <button className='cart-btn' onClick={addToCart}>
-                    {cartList && cartList.length > 0 && cartList.findIndex(
-                        (item) => item.id === product.id) !== -1
-                        ? 'REMOVE'
-                        : "ADD TO CART"}</button>
+                
             </div>
 
         </Col>

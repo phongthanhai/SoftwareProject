@@ -1,0 +1,28 @@
+.qty-input-bar {
+    display: flex;
+    width: fit-content;
+    border: 1px solid rgba(0, 0, 0, .09);;
+    height: 32px;
+}
+.qty-btn {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    color: rgba(0, 0, 0, .8);
+    display: flex;
+    font-weight: 300;
+    height: 32px;
+    justify-content: center;
+    font-size: 16px;
+    width: 32px;
+}
+.qty-input-bar input {
+    width: 5rem;
+    padding: 0 5px;
+    text-align: center;
+    border-left:1px solid rgba(0, 0, 0, .09);
+    border-right:1px solid rgba(0, 0, 0, .09);
+    border-top:none ;
+    border-bottom:none ;
+
+}

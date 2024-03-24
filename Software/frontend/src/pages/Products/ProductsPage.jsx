@@ -107,39 +107,12 @@ const ProductsPage = () => {
     }
     let result = filteredData(products, selectedPrice, selectedColor, selectedBrand, selectedGender, query);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             setIsLoading(true);
-    //             const res = await axios.get('https://fakestoreapi.com/products')
-    //             .then(res => {
-    //                 setIsLoading(false);
-    //                 setProducts(res.data);
-    //             });
-    //         } catch (e) {
-    //             setIsLoading(false); // Stop loading in case of error
-    //             console.error(e);
-    //         }
-    //     }
-    //     fetchData();
-    // }, [])
-
     useEffect(() => {
         setProducts(data);
-        // setRadioResetButtonDisabled(true)
+
     }, [])
     return (
         <>
-            {/* {isLoading   ? <Loader /> : (
-                
-                <Container>
-                    <Row>
-                        {products.map(product =>
-                            <ProductCard key={product.id} product={product} />
-                        )}
-                    </Row>
-                </Container>
-            )} */}
             <Container>
                 <Row>
                     <Col md={2}>
@@ -168,7 +141,6 @@ const ProductsPage = () => {
                                     <ProductCard key={product.id} product={product} />
                                 )}
                             </Row>
-
                         </Row>
                     </Col>
                 </Row>
