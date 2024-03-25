@@ -1,0 +1,44 @@
+.shoe-poster {
+    /* margin-bottom: 10rem; */
+}
+
+.shoe-poster .img-container {
+    margin-bottom: 5rem;
+    cursor: pointer;
+}
+.shoe-poster .img-container .last-img {
+    /* margin-bottom: 5rem; */
+    cursor: none;
+}
+
+.shoe-poster .description {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.shoe-poster .description .body {
+    text-align: center;
+    font-weight: normal;
+}
+
+.russo-one-regular {
+    font-family: "Russo One", sans-serif;
+    font-weight: 400;
+    font-size: 8rem;
+    font-style: normal;
+}
+
+.anton-regular {
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }

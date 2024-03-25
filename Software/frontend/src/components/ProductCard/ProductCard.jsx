@@ -3,7 +3,6 @@ import './ProductCard.css'
 import { Col } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { GlobalContext } from '../../context/AppContext'
-import { FaStar, FaRegStar } from 'react-icons/fa';
 const ProductCard = ({ product }) => {
     const { cartList, setCartList, addToCart } = useContext(GlobalContext);
     const navigate = useNavigate();

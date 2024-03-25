@@ -11,6 +11,7 @@ import Notifications from './pages/Profile/Notifications/Notifications'
 import ProfileEdit from './pages/Profile/ProfileEdit/ProfileEdit'
 import Password from './pages/Profile/Password/Password'
 import ProductsPage from './pages/Products/ProductsPage'
+import AboutUs from './pages/AboutUs/AboutUs'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <ProductsPage/>
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs/>
       },
       {
         path: "/cart",

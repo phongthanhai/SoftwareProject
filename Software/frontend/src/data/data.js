@@ -1,5 +1,20 @@
 export const data = [
     {
+        "id": "6b1ebdb3-9043-492d-94bf-8ab78dccafb9",
+        "brand": "Nike",
+        "colorway": "Black/Pink",
+        "discountPrice": 450,
+        "gender": "men",
+        "image": {
+            "original": "/nike-product.png"
+        },
+        "name": "Nike Air Max Dn (New Release)",
+        "releaseDate": "2024-03-22",
+        "releaseYear": "2024",
+        "retailPrice": 500,
+        "story": "Revolutionary Air technology first made its way into Nike footwear in 1978. In 1987, the Air Max 1 debuted with visible Air technology in its heel, allowing fans more than just the feel of Air cushioning—suddenly they could see it. Since then, next-generation Air Max shoes have become a hit with athletes and collectors by offering striking colour combinations and reliable, lightweight cushioning."
+    },
+    {
         "id": "42ee4c78-321b-4d4c-a3b8-bfeb2879938b",
         "brand": "Nike",
         "colorway": "Summit White/Green Stone",

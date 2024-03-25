@@ -6,6 +6,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react';
 import { GlobalContext } from '../../context/AppContext';
+import { SiNike } from "react-icons/si";
 export default function Header() {
   const {cartList} = useContext(GlobalContext)
   const navigate = useNavigate();
@@ -13,10 +14,10 @@ export default function Header() {
     <nav className='nav-wrapper'>
       <Container className='nav-container'>
         <div className="left-nav">
-          <Link to='/'>HOME</Link>
-          <Link to="/products">PRODUCTS</Link>
-          <Link>ABOUT US</Link>
-          <Link>CONTACT</Link>
+          <Link to='/' className='teko'><SiNike /></Link>
+          <Link to="/products" className='teko'>PRODUCTS</Link>
+          <Link to='/about-us' className='teko'>ABOUT US</Link>
+          <Link className='teko'>CONTACT</Link>
         </div>
         {/* <div className="search-form">
           <form className='search-bar' onSubmit={handleSubmit} >

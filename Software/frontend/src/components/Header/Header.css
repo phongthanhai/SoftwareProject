@@ -1,6 +1,13 @@
+.teko {
+    font-family: "Teko", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 3rem;
+    font-style: normal;
+  }
 .nav-wrapper {
     position: fixed;
-    z-index: 999;
+    z-index: 1001;
     background-color: white;
     width: 100%;
     border-bottom: 1px solid rgb(204, 204, 204);
@@ -24,7 +31,9 @@
     color: black;
     text-decoration: none;
 }
-
+.left-nav svg {
+    font-size: 4rem;
+}
 
 
 .right-nav {
