@@ -52,4 +52,7 @@ public class Shoe {
 
     @Field("details")
     private List<String> details;
+
+    @Field("discount")
+    private Float discount;
 }
