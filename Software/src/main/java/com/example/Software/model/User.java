@@ -1,15 +1,20 @@
 package com.example.Software.model;
 
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.Date;
 
 @Document(collection = "user")
 @Data
-public class User {
+@Builder
+    public class User implements UserDetails {
     @Id
     private String userId;
 
@@ -31,8 +36,11 @@ public class User {
     @Field("password")
     private String password;
 
-    @Field("vendor")
-    private int vendor;
+    @Field("role")
+    private String role;
+
+    @Field("gender")
+    private String gender;
 
     @Field("intro")
     private String intro;
@@ -42,4 +50,34 @@ public class User {
 
     @Field("last_login")
     private Date lastLogin;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }
