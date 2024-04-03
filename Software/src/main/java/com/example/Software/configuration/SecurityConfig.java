@@ -40,7 +40,6 @@ public class SecurityConfig {
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/admin/**").hasAnyAuthority(ADMIN)
-                .requestMatchers("/user/**").hasAnyAuthority(USER)
                 .anyRequest().authenticated())
             .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authenticationProvider()).addFilterBefore(
