@@ -1,19 +1,26 @@
 package com.example.Software.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.Software.model.User;
+import com.example.Software.request.user.LoginRequest;
+import com.example.Software.request.user.UserDetailRequest;
+import com.example.Software.response.JwtAuthenticationResponse;
+import com.example.Software.service.user.AuthService;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
+@AllArgsConstructor
 public class AuthController {
-    @GetMapping("/login")
-    public String getLoginForm(){
-        return "Welcome to login form";
+    private final AuthService authService;
+    @PostMapping("/signup")
+    public ResponseEntity<User> signup(@RequestBody UserDetailRequest userDetailRequest){
+        return ResponseEntity.ok(authService.signup(userDetailRequest));
     }
 
-    @GetMapping("/test")
-    public String test(){
-        return "test successfully";
+    @PostMapping("/login")
+    public ResponseEntity<JwtAuthenticationResponse> login(@RequestBody LoginRequest loginRequest){
+        return ResponseEntity.ok(authService.login(loginRequest));
     }
 }

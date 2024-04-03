@@ -1,7 +1,7 @@
 package com.example.Software.controller;
 
 import com.example.Software.model.User;
-import com.example.Software.request.UserDetailRequest;
+import com.example.Software.request.user.UserDetailRequest;
 import com.example.Software.service.user.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

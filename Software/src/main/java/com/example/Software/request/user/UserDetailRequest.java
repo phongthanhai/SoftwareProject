@@ -1,4 +1,4 @@
-package com.example.Software.request;
+package com.example.Software.request.user;
 
 import com.example.Software.constant.DateTimeFormats;
 import com.example.Software.model.User;
@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 
