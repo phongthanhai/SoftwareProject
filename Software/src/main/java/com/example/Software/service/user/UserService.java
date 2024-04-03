@@ -24,6 +24,9 @@ public class UserService {
     public void insertUser(User user){
         userRepository.insert(user);
     }
+    public User getUserByEmail(String email){
+        return userRepository.findByEmail(email).orElse(null);
+    }
 
     public UserDetailsService userDetailsService() {
         return new UserDetailsService() {

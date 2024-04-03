@@ -11,6 +11,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -46,17 +50,15 @@ public class AuthService {
             jwtAuthenticationResponse.setRefreshToken(refreshToken);
 
             return jwtAuthenticationResponse;
-        } catch (DisabledException  e){
-            System.out.println(e.getMessage());
-            System.out.println(e.getCause());
-            e.printStackTrace();
         } catch (BadCredentialsException e){
             throw new UsernameNotFoundException("Email/password incorrect");
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-            System.out.println(e.getCause());
-            e.printStackTrace();
         }
-        return null;
+    }
+
+    public String getUserEmail(){
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        return userDetails.getUsername();
     }
 }
