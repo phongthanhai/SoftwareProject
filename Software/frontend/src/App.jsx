@@ -12,6 +12,9 @@ import ProfileEdit from './pages/Profile/ProfileEdit/ProfileEdit'
 import Password from './pages/Profile/Password/Password'
 import ProductsPage from './pages/Products/ProductsPage'
 import AboutUs from './pages/AboutUs/AboutUs'
+import SignUp from './pages/SignUp/SignUp'
+import SignIn from './pages/SignIn/SignIn'
+import Admin from './pages/Admin/Admin'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,12 +25,12 @@ const router = createBrowserRouter([
         element: <HomePage />
       },
       {
-        path: "/products",
-        element: <ProductsPage/>
+        path : "/search/:query",
+        element: <ProductsPage />
       },
       {
         path: "/about-us",
-        element: <AboutUs/>
+        element: <AboutUs />
       },
       {
         path: "/cart",
@@ -68,13 +71,25 @@ const router = createBrowserRouter([
         ]
       }
     ]
+  },
+  {
+    path: "/sign-up",
+    element: <SignUp />
+  },
+  {
+    path: "/sign-in",
+    element: <SignIn />
+  },
+  {
+    path: "admin",
+    element: <Admin/>
   }
 ])
 function App() {
 
   return (
-    <RouterProvider router={router}/>
-      
+    <RouterProvider router={router} />
+
   )
 }
 

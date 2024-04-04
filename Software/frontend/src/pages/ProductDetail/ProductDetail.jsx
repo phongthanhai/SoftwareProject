@@ -5,18 +5,23 @@ import './ProductDetail.css'
 import Loader from '../../components/Loader/Loader';
 import { BsCartPlus } from "react-icons/bs";
 import { Container, Row, Col } from 'react-bootstrap'
+import Slider from '../../components/Slider/Slider';
 import { data } from '../../data/data'
+import {CartItemAddedMessage, CartItemExistMessage} from './CartMessage/CartMessage';
 const ProductPage = () => {
   const [product, setProduct] = useState({});
   const { id } = useParams();
-  const { addToCart } = useContext(GlobalContext);
+  const { addToCart, addedToCart, alreadyInCart } = useContext(GlobalContext);
   useEffect(() => {
     setProduct(data.find(productId => productId.id === id))
     console.log(product);
-  }, [])
+  }, [id])
+  
   return (
     <>{product?.image?.original === undefined ? <Loader /> : (
       <Container>
+        {addedToCart ? <CartItemAddedMessage /> : null }
+        {alreadyInCart ? <CartItemExistMessage /> : null }
         <Row>
           <Col md={6}>
             <div className="img-detail-container"> <img src={product?.image?.original} alt="" /> {console.log(product.image.original)}</div>
@@ -52,19 +57,23 @@ const ProductPage = () => {
                 <Col className='pDetail-field' md={2}><span>Gender:</span></Col>
                 <Col className='pDetail-data'>{product.gender}</Col>
               </Row>
-              {/* <Row>
-                <Col className='pDetail-field' md={2}><span>Quantity:</span></Col>
-                <Col className='pDetail-data'><QuantityButton /></Col>
-              </Row> */}
             </Row>
             <div style={{ display: 'flex', justifyContent: 'left', marginTop: '3rem' }}>
               <button className='cart-btn' onClick={() => addToCart(product)}>
-              <BsCartPlus />
+                <BsCartPlus />
                 ADD TO CART
               </button>
             </div>
 
           </Col>
+        </Row>
+        <Row>
+          <Row>
+            <h1 className='hp-title bebas-neue-regular'>RELATED PRODUCTS</h1>
+          </Row>
+          <Row>
+            <Slider />
+          </Row>
         </Row>
       </Container>
     )}

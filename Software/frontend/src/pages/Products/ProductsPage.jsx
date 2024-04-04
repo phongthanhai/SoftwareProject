@@ -6,9 +6,10 @@ import Loader from '../../components/Loader/Loader';
 import axios from 'axios';
 import { data } from '../../data/data'
 import Sidebar from './Sidebar/Sidebar'
-import Searchbar from './Searchbar/Searchbar'
 import Sortbar from './Sortbar/Sortbar';
+import { useParams } from 'react-router-dom';
 const ProductsPage = () => {
+    const { query } = useParams();
     const [products, setProducts] = useState([]);
     const [selectedBrand, setSelectedBrand] = useState(null);
     const [selectedPrice, setSelectedPrice] = useState(null);
@@ -16,17 +17,11 @@ const ProductsPage = () => {
     const [selectedGender, setSelectedGender] = useState(null);
     const [radioResetButtonDisabled, setRadioResetButtonDisabled] = useState(true)
     const [sortByOption, setSortByOption] = useState(true)
-    // ----------- Input Filter -----------
-    const [query, setQuery] = useState("");
 
-    const handleProductInputChange = (event) => {
-        setQuery(event.target.value);
-    };
 
     const filteredItems = products.filter(
         (product) => product.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
     );
-
     // ----------- Radio Filtering -----------
     const handleBrandChange = (event) => {
         setSelectedBrand(event.target.value);
@@ -49,14 +44,11 @@ const ProductsPage = () => {
     };
 
 
-    function filteredData(products, selectedPrice, selectedColor, selectedBrand, selectedGender, query) {
+    function filteredData(products, selectedPrice, selectedColor, selectedBrand, selectedGender) {
         let filteredProducts = products;
-        console.log(filteredProducts, 'filtered');
-        // Filtering Input Items
         if (query) {
             filteredProducts = filteredItems;
         }
-
         if (selectedPrice) {
             const [start, end] = selectedPrice.split(',').map(Number);
             filteredProducts = filteredProducts.filter(
@@ -105,12 +97,12 @@ const ProductsPage = () => {
             setProducts(sortedProducts);
         }
     }
-    let result = filteredData(products, selectedPrice, selectedColor, selectedBrand, selectedGender, query);
+    let result = filteredData(products, selectedPrice, selectedColor, selectedBrand, selectedGender);
 
     useEffect(() => {
         setProducts(data);
-
     }, [])
+
     return (
         <>
             <Container>
@@ -128,9 +120,9 @@ const ProductsPage = () => {
                         </button>
 
                     </Col>
-                    <Col md={10}>
+                    {result.length === 0 ? <Col md={10}><h1>No products found</h1></Col> : (<Col md={10}>
                         <Row>
-                            <Col md={10}><Searchbar query={query} handleProductInputChange={handleProductInputChange} /></Col>
+                            <Col md={10}></Col>
                             <Col md={2}><Sortbar sortByOption={sortByOption} handleSortChange={handleSortChange} /></Col>
 
                         </Row>
@@ -142,7 +134,8 @@ const ProductsPage = () => {
                                 )}
                             </Row>
                         </Row>
-                    </Col>
+                    </Col>)}
+
                 </Row>
             </Container>
         </>

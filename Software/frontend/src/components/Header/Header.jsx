@@ -7,31 +7,19 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react';
 import { GlobalContext } from '../../context/AppContext';
 import { SiNike } from "react-icons/si";
+import SearchBar from './SearchBar/SearchBar';
 export default function Header() {
   const {cartList} = useContext(GlobalContext)
   const navigate = useNavigate();
+
   return (
     <nav className='nav-wrapper'>
       <Container className='nav-container'>
         <div className="left-nav">
           <Link to='/' className='teko'><SiNike /></Link>
-          <Link to="/products" className='teko'>PRODUCTS</Link>
-          <Link to='/about-us' className='teko'>ABOUT US</Link>
-          <Link className='teko'>CONTACT</Link>
+          {/* <Link to="/products" className='teko'>PRODUCTS</Link> */}
         </div>
-        {/* <div className="search-form">
-          <form className='search-bar' onSubmit={handleSubmit} >
-            <input
-              type="text"
-              placeholder="Search"
-              name="search"
-              value={searchParams}
-              onChange={(event) => setSearchParams(event.target.value)}
-              className=""
-              aria-label="Search" />
-            <button type='submit' ><FaSearch /></button>
-          </form>
-        </div> */}
+        <SearchBar />
 
         <div className="right-nav">
           <div className="cart-icon">
@@ -44,7 +32,7 @@ export default function Header() {
               <Link to='/member/details'>Profile</Link>
               <Link to='/member/purchase'>Purchase</Link>
               <Link to='/member/orders'>Orders</Link>
-              <Link to='/'>Logout</Link>
+              <Link to='/sign-in'>Sign In</Link>
             </div>
           </div>
         </div>

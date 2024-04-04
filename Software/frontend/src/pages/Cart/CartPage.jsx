@@ -98,7 +98,15 @@ const CartPage = () => {
             }
           </Col>
           <Col md={2}>
-            <div className="cart-subtotal">SUBTOTAL: ${totalCost}</div>
+            <div className="cart-subtotal">Total ({cartList.length}) items: ${totalCost}</div>
+            <div className="place-order-btn">
+              <button>PLACE ORDER</button>
+
+            </div>
+            <div className="clear-cart-btn">
+              <button>CLEAR CART</button>
+
+            </div>
           </Col>
         </Row>
       )}

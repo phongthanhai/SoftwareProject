@@ -3,7 +3,9 @@ import { sliderData } from './SliderData'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import './Slider.css'
+import { useNavigate } from 'react-router-dom';
 const Slider = () => {
+    const navigate = useNavigate();
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
@@ -36,7 +38,11 @@ const Slider = () => {
                 {sliderData.map((shoe) => {
                     return (
                         <div className="slider" key={shoe.id}>
-                            <img src={shoe.image.original} alt="shoe" />
+                            <img
+                                src={shoe.image.original}
+                                alt="shoe"
+                                onClick={() => navigate(`/product/${shoe.id}`)} 
+                                style={{cursor:'pointer'}}/>
                             <span>{shoe.name}</span>
                         </div>
                     );

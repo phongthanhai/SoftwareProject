@@ -13,6 +13,335 @@ export const data = [
         "releaseYear": "2024",
         "retailPrice": 500,
         "story": "Revolutionary Air technology first made its way into Nike footwear in 1978. In 1987, the Air Max 1 debuted with visible Air technology in its heel, allowing fans more than just the feel of Air cushioning—suddenly they could see it. Since then, next-generation Air Max shoes have become a hit with athletes and collectors by offering striking colour combinations and reliable, lightweight cushioning."
+    },{
+        "id": "e69b2eb4-b34d-457c-9bb7-0c1eed7d54af",
+        "brand": "adidas",
+        "colorway": "Footwear White/Cream",
+        "discountPrice": 205,
+        "gender": "men",
+        "image": {
+            "original": "https://images.stockx.com/images/adidas-Milano-END-MIG-White.jpg?fit=fill&bg=FFFFFF&w=500&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1710926802"
+        },
+        "name": "adidas Milano END. MIG Made in Germany White",
+        "releaseDate": "2024-03-24",
+        "releaseYear": "2024",
+        "retailPrice": 225,
+        "story": ""
+    },
+    {
+        "id": "89734a13-a1a5-419c-8dce-f3feae3e86ee",
+        "brand": "Jordan",
+        "colorway": "Summit White/Black/Dark Powder Blue",
+        "discountPrice": 175,
+        "gender": "men",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/992/025/original/1330226_00.png.png"
+        },
+        "name": "Jordan 9 Retro Powder Blue (2024)",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 210,
+        "story": "The 2024 edition of the Air Jordan 9 Retro \u2018Powder Blue\u2019 brings back an OG colorway in honor of the shoe\u2019s 30th anniversary. A speed lacing system secures the white leather upper, featuring stitched detailing on the side panels and a contrasting black mesh tongue. A powder blue interior sleeve matches the Air Jordan tongue tag and the molded Jumpman emblem that adorns the heel. Underpinning the sneaker is a polyurethane midsole, built with encapsulated Air-sole cushioning and painted sidewalls in Carolina blue."
+    },
+    {
+        "id": "c37f4789-1cf4-42ac-96c8-6e91b829e517",
+        "brand": "Nike",
+        "colorway": "Neutral Olive/Black-Medium Olive",
+        "discountPrice": 86,
+        "gender": "men",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/863/635/original/1353244_00.png.png"
+        },
+        "name": "Nike Zoom Vomero 5 Neutral Olive",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 160,
+        "story": ""
+    },
+    {
+        "id": "0f2ced7e-b6a9-4b7f-acbe-eb39568c8304",
+        "brand": "Jordan",
+        "colorway": "Summit White/Black/Dark Powder Blue",
+        "discountPrice": 113,
+        "gender": "child",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/384/499/original/1343013_00.png.png"
+        },
+        "name": "Jordan 9 Retro Powder Blue (2024) (GS)",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 160,
+        "story": "Made for big kids, the Air Jordan 9 Retro GS &#39;Powder Blue&#39; revives an OG colorway in time for its 30th anniversary. Speed lacing secures the white leather upper, featuring perforated detailing on the side panels and a stretchy inner sleeve in powder blue. The same pastel hue coats a lightweight polyurethane midsole with encapsulated Air-sole cushioning in the forefoot and heel. Underfoot, the white rubber outsole is marked with multilingual details in a nod to Michael Jordan&#39;s emergence as an international sports icon."
+    },
+    {
+        "id": "143dbe67-1fb0-4c00-bd3c-203503ecbe02",
+        "brand": "Jordan",
+        "colorway": "Summit White/Black/Dark Powder Blue",
+        "discountPrice": 65,
+        "gender": "toddler",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/099/067/579/original/401812_101.png.png"
+        },
+        "name": "Jordan 9 Retro Powder Blue (2024) (TD)",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 85,
+        "story": "The Air Jordan 9 Retro TD &#39;Powder Blue&#39; brings back an OG colorway of the legacy silhouette in honor of its 30th anniversary. Perforated detailing adorns the white leather upper, secured with a speed lacing system and equipped with a black webbing pull tab at the heel. A full-length foam midsole, covered in a pastel powder blue finish, offers lightweight cushioning with every step. The white rubber outsole features etched graphics that reference Michael Jordan&#39;s global stardom."
+    },
+    {
+        "id": "e9eb5f32-c408-4a23-8029-47212884c044",
+        "brand": "Jordan",
+        "colorway": "Summit White/Black/Dark Powder Blue",
+        "discountPrice": 100,
+        "gender": "preschool",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/099/067/578/original/401811_101.png.png"
+        },
+        "name": "Jordan 9 Retro Powder Blue (2024) (PS)",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 100,
+        "story": "Scaled down for little kids, the Air Jordan 9 Retro PS &#39;Powder Blue&#39; celebrates the 30th anniversary of an OG colorway. Like the original, the white leather upper is secured with a speed lacing system and features perforated detailing throughout the side panels. Pastel blue accents land on the interior sleeve and lightweight foam midsole. Underfoot, the white rubber outsole is enlivened with etched graphics, including multilingual details that nod to Michal Jordan&#39;s status as a global sports icon."
+    },
+    {
+        "id": "c04ac8ec-fa46-423f-a638-f35ac1d5d99c",
+        "brand": "ASICS",
+        "colorway": "White/Green-Metallic Silver",
+        "discountPrice": 150,
+        "gender": "men",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/096/891/108/original/HIDDENGELNYC.png.png"
+        },
+        "name": "ASICS Gel-NYC Hidden NY",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 170,
+        "story": "ASICS taps Hidden NY, the Instagram moodboard turned full-fledged streetwear brand, to launch a collaborative GEL NYC. The upper features white open-cell mesh with synthetic leather overlays in matching white and metallic silver, along with signature side stripes outlined in green trim. Mismatched ASICS and Hidden NY branding adorns the tongue and lateral heel of each shoe. The lifestyle runner is mounted on a lightweight EVA midsole with green-tinged GEL inserts in the forefoot and heel."
+    },
+    {
+        "id": "7e7609cb-a16e-46d6-8619-234546a3f7f0",
+        "brand": "Puma",
+        "colorway": "Feather Grey/Platinum Grey",
+        "discountPrice": 65,
+        "gender": "men",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/021/769/original/396524_01.png.png"
+        },
+        "name": "Puma Suede One Piece Whitebeard",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 85,
+        "story": ""
+    },
+    {
+        "id": "c10114f6-a8b6-43ce-a9ac-0c99f315ef2d",
+        "brand": "Puma",
+        "colorway": "Feather Grey/Platinum Grey",
+        "discountPrice": 50,
+        "gender": "youth",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/021/773/original/396720_01.png.png"
+        },
+        "name": "One Piece x Suede Big Kid 'Gear 5 Luffy'",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 70,
+        "story": ""
+    },
+    {
+        "id": "20a3e8a7-0ef4-4372-904a-13b6404d5503",
+        "brand": "Puma",
+        "colorway": "Black/Dark Chocolate",
+        "discountPrice": 45,
+        "gender": "youth",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/021/776/original/396725_01.png.png"
+        },
+        "name": "One Piece x Suede Little Kid 'Blackbeard'",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 65,
+        "story": ""
+    },
+    {
+        "id": "bd1a89b3-8e80-480a-b4ce-098cf2e8dc3d",
+        "brand": "Puma",
+        "colorway": "Feather Grey/Platinum Grey",
+        "discountPrice": 45,
+        "gender": "youth",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/021/774/original/396721_01.png.png"
+        },
+        "name": "One Piece x Suede Little Kid 'Gear 5 Luffy'",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 65,
+        "story": ""
+    },
+    {
+        "id": "99a8bcb4-c8b4-48ca-8a8f-f657a4af3ebd",
+        "brand": "Puma",
+        "colorway": "Team Regal Red/Silver",
+        "discountPrice": 45,
+        "gender": "youth",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/021/772/original/396717_01.png.png"
+        },
+        "name": "One Piece x Suede Little Kid 'Red Hair Pirates'",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 65,
+        "story": ""
+    },
+    {
+        "id": "d7d105fc-ca77-4400-a51f-44590101bab1",
+        "brand": "Puma",
+        "colorway": "Team Regal Red/Puma Silver",
+        "discountPrice": 65,
+        "gender": "men",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/021/768/original/396521_01.png.png"
+        },
+        "name": "Puma Suede One Piece Red Hair Pirates",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 85,
+        "story": ""
+    },
+    {
+        "id": "c4a93ce0-e148-4a88-8308-c0a97ac66d8b",
+        "brand": "Puma",
+        "colorway": "For All Time Red/Ultra Blue",
+        "discountPrice": 65,
+        "gender": "men",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/021/767/original/396520_01.png.png"
+        },
+        "name": "Puma Suede One Piece Luffy",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 85,
+        "story": ""
+    },
+    {
+        "id": "6c09fb1f-fd24-454f-8612-3faa19ae1473",
+        "brand": "Puma",
+        "colorway": "Black/Dark Chocolate",
+        "discountPrice": 50,
+        "gender": "youth",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/021/775/original/396724_01.png.png"
+        },
+        "name": "One Piece x Suede Big Kid 'Blackbeard'",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 70,
+        "story": ""
+    },
+    {
+        "id": "89e46e1f-44a0-4991-83ae-f73f0242fda9",
+        "brand": "Puma",
+        "colorway": "Team Regal Red/Silver",
+        "discountPrice": 50,
+        "gender": "youth",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/021/771/original/396716_01.png.png"
+        },
+        "name": "One Piece x Suede Big Kid 'Red Hair Pirates'",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 70,
+        "story": ""
+    },
+    {
+        "id": "02a4854d-1581-4db7-ab61-cb614f14848a",
+        "brand": "Puma",
+        "colorway": "Puma Black/Dark Chocolate",
+        "discountPrice": 65,
+        "gender": "men",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/021/770/original/396525_01.png.png"
+        },
+        "name": "Puma Suede One Piece Blackbeard",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 85,
+        "story": ""
+    },
+    {
+        "id": "0318ac51-1a7a-4d25-a7d5-ba3f791759ed",
+        "brand": "Puma",
+        "colorway": "For All Time Red/Ultra Blue",
+        "discountPrice": 50,
+        "gender": "youth",
+        "image": {
+            "original": "https://image.goat.com/attachments/product_template_pictures/images/098/766/138/original/396648_01.png.png"
+        },
+        "name": "One Piece x Suede Big Kid 'Luffy'",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 70,
+        "story": ""
+    },
+    {
+        "id": "a3fc2875-5c6a-4f22-be11-b5df1fdcee37",
+        "brand": "adidas",
+        "colorway": "Crystal White/Core Black/Footwear White",
+        "discountPrice": 150,
+        "gender": "men",
+        "image": {
+            "original": "https://images.stockx.com/images/adidas-EQT-Guidance-Overkill-Friends-and-Family.jpg?fit=fill&bg=FFFFFF&w=500&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1711133648"
+        },
+        "name": "adidas EQT Guidance Overkill Friends and Family",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 150,
+        "story": ""
+    },
+    {
+        "id": "0dd4994b-bb4d-49d6-905e-ba33316d35d3",
+        "brand": "adidas",
+        "colorway": "Crystal White/Core Black/Footwear White",
+        "discountPrice": 110,
+        "gender": "men",
+        "image": {
+            "original": "https://images.stockx.com/images/adidas-Spiritain-2000-Overkill-Friends-and-Family.jpg?fit=fill&bg=FFFFFF&w=500&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1711133652"
+        },
+        "name": "adidas Spiritain 2000 Overkill Friends and Family",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 130,
+        "story": ""
+    },
+    {
+        "id": "3d091df2-f860-44fe-9886-5ccdf3b40807",
+        "brand": "adidas",
+        "colorway": "Rystal White/Footwear White/Off White",
+        "discountPrice": 130,
+        "gender": "men",
+        "image": {
+            "original": "https://images.stockx.com/images/adidas-EQT-Guidance-Overkill-Grey-Orange.jpg?fit=fill&bg=FFFFFF&w=500&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1711133645"
+        },
+        "name": "adidas EQT Guidance Overkill Grey Orange",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 150,
+        "story": ""
+    },
+    {
+        "id": "ddcddab4-a1eb-4c11-abe1-39cca1625c35",
+        "brand": "adidas",
+        "colorway": "Crystal White/Footwear White/Core White",
+        "discountPrice": 110,
+        "gender": "men",
+        "image": {
+            "original": "https://images.stockx.com/images/adidas-Spiritain-2000-Overkill-White-Green.jpg?fit=fill&bg=FFFFFF&w=500&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1711133658"
+        },
+        "name": "adidas Spiritain 2000 Overkill White Green",
+        "releaseDate": "2024-03-23",
+        "releaseYear": "2024",
+        "retailPrice": 130,
+        "story": ""
     },
     {
         "id": "42ee4c78-321b-4d4c-a3b8-bfeb2879938b",

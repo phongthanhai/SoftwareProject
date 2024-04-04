@@ -40,10 +40,7 @@
     flex: 1;
     display: flex;
     font-size: 3rem;
-    justify-content: right;
-    gap: 5rem;
-   
-
+    justify-content: space-evenly;
 }
 
 .cart-icon, .profile {
@@ -69,7 +66,6 @@
 }
 .profile-dropdown {
     display: none;
-    right: 0;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;

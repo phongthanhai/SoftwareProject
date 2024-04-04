@@ -1,33 +1,15 @@
-.shoe-poster {
-    /* margin-bottom: 10rem; */
+.hp-title {
+    background-color: black;
+    padding: 20px;
+    color: white;
+    border-left: 5px solid black;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    margin-top: 4rem;
 }
-
-.shoe-poster .img-container {
-    margin-bottom: 5rem;
-    cursor: pointer;
-}
-.shoe-poster .img-container .last-img {
-    /* margin-bottom: 5rem; */
-    cursor: none;
-}
-
-.shoe-poster .description {
-    width: 70%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.shoe-poster .description .body {
-    text-align: center;
-    font-weight: normal;
-}
-
 .russo-one-regular {
     font-family: "Russo One", sans-serif;
     font-weight: 400;
-    font-size: 8rem;
+    font-size: 5rem;
     font-style: normal;
 }
 
