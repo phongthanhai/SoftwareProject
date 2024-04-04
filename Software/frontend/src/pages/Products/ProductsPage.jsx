@@ -101,7 +101,7 @@ const ProductsPage = () => {
 
     useEffect(() => {
         setProducts(data);
-    }, [])
+    }, [query])
 
     return (
         <>

@@ -8,7 +8,7 @@
     padding-top: 30px;
     padding-bottom: 30px;
     border-radius: 3px;
- 
+    z-index: 1002;
 }
 
 .cart-message .cart-message-icon{
