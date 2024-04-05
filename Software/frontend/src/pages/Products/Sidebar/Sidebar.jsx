@@ -5,20 +5,26 @@ import Gender from "./Gender/Gender";
 import { IoFilter } from "react-icons/io5";
 import "./Sidebar.css";
 
-const Sidebar = ({ handleBrandChange, handlePriceChange, handleColorChange, handleGenderChange }) => {
-  
+const Sidebar = ({ handleBrandChange, handlePriceChange, handleColorChange, handleGenderChange, category }) => {
+
   return (
     <>
-      <section className="sidebar">
+      <section className="filter-sidebar">
         <div className="logo-container">
           <h2><IoFilter /> SEARCH FILTER</h2>
         </div>
-        <Brand handleBrandChange={handleBrandChange} />
 
-
+        {
+          category ?
+            (category === "brand" ?
+              <Gender handleGenderChange={handleGenderChange} /> : <Brand handleBrandChange={handleBrandChange} />) 
+            :
+            (<>
+              <Gender handleGenderChange={handleGenderChange} />
+              <Brand handleBrandChange={handleBrandChange} />
+            </>)
+        }
         <Color handleColorChange={handleColorChange} />
-
-        <Gender handleGenderChange={handleGenderChange} /> 
 
         {/* <Price handlePriceChange={handlePriceChange} /> */}
 

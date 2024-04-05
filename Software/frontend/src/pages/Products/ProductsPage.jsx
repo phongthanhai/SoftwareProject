@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from 'react'
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { Container, Row, Col } from 'react-bootstrap';
 import { GlobalContext } from '../../context/AppContext';
-import Loader from '../../components/Loader/Loader';
 import axios from 'axios';
 import { data } from '../../data/data'
 import Sidebar from './Sidebar/Sidebar'
 import Sortbar from './Sortbar/Sortbar';
+import Loader from '../../components/Loader/Loader'
 import { useParams } from 'react-router-dom';
 const ProductsPage = () => {
-    const { query } = useParams();
+    const { query, category } = useParams();
     const [products, setProducts] = useState([]);
     const [selectedBrand, setSelectedBrand] = useState(null);
     const [selectedPrice, setSelectedPrice] = useState(null);
@@ -17,11 +17,24 @@ const ProductsPage = () => {
     const [selectedGender, setSelectedGender] = useState(null);
     const [radioResetButtonDisabled, setRadioResetButtonDisabled] = useState(true)
     const [sortByOption, setSortByOption] = useState(true)
+    // Check if search or select by category
+    let filteredItems;
+    if (category) {
+        if (category === "brand") {
+            filteredItems = products.filter(
+                (product) => product.brand.toLowerCase().indexOf(query.toLowerCase()) !== -1
+            );
+        } else if (category === "gender") {
+            filteredItems = products.filter(
+                (product) => product.gender.toLowerCase().indexOf(query.toLowerCase()) !== -1
+            );
+        }
+    } else {
+        filteredItems = products.filter(
+            (product) => product.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
+        );
+    }
 
-
-    const filteredItems = products.filter(
-        (product) => product.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
-    );
     // ----------- Radio Filtering -----------
     const handleBrandChange = (event) => {
         setSelectedBrand(event.target.value);
@@ -112,7 +125,8 @@ const ProductsPage = () => {
                             handleBrandChange={handleBrandChange}
                             handlePriceChange={handlePriceChange}
                             handleColorChange={handleColorChange}
-                            handleGenderChange={handleGenderChange} />
+                            handleGenderChange={handleGenderChange}
+                            category={category} />
                         <button style={{ width: '100%', padding: '1rem 0', marginTop: '2rem', }}
                             disabled={radioResetButtonDisabled}
                             onClick={handleResetRadio}>
@@ -122,12 +136,17 @@ const ProductsPage = () => {
                     </Col>
                     {result.length === 0 ? <Col md={10}><h1>No products found</h1></Col> : (<Col md={10}>
                         <Row>
-                            <Col md={10}></Col>
+                            <Col md={10}>
+                                <Row>
+                                    {category ? <span>{category}: {query}</span>  : <span>Search result for '{query}':</span>}
+
+                                    {/* Items count: {result.length} */}
+                                </Row>
+                            </Col>
                             <Col md={2}><Sortbar sortByOption={sortByOption} handleSortChange={handleSortChange} /></Col>
 
                         </Row>
                         <Row>
-                            <Row>Items count: {result.length}</Row>
                             <Row>
                                 {result.map(product =>
                                     <ProductCard key={product.id} product={product} />

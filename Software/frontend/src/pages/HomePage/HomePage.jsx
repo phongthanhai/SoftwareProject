@@ -3,7 +3,7 @@ import { Container, Row } from 'react-bootstrap';
 import './HomePage.css'
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { data } from '../../data/data'
-
+import Loader from '../../components/Loader/Loader'
 import HeaderSlider from './HeaderSlider/HeaderSlider';
 const HomePage = () => {
     const [products, setProducts] = useState([]);
@@ -12,6 +12,7 @@ const HomePage = () => {
     }, [])
     return (
         <>
+        {products.length === 0 ? <Loader /> : (
             <Container className='homepage-container'>
                 <Row>
                     <HeaderSlider />
@@ -26,7 +27,7 @@ const HomePage = () => {
                 </Row>
                 
 
-            </Container>
+            </Container>)}
         </>
 
     )
