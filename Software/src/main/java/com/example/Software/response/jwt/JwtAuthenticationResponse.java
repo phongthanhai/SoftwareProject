@@ -1,6 +1,5 @@
-package com.example.Software.response;
+package com.example.Software.response.jwt;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data

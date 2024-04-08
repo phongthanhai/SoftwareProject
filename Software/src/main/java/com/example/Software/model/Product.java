@@ -2,6 +2,8 @@ package com.example.Software.model;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "product")
@@ -12,7 +14,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Product {
         @Id
         private String id;
-
         private String brand;
         private String colorway;
         private float discountPrice;
@@ -24,3 +25,4 @@ public class Product {
         private float retailPrice;
         private String story;
 }
+

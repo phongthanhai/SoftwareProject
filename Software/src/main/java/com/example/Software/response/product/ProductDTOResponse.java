@@ -1,5 +1,6 @@
 package com.example.Software.response.product;
 
+import com.example.Software.model.Image;
 import com.example.Software.model.Product;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -14,13 +15,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ListProductResponse {
+public class ProductDTOResponse {
     @JsonProperty("id")
     private String id;
     @JsonProperty("name")
     private String name;
     @JsonProperty("brand")
     private String brand;
+    @JsonProperty("image")
+    private Image image;
     @JsonProperty("discount_price")
     private float discountPrice;
     @JsonProperty("retail_price")
@@ -28,12 +31,13 @@ public class ListProductResponse {
     @JsonProperty("release_date")
     private String releaseDate;
 
-    public static List<ListProductResponse> fromList(List<Product> products) {
-        List<ListProductResponse> productResponses = new ArrayList<>();
+    public static List<ProductDTOResponse> fromList(List<Product> products) {
+        List<ProductDTOResponse> productResponses = new ArrayList<>();
         for (Product product : products) {
-            ListProductResponse listProductResponse = new ListProductResponse(product.getId(),
+            ProductDTOResponse listProductResponse = new ProductDTOResponse(product.getId(),
                                                                             product.getName(),
                                                                             product.getBrand(),
+                                                                            product.getImage(),
                                                                             product.getDiscountPrice(),
                                                                             product.getRetailPrice(),
                                                                             product.getReleaseDate());
