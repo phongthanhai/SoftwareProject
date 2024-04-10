@@ -24,11 +24,11 @@ public class ProductDTOResponse {
     private String brand;
     @JsonProperty("image")
     private Image image;
-    @JsonProperty("discount_price")
+    @JsonProperty("discountPrice")
     private float discountPrice;
-    @JsonProperty("retail_price")
+    @JsonProperty("retailPrice")
     private float retailPrice;
-    @JsonProperty("release_date")
+    @JsonProperty("releaseDate")
     private String releaseDate;
 
     public static List<ProductDTOResponse> fromList(List<Product> products) {

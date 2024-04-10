@@ -5,6 +5,7 @@ import com.example.Software.response.product.ProductDTOResponse;
 import com.example.Software.response.product.ProductDetailResponse;
 import com.example.Software.service.product.ProductService;
 import lombok.AllArgsConstructor;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,9 @@ public class ProductController {
                                                                  @RequestParam(required = false) String sortType,
                                                                  @RequestParam int page,
                                                                  @RequestParam int size) {
-        name = name.trim();
+        if (StringUtils.hasText(name)){
+            name = name.trim();
+        }
         return productService.getProductByFilter(name, brand, gender, sortType, page, size);
     }
 
