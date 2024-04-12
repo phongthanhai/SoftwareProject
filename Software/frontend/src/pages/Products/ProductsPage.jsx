@@ -114,10 +114,12 @@ const ProductsPage = () => {
 
     useEffect(() => {
         setProducts(data);
-    }, [query])
+        handleResetRadio();
+    }, [query, category])
 
     return (
         <>
+        {products.length === 0 ? <Loader /> : (
             <Container>
                 <Row>
                     <Col md={2}>
@@ -156,7 +158,7 @@ const ProductsPage = () => {
                     </Col>)}
 
                 </Row>
-            </Container>
+            </Container>)}
         </>
 
     )

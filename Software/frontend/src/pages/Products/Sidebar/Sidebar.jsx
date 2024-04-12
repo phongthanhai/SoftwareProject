@@ -11,7 +11,7 @@ const Sidebar = ({ handleBrandChange, handlePriceChange, handleColorChange, hand
     <>
       <section className="filter-sidebar">
         <div className="logo-container">
-          <h2><IoFilter /> SEARCH FILTER</h2>
+          <h1 className="bebas-neue-regular"> <IoFilter /> SEARCH FILTER</h1>
         </div>
 
         {

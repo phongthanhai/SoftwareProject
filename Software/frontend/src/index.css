@@ -6,7 +6,7 @@
 #root,
 .auth-wrapper {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 html {
     font-size: 62.5%;
@@ -16,7 +16,7 @@ html {
     justify-content: center;
     flex-direction: column;
     text-align: left;
-    
+    align-items: center;
 }
 
 .auth-inner {
@@ -56,4 +56,70 @@ html {
 
 .forgot-password a {
     color: #167bff;
+}
+.auth-inner .submit-btn-disabled {
+    background-color: rgba(0, 0, 0, 0.547);
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+
+}
+.auth-inner .submit-btn {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.auth-inner .submit-btn:hover {
+    background-color: rgba(0, 0, 0, 0.825);
+
+}
+.auth-inner .user-input input, label {
+    font-size: 14px;
+
+}
+.auth-inner .user-input input {
+    padding: 10px;
+}
+.sign-in-options {
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+}
+.sign-in-options button{
+    flex: 1;
+    background-color: white;
+    border: 1px solid hsl(0, 1%, 67%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    font-size: 14px;
+}
+.sign-in-options button:hover {
+    background-color: rgb(245, 240, 240);
+}
+.sign-in-options button img {
+    width: 30px;
+    
+}
+.NleHE1 {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+.rEVZJ2{
+    background-color: #dbdbdb;
+    flex: 1;
+    height: 1px;
+    width: 100%;
+}
+.EMof35{
+    color: #ccc;
+    font-size: 12px;
+    padding: 0 16px;
+    text-transform: uppercase;
 }

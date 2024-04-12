@@ -12,11 +12,17 @@
     font-size: 14px;
     /* padding: 0 20px; */
 }
+.cart-data-data {
+    display: flex;
+    justify-content: center;
+}
 .cart-data-data, .cart-data-field {
     text-align: center;
+
 }
 .cart-data-product {
     text-align:left;
+    display: block;
 }
 .cart-data-product img {
     cursor: pointer;
