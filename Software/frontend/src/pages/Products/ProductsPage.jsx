@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { Container, Row, Col } from 'react-bootstrap';
-import { GlobalContext } from '../../context/AppContext';
-import axios from 'axios';
+import api from './api/axiosConfig';
 import { data } from '../../data/data'
 import Sidebar from './Sidebar/Sidebar'
 import Sortbar from './Sortbar/Sortbar';
@@ -113,8 +112,25 @@ const ProductsPage = () => {
     let result = filteredData(products, selectedPrice, selectedColor, selectedBrand, selectedGender);
 
     useEffect(() => {
-        setProducts(data);
-        handleResetRadio();
+        const fetchData = async () =>{
+            try
+            {
+              const response = await api.get("/product", {
+                params: {
+                    name: query,
+                    page: 0,
+                    size: 20
+                }
+              });
+              setProducts(response.data);
+              handleResetRadio();
+            } 
+            catch(err)
+            {
+              console.log(err);
+            }
+          }
+          fetchData();
     }, [query, category])
 
     return (
