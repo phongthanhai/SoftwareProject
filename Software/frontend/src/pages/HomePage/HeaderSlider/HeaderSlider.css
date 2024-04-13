@@ -1,0 +1,26 @@
+.slider-item{
+    max-height: 500px;
+    display: flex !important;
+}
+.slider-item img{
+    max-height: 300px;
+    cursor: pointer;
+    width: auto;
+}
+.slider-content{
+    overflow-y: hidden;
+}
+
+.slider-item .description {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider-item .description .body {
+    text-align: center;
+    font-weight: normal;
+}
+

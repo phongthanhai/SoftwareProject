@@ -1,0 +1,29 @@
+.slider {
+    margin:0 20px;
+    overflow:"hidden";
+    padding:2rem 0;
+  }
+  
+  .slider img {
+    width: 100%;
+    border-radius:10px;
+  }
+  .slider span {
+    font-size: 2rem;
+  }
+  .react-multi-carousel-list {
+  padding: 0rem 0 2rem 0;
+  }
+  .react-multiple-carousel__arrow--right {
+    right: 0 !important;
+  }
+  .react-multiple-carousel__arrow--left {
+    left: auto !important;
+  }
+  .custom-dot-list-style button{
+  border: none;
+  background: rgb(113, 112, 112);
+  }
+  .react-multi-carousel-dot.react-multi-carousel-dot--active button{
+  background: rgb(53, 52, 52) !important;
+  }

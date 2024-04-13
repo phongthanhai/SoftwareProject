@@ -1,0 +1,33 @@
+.hp-title {
+    background-color: black;
+    padding: 20px;
+    color: white;
+    border-left: 5px solid black;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    margin-top: 4rem;
+}
+
+.russo-one-regular {
+    font-family: "Russo One", sans-serif;
+    font-weight: 400;
+    font-size: 5rem;
+    font-style: normal;
+}
+
+.anton-regular {
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.assistant {
+    font-family: "Assistant", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}

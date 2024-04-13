@@ -1,0 +1,17 @@
+.filter-sidebar {
+    margin-top: 1rem;
+}
+.sidebar-label-container {
+    margin: 7px 0;
+    display: flex;
+}
+.sidebar-label-container span {
+    font-size: 14px;
+    margin-left: 5px;
+}
+.sidebar-filter {
+    border-bottom :1px solid rgba(0, 0, 0, .09);
+}
+.sidebar-filter h3 {
+    margin-top: 1rem;
+}
