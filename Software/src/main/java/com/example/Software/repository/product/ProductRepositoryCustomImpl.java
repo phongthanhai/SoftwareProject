@@ -6,6 +6,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
@@ -17,6 +19,7 @@ import com.example.Software.constant.SortType;
 
 @Repository
 public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
+    public static final int NUMBER_RELATED_PRODUCT = 10;
     private final MongoTemplate mongoTemplate;
     public ProductRepositoryCustomImpl(@Qualifier("productDBMongoTemplate") MongoTemplate mongoTemplate){
         this.mongoTemplate = mongoTemplate;
@@ -25,15 +28,21 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
     @Override
     public List<Product> findByFilterIn(String name, String brand, String gender, String sortType, int pageNo, int pageSize) {
         Query query = buildQueryFrom(name, brand, gender);
-        Sort.Direction direction = Sort.Direction.ASC;
-        if (!StringUtils.hasText(sortType)) {
-            sortType = SortType.RELEASE_DATE;
+        Pageable pageAble = null;
+        if (StringUtils.hasText(sortType)) {
+            Sort.Direction direction = null;
+            if (sortType.equals(SortType.ASC)) {
+                direction = Sort.Direction.ASC;
+            }
+            else {
+                direction = Sort.Direction.DESC;
+            }
+            Sort sort = Sort.by(direction, "retailPrice");
+            pageAble = PageRequest.of(pageNo, pageSize, sort);
         }
-        if (sortType.equals(SortType.RELEASE_DATE)) {
-            direction = Sort.Direction.DESC;
+        else {
+            pageAble = PageRequest.of(pageNo, pageSize);
         }
-        Sort sort = Sort.by(direction, sortType);
-        Pageable pageAble = PageRequest.of(pageNo, pageSize, sort);
         query.with(pageAble);
         return mongoTemplate.find(query, Product.class);
     }
@@ -41,6 +50,16 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
     public long count(String name, String brand, String gender) {
         Query query = buildQueryFrom(name, brand, gender);
         return mongoTemplate.count(query, Product.class);
+    }
+
+    @Override
+    public List<Product> findRandomProductsByBrand(String brand) {
+        Aggregation aggregation = Aggregation.newAggregation(
+                Aggregation.match(Criteria.where("brand").is(brand)),
+                Aggregation.sample(NUMBER_RELATED_PRODUCT)
+        );
+        AggregationResults<Product> results = mongoTemplate.aggregate(aggregation, "product", Product.class);
+        return results.getMappedResults();
     }
 
     public Query buildQueryFrom(String name, String brand, String gender){

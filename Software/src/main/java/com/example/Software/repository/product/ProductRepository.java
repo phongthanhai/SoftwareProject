@@ -13,6 +13,4 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends MongoRepository<Product, String>, ProductRepositoryCustom {
-    @Query(value = "{ 'brand':  ?0}", sort = "{'releaseDate' :  -1}")
-    List<Product> findByBrandWithLatestRelease(String brand, Pageable pageable);
 }

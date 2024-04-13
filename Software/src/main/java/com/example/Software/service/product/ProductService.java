@@ -16,7 +16,6 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ProductService {
-    public static final int LIMIT_RELATED_PRODUCTS = 10;
     private final ProductRepository productRepository;
     public SearchResult<List<ProductDTOResponse>> getProductByFilter(String name, String brand, String gender, String sortType, int page, int size) {
 
@@ -34,8 +33,7 @@ public class ProductService {
     public ProductDetailResponse getProductDetailById(String id) {
         Product product = getProductById(id);
         String brand = product.getBrand();
-        Pageable pageAble = PageRequest.of(0, LIMIT_RELATED_PRODUCTS);
-        List<Product> products = productRepository.findByBrandWithLatestRelease(brand, pageAble);
+        List<Product> products = productRepository.findRandomProductsByBrand(brand);
         List<ProductDTOResponse> productDTOResponseList = ProductDTOResponse.fromList(products);
 
         return new ProductDetailResponse(product, productDTOResponseList);
