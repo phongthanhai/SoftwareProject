@@ -8,6 +8,7 @@ const AppContext = ({ children }) => {
     const [sideBarOn, setSideBarOn] = useState(false)
 
     function addToCart(cartItem) {
+        console.log(cartItem.id);
         let isPresent = false;
         cartList.forEach((product) => {
             if (cartItem.id === product.id)

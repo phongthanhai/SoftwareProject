@@ -4,7 +4,8 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import './Slider.css'
 import { useNavigate } from 'react-router-dom';
-const Slider = () => {
+const Slider = ({relatedProducts}) => {
+    console.log(relatedProducts);
     const navigate = useNavigate();
     const responsive = {
         desktop: {
@@ -35,7 +36,7 @@ const Slider = () => {
                 partialVisible={false}
                 dotListClass="custom-dot-list-style"
             >
-                {sliderData.map((shoe) => {
+                {relatedProducts.map((shoe) => {
                     return (
                         <div className="slider" key={shoe.id}>
                             <img

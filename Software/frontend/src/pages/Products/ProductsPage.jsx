@@ -1,92 +1,109 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { Container, Row, Col } from 'react-bootstrap';
-import api from './api/axiosConfig';
-import { data } from '../../data/data'
+import api from '../../api/axiosConfig';
 import Sidebar from './Sidebar/Sidebar'
 import Sortbar from './Sortbar/Sortbar';
 import Loader from '../../components/Loader/Loader'
 import { useParams } from 'react-router-dom';
 const ProductsPage = () => {
     const { query, category } = useParams();
+    const [total, setTotal] = useState(null);
     const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedBrand, setSelectedBrand] = useState(null);
     const [selectedPrice, setSelectedPrice] = useState(null);
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedGender, setSelectedGender] = useState(null);
     const [radioResetButtonDisabled, setRadioResetButtonDisabled] = useState(true)
     const [sortByOption, setSortByOption] = useState(true)
-    // Check if search or select by category
-    let filteredItems;
-    if (category) {
-        if (category === "brand") {
-            filteredItems = products.filter(
-                (product) => product.brand.toLowerCase().indexOf(query.toLowerCase()) !== -1
-            );
-        } else if (category === "gender") {
-            filteredItems = products.filter(
-                (product) => product.gender.toLowerCase().indexOf(query.toLowerCase()) !== -1
-            );
+    const fetchShoes = async (params) => {
+        try {
+            const response = await api.get("/product", {
+                params: {
+                    page: 0,
+                    size: 20,
+                    ...params,
+                    
+                }
+            });
+            setProducts(response.data.data);
+            setFilteredProducts(response.data.data);
+            setTotal(response.data.total);
+        } catch(err) {
+            console.log(err);
         }
-    } else {
-        filteredItems = products.filter(
-            (product) => product.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
-        );
-    }
+    };
+    
+    useEffect(() => {
+        let params = {};
+    
+        switch(category) {
+            case "brand":
+                params = { brand: query };
+                break;
+            case "gender":
+                params = { gender: query };
+                break;
+            default:
+                params = { name: query };
+        }
+    
+        fetchShoes(params);
+        console.log("fetched");
+    }, [query, category]);
+    // Check if search or select by category
+    
 
     // ----------- Radio Filtering -----------
     const handleBrandChange = (event) => {
-        setSelectedBrand(event.target.value);
+        let newBrand = event.target.value;
+        setSelectedBrand(newBrand);
         setRadioResetButtonDisabled(false)
-
+        filteredData(selectedPrice, selectedColor, newBrand, selectedGender )
     };
     const handlePriceChange = (event) => {
         setSelectedPrice(event.target.value);
         setRadioResetButtonDisabled(false)
+        filteredData(selectedPrice, selectedColor, selectedBrand, selectedGender )
 
     };
     const handleColorChange = (event) => {
-        setSelectedColor(event.target.value);
+        let newColor = event.target.value
+        setSelectedColor(newColor);
         setRadioResetButtonDisabled(false)
+        filteredData(selectedPrice, newColor, selectedBrand, selectedGender )
 
     };
     const handleGenderChange = (event) => {
-        setSelectedGender(event.target.value);
+        let newGender = event.target.value
+        setSelectedGender(newGender);
         setRadioResetButtonDisabled(false)
+        filteredData(selectedPrice, selectedColor, selectedBrand, newGender )
+
     };
 
 
-    function filteredData(products, selectedPrice, selectedColor, selectedBrand, selectedGender) {
+    function filteredData(selectedPrice, selectedColor, selectedBrand, selectedGender) {
         let filteredProducts = products;
-        if (query) {
-            filteredProducts = filteredItems;
-        }
-        if (selectedPrice) {
-            const [start, end] = selectedPrice.split(',').map(Number);
-            filteredProducts = filteredProducts.filter(
-                ({ newPrice }) =>
-                    newPrice >= start && newPrice <= end
-            );
-        }
         if (selectedColor) {
             filteredProducts = filteredProducts.filter(
-                ({ colorway }) =>
-                    colorway.toLowerCase().includes(selectedColor)
+                ({ colorway }) => colorway.toLowerCase().includes(selectedColor)
             );
         }
         if (selectedBrand) {
             filteredProducts = filteredProducts.filter(
-                ({ brand }) =>
-                    brand === selectedBrand
+                ({ brand }) => brand === selectedBrand
             );
         }
+        console.log(filteredProducts);
         if (selectedGender) {
             filteredProducts = filteredProducts.filter(
-                ({ gender }) =>
-                    gender === selectedGender
+                ({ gender }) => gender === selectedGender
             );
         }
-        return filteredProducts;
+    
+        setFilteredProducts(filteredProducts);
     }
     function handleResetRadio() {
         setRadioResetButtonDisabled(true)
@@ -96,6 +113,7 @@ const ProductsPage = () => {
         setSelectedColor(null)
         setSelectedGender(null)
         setSelectedPrice(null)
+        filteredData();
     }
     function handleSortChange(event) {
         setSortByOption(false);
@@ -109,33 +127,11 @@ const ProductsPage = () => {
             setProducts(sortedProducts);
         }
     }
-    let result = filteredData(products, selectedPrice, selectedColor, selectedBrand, selectedGender);
-
-    useEffect(() => {
-        const fetchData = async () =>{
-            try
-            {
-              const response = await api.get("/product", {
-                params: {
-                    name: query,
-                    page: 0,
-                    size: 20
-                }
-              });
-              setProducts(response.data);
-              handleResetRadio();
-            } 
-            catch(err)
-            {
-              console.log(err);
-            }
-          }
-          fetchData();
-    }, [query, category])
+    // let result = filteredData(selectedPrice, selectedColor, selectedBrand, selectedGender);
 
     return (
         <>
-        {products.length === 0 ? <Loader /> : (
+        {total ===  0 ? <div>no product found</div> :  products.length === 0 ? <Loader /> : (
             <Container>
                 <Row>
                     <Col md={2}>
@@ -152,7 +148,7 @@ const ProductsPage = () => {
                         </button>
 
                     </Col>
-                    {result.length === 0 ? <Col md={10}><h1>No products found</h1></Col> : (<Col md={10}>
+                    {filteredProducts.length === 0 ? <Col md={10}><h1>No products found</h1></Col> : (<Col md={10}>
                         <Row>
                             <Col md={10}>
                                 <Row>
@@ -166,7 +162,7 @@ const ProductsPage = () => {
                         </Row>
                         <Row>
                             <Row>
-                                {result.map(product =>
+                                {filteredProducts.map(product =>
                                     <ProductCard key={product.id} product={product} />
                                 )}
                             </Row>

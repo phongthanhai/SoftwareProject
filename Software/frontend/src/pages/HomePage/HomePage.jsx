@@ -4,11 +4,30 @@ import './HomePage.css'
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { data } from '../../data/data'
 import Loader from '../../components/Loader/Loader'
+import api from '../../api/axiosConfig'
 import HeaderSlider from './HeaderSlider/HeaderSlider';
 const HomePage = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        setProducts(data);
+        const fetchData = async () =>{
+            try
+            {
+              const response = await api.get("/product", {
+                params: {
+                    page: 0,
+                    size: 20
+                }
+              });
+              setProducts(response.data.data);
+            } 
+            catch(err)
+            {
+              console.log(err);
+            }
+          }
+          fetchData();
+          console.log(products);
+        // setProducts(data);
     }, [])
     return (
         <>
