@@ -55,7 +55,7 @@ const CartPage = () => {
       
       
       <div className="empty-cart">
-        <img src="/empty_cart.png" alt="" />
+        <h1>YOUR CART IS EMPTY :{"("}</h1>
         <button onClick={() => navigate("/")}>GO SHOPPING NOW</button>
       </div> 
       : (

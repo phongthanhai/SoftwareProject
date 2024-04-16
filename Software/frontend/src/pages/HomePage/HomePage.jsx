@@ -7,40 +7,98 @@ import Loader from '../../components/Loader/Loader'
 import api from '../../api/axiosConfig'
 import HeaderSlider from './HeaderSlider/HeaderSlider';
 const HomePage = () => {
-    const [products, setProducts] = useState([]);
-    useEffect(() => {
-        const fetchData = async () =>{
-            try
-            {
-              const response = await api.get("/product", {
-                params: {
-                    page: 0,
-                    size: 20
-                }
-              });
-              setProducts(response.data.data);
-            } 
-            catch(err)
-            {
-              console.log(err);
+    const brands = ['Nike', 'adidas','Puma', 'Jordan', 'Converse', 'ASICS'];
+    const [nike, setNike] = useState([]);
+    const [adidas, setAdidas] = useState([]);
+    const [puma, setPuma] = useState([]);
+    const [jordan, setJordan] = useState([]);
+    const [converse, setConverse] = useState([]);
+    const [asics, setAsics] = useState([]);
+    const setFunctions = [setNike, setAdidas, setPuma, setJordan, setConverse, setAsics];
+    function setProducts(setProduct, data) {
+        setProduct(data);
+    }
+    const fetchData = async () =>{
+        try
+        {
+            for(var i = 0; i < brands.length; i++) {
+                const response = await api.get("/product", {
+                    params: {
+                        page: 0,
+                        size: 6,
+                        brand: brands[i]
+                    }
+                  });
+                  setProducts(setFunctions[i],response.data.data);
             }
-          }
+          
+        } 
+        catch(err)
+        {
+          console.log(err);
+        }
+      }
+    useEffect(() => {       
           fetchData();
-          console.log(products);
-        // setProducts(data);
     }, [])
     return (
         <>
-        {products.length === 0 ? <Loader /> : (
+        {
+        nike.length === 0 && 
+        puma.length === 0 && 
+        jordan.length === 0 && 
+        converse.length  === 0 && 
+        asics.length === 0 && 
+        adidas.length === 0 ? <Loader /> : (
             <Container className='homepage-container'>
                 <Row>
                     <HeaderSlider />
                 </Row>
                 <Row>
-                <h1 className='hp-title bebas-neue-regular'>SEE OUR PRODUCTS</h1>
+                <h1 className='hp-title bebas-neue-regular'>Nike</h1>
                 </Row>
                 <Row>
-                    {products.map(product =>
+                    {nike.map(product =>
+                        <ProductCard key={product.id} product={product} />
+                    )}
+                </Row>
+                <Row>
+                <h1 className='hp-title bebas-neue-regular'>adidas</h1>
+                </Row>
+                <Row>
+                    {adidas.map(product =>
+                        <ProductCard key={product.id} product={product} />
+                    )}
+                </Row>
+                <Row>
+                <h1 className='hp-title bebas-neue-regular'>Puma</h1>
+                </Row>
+                <Row>
+                    {puma.map(product =>
+                        <ProductCard key={product.id} product={product} />
+                    )}
+                </Row>
+                <Row>
+                <h1 className='hp-title bebas-neue-regular'>Jordan</h1>
+                </Row>
+                <Row>
+                    {jordan.map(product =>
+                        <ProductCard key={product.id} product={product} />
+                    )}
+                </Row>
+                <Row>
+                <h1 className='hp-title bebas-neue-regular'>Converse</h1>
+                </Row>
+                <Row>
+                    {converse.map(product =>
+                        <ProductCard key={product.id} product={product} />
+                    )}
+                </Row>
+                <Row>
+                <h1 className='hp-title bebas-neue-regular'>ASICS</h1>
+                </Row>
+                <Row>
+                    {asics.map(product =>
                         <ProductCard key={product.id} product={product} />
                     )}
                 </Row>
