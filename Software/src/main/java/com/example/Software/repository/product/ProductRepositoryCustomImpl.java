@@ -37,7 +37,7 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
             else {
                 direction = Sort.Direction.DESC;
             }
-            Sort sort = Sort.by(direction, "retailPrice");
+            Sort sort = Sort.by(direction, "discountPrice");
             pageAble = PageRequest.of(pageNo, pageSize, sort);
         }
         else {
