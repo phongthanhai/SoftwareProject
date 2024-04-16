@@ -24,6 +24,10 @@ public class ProductDTOResponse {
     private String brand;
     @JsonProperty("image")
     private Image image;
+    @JsonProperty("colorway")
+    private String colorway;
+    @JsonProperty("gender")
+    private String gender;
     @JsonProperty("discountPrice")
     private float discountPrice;
     @JsonProperty("retailPrice")
@@ -38,6 +42,8 @@ public class ProductDTOResponse {
                                                                             product.getName(),
                                                                             product.getBrand(),
                                                                             product.getImage(),
+                                                                            product.getColorway(),
+                                                                            product.getGender(),
                                                                             product.getDiscountPrice(),
                                                                             product.getRetailPrice(),
                                                                             product.getReleaseDate());
