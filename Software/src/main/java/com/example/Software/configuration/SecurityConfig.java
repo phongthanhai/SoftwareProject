@@ -1,6 +1,5 @@
 package com.example.Software.configuration;
 
-import com.example.Software.configuration.filter.JwtAuthenticationFilter;
 import com.example.Software.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +15,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -31,7 +29,6 @@ import static com.example.Software.constant.Role.USER;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserService userService;
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
@@ -41,11 +38,7 @@ public class SecurityConfig {
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/product/**").permitAll()
                 .requestMatchers("/admin/**").hasAnyAuthority(ADMIN)
-                .anyRequest().authenticated())
-            .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authenticationProvider(authenticationProvider()).addFilterBefore(
-                    jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class
-            );
+                .anyRequest().authenticated());
         return http.build();
     }
 
