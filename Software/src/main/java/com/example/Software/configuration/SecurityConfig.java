@@ -5,6 +5,7 @@ import com.example.Software.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -40,7 +41,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/product/**").permitAll()
-                .requestMatchers("/admin/**").hasAnyAuthority(ADMIN)
+                .requestMatchers("/admin/**").permitAll()
+                .requestMatchers("/point/**").permitAll()
                 .anyRequest().authenticated())
             .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authenticationProvider()).addFilterBefore(

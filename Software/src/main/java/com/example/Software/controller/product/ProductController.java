@@ -1,5 +1,7 @@
 package com.example.Software.controller.product;
 
+import com.example.Software.action.ProductContainer;
+import com.example.Software.model.Product;
 import com.example.Software.response.SearchResult;
 import com.example.Software.response.product.ProductDTOResponse;
 import com.example.Software.response.product.ProductDetailResponse;
@@ -32,5 +34,23 @@ public class ProductController {
     @GetMapping("/{productId}")
     public ProductDetailResponse getProductDetail(@PathVariable String productId) {
         return productService.getProductDetailById(productId);
+    }
+
+    @GetMapping("/check")
+    public List<Product> getProducts() {
+        long start = System.currentTimeMillis();
+        List<Product> products = ProductContainer.getProducts();
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
+        return products;
+    }
+
+    @PostMapping("/update/{productId}")
+    public void updateProduct(@PathVariable String productId) {
+        Product product = productService.getProductById(productId);
+        long start = System.currentTimeMillis();
+        ProductContainer.updateProduct(product);
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
     }
 }
