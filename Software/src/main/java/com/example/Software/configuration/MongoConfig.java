@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @ToString
 public class MongoConfig {
     private String uri;
+
     @Bean("primaryMongoClient")
     public MongoClient mongoClient(){
         return MongoClients.create(uri);
