@@ -15,6 +15,7 @@ import AboutUs from './pages/AboutUs/AboutUs'
 import SignUp from './pages/SignUp/SignUp'
 import SignIn from './pages/SignIn/SignIn'
 import Admin from './pages/Admin/Admin'
+import SignLayout from './pages/Layout/SignLayout'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -81,13 +82,19 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: "/sign-up",
-    element: <SignUp />
-  },
-  {
-    path: "/sign-in",
-    element: <SignIn />
-  },
+    element: <SignLayout />,
+    children: [
+      {
+        path: "/sign-up",
+        element: <SignUp />
+      },
+      {
+        path: "/sign-in",
+        element: <SignIn />
+      }
+    ]
+  }
+ ,
   {
     path: "admin",
     element: <Admin/>
@@ -97,7 +104,6 @@ function App() {
 
   return (
     <RouterProvider router={router} />
-
   )
 }
 

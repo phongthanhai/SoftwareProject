@@ -23,8 +23,9 @@ const ProductsPage = () => {
     const [sortByOption, setSortByOption] = useState(true);
     const [currentPage, setCurrentPage] = useState(0);
     const [size, setSize] = useState(20);
+    const [imagesLoaded, setImagesLoaded] = useState(false);
     let params = {};
-
+    let totalImage = 0;
     const fetchShoes = async (params) => {
         try {
             const response = await api.get("/product", {
@@ -62,23 +63,55 @@ const ProductsPage = () => {
                 params = { name: query };
         }
     }
+    function handleResetRadio() {
+        setRadioResetButtonDisabled(true)
+        const allRadioButtons = document.querySelectorAll('.sidebar-radios');
+        allRadioButtons.forEach(value => value.checked = false);
+        setSelectedBrand(null)
+        setSelectedColor(null)
+        setSelectedGender(null)
+        setSelectedPrice(null)
+        filteredData();
+    }
     useEffect(() => {
         setSortByOption(true);
         setSortType(null);
         setCurrentPage(0);
         getParams();
         fetchShoes(params);
+        handleResetRadio();
     }, [query, category]);
     useEffect(() => {
         getParams()
         fetchShoes(params);
+        handleResetRadio();
     }, [currentPage]);
     useEffect(() => {
         setCurrentPage(0);
         getParams()
         fetchShoes(params);
+        handleResetRadio();
     }, [sortType])
 
+    // useEffect(() => {
+    //     const loadImages = () => {
+    //       let loadedCount = 0;
+    //       products.forEach(product => {
+    //         const img = new Image();
+    //         img.src = product.image.original;
+    //         img.onload = () => {
+    //           loadedCount++;
+    //           if (loadedCount === products.length) {
+    //             setImagesLoaded(true);
+    //           }
+    //         };
+    //       });
+    //     };
+    
+    //     if (products.length > 0 && !imagesLoaded) {
+    //       loadImages();
+    //     }
+    //   }, [products, imagesLoaded]);
     // ----------- Radio Filtering -----------
     const handleBrandChange = (event) => {
         let newBrand = event.target.value;
@@ -128,21 +161,14 @@ const ProductsPage = () => {
 
         setFilteredProducts(filteredProducts);
     }
-    function handleResetRadio() {
-        setRadioResetButtonDisabled(true)
-        const allRadioButtons = document.querySelectorAll('.sidebar-radios');
-        allRadioButtons.forEach(value => value.checked = false);
-        setSelectedBrand(null)
-        setSelectedColor(null)
-        setSelectedGender(null)
-        setSelectedPrice(null)
-        filteredData();
-    }
+    
     function handleSortChange(event) {
         setSortByOption(false);
         console.log(event.target.value);
         setSortType(event.target.value);
     }
+    // if(total === 0) return  <div>no product found</div>;
+    // if(products.length === 0 || !imagesLoaded) return <Loader />;
     return (
         <>
             {total === 0 ? <div>no product found</div> : products.length === 0 ? <Loader /> : (
@@ -171,7 +197,12 @@ const ProductsPage = () => {
                                 <Col md={10}>
                                     <Row>
                                         <Stack spacing={2}>
-                                            <Pagination count={Math.ceil(total / size)} page={currentPage+1 ? currentPage + 1 : 1} shape="rounded" onChange={handlePageClick}/>
+                                            <Pagination 
+                                                count={Math.ceil(total / size)} 
+                                                page={currentPage+1 ? currentPage + 1 : 1} 
+                                                shape="rounded" 
+                                                onChange={handlePageClick}
+                                                size='large'/>
                                         </Stack>
                                         {/* Items count: {result.length} */}
                                     </Row>
@@ -189,7 +220,8 @@ const ProductsPage = () => {
                         </Col>)}
 
                     </Row>
-                </Container>)}
+                </Container>
+                )}
         </>
 
     )

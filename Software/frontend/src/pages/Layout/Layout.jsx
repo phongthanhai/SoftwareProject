@@ -1,23 +1,22 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import './Layout.css'
-import AppContext from '../../context/AppContext'
 import Sidebar from '../../components/Sidebar/Sidebar'
+import { GlobalContext } from '../../context/AppContext'
 const Layout = () => {
+
   return (
-    <AppContext>
-      <div className="layout-container">
-        <Header />
-        <Sidebar/>
-        <div className="main-content">
-          <Outlet />
-        </div>
-        <Footer />
+    <div className="layout-container">
+      <Header />
+      <Sidebar />
+      <div className="main-content">
+        <Outlet />
       </div>
-    </AppContext>
-  )
-}
+      <Footer />
+    </div>
+  );
+};
 
 export default Layout

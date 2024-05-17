@@ -1,9 +1,10 @@
-import React, { Component, useState } from "react";
-
+import React, { Component, useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../../context/AppContext";
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitButton, setSubmitButton] = useState(true);
+
   function handleEmailChange(event) {
     const newEmail = event.target.value;
     setEmail(newEmail);

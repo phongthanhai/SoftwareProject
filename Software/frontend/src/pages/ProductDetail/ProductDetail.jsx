@@ -7,8 +7,8 @@ import { BsCartPlus } from "react-icons/bs";
 import { Container, Row, Col } from 'react-bootstrap'
 import api from '../../api/axiosConfig'
 import Slider from '../../components/Slider/Slider';
-import { data } from '../../data/data'
 import { CartItemAddedMessage, CartItemExistMessage } from './CartMessage/CartMessage';
+import Review from './Review/Review';
 const ProductPage = () => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState({});
@@ -80,13 +80,50 @@ const ProductPage = () => {
 
           </Col>
         </Row>
+        <Row style={{ fontSize: "3rem", margin: "1rem 0" }}>
+          <Row><div>
+            <span>Product ratings:</span>
+            <span style={{ color: "#ffc107" }}>    {'★'.repeat(4)}</span>
+          </div>
+          </Row>
+        </Row>
         <Row>
-          <Row>
-            <h1 className='hp-title bebas-neue-regular'>RELATED PRODUCTS</h1>
-          </Row>
-          <Row>
-            <Slider relatedProducts={relatedProducts}/>
-          </Row>
+          <Row style={{ fontSize: "3rem", margin: "1rem 0" }}>Reviews</Row>
+          <Container>
+            <Review
+              username="Van Tuan"
+              rating={5}
+              date="2023-10-13 02:02"
+              title="NICE"
+              deliveryFeedback="Nice shoe, really fit"
+            />
+            <Review
+              username="Hai Phong"
+              rating={1}
+              date="2023-10-13 02:02"
+              title="NICE"
+              deliveryFeedback="The shoe is not like the description. i dislike it"
+            />
+            <Review
+              username="Van Hieu"
+              rating={3}
+              date="2023-10-13 02:02"
+              title="NICE"
+              deliveryFeedback="The shoe is good but delivery was hello slow"
+            />
+          </Container>
+
+        </Row>
+        <Row>
+          <Container>
+            <Row>
+              <h1 className='hp-title bebas-neue-regular'>RELATED PRODUCTS</h1>
+            </Row>
+            <Row>
+              <Slider relatedProducts={relatedProducts} />
+            </Row>
+          </Container>
+
         </Row>
       </Container>
     )}

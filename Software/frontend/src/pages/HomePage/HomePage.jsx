@@ -26,7 +26,8 @@ const HomePage = () => {
                     params: {
                         page: 0,
                         size: 6,
-                        brand: brands[i]
+                        brand: brands[i],
+                        sortType: "desc"
                     }
                   });
                   setProducts(setFunctions[i],response.data.data);
