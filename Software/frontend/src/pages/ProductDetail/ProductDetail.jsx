@@ -9,6 +9,7 @@ import api from '../../api/axiosConfig'
 import Slider from '../../components/Slider/Slider';
 import { CartItemAddedMessage, CartItemExistMessage } from './CartMessage/CartMessage';
 import Review from './Review/Review';
+import StarRating from './StarRating/StarRating';
 const ProductPage = () => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState({});
@@ -70,25 +71,29 @@ const ProductPage = () => {
                 <Col className='pDetail-field' md={2}><span>Gender:</span></Col>
                 <Col className='pDetail-data'>{product.product?.gender}</Col>
               </Row>
+              <Row>
+                <div style={{ display: 'flex', justifyContent: 'left', marginTop: '3rem' }}>
+                  <button className='cart-btn' onClick={() => addToCart(product.product)}>
+                    <BsCartPlus />
+                    ADD TO CART
+                  </button>
+                </div>
+              </Row>
             </Row>
-            <div style={{ display: 'flex', justifyContent: 'left', marginTop: '3rem' }}>
-              <button className='cart-btn' onClick={() => addToCart(product.product)}>
-                <BsCartPlus />
-                ADD TO CART
-              </button>
-            </div>
+
 
           </Col>
         </Row>
-        <Row style={{ fontSize: "3rem", margin: "1rem 0" }}>
-          <Row><div>
-            <span>Product ratings:</span>
-            <span style={{ color: "#ffc107" }}>    {'★'.repeat(4)}</span>
-          </div>
+        <Row style={{ fontSize: "3rem", margin: "2rem 0" }}>
+          <Row>
+            <div>
+              <span>Product Ratings:</span>
+              <span> <StarRating rating={3.1} /></span>
+            </div>
           </Row>
         </Row>
         <Row>
-          <Row style={{ fontSize: "3rem", margin: "1rem 0" }}>Reviews</Row>
+          {/* <Row style={{ fontSize: "3rem", margin: "1rem 0" }}>Reviews</Row> */}
           <Container>
             <Review
               username="Van Tuan"

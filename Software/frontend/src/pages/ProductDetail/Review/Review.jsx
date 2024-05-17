@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row } from 'react-bootstrap'
 import './Review.css'
-const UserReview = ({ username, rating, date, title, deliveryFeedback }) => {
+const Review = ({ username, rating, date, title, deliveryFeedback }) => {
   return (
     <Row className="reviewContainer">
       <div className="header">
@@ -14,7 +14,7 @@ const UserReview = ({ username, rating, date, title, deliveryFeedback }) => {
       </div>
       
       <div className="rating" >
-        {'★'.repeat(rating)}
+        {'★'.repeat(rating)}{'☆'.repeat(5-rating)}
       </div>
 
       <div className="deliveryFeedback">
@@ -27,4 +27,4 @@ const UserReview = ({ username, rating, date, title, deliveryFeedback }) => {
   );
 }
 
-export default UserReview
+export default Review

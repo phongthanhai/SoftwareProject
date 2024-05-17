@@ -16,6 +16,7 @@
     align-items: center;
   }
   .rating {
+    font-size: 18px;
     color: #ffc107 !important; 
   }
   .userInfo {
@@ -31,10 +32,6 @@
     font-weight: bold;
   }
   
-  .rating {
-    color: #ff0;
-    font-size: 18px;
-  }
   
   .dateVariation {
     margin-top: 5px;
