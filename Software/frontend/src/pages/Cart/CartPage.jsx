@@ -7,7 +7,7 @@ import { FiMinus } from 'react-icons/fi';
 import { IoAdd } from 'react-icons/io5';
 import { FaTrash } from "react-icons/fa6";
 const CartPage = () => {
-  const { cartList, setCartList } = useContext(GlobalContext);
+  const { cartList, setCartList, isLogIn } = useContext(GlobalContext);
   const navigate = useNavigate();
 
   const totalCost = cartList.reduce((price, item) => {
@@ -49,13 +49,15 @@ const CartPage = () => {
   function handleClearCart() {
     setCartList([])
   }
+  if(!isLogIn) return <div>Please log in to see your cart</div>
+
   return (
-    <Container>
+    <Container style={{height: "100%", marginBottom: "50px"}}>
       <Row style={{position:"relative"}}>{!(cartList.length > 0) ? 
       
       
-      <div className="empty-cart">
-        <h1>YOUR CART IS EMPTY :{"("}</h1>
+      <div className="empty-cart bebas-neue-regular">
+        <h1>YOUR CART IS EMPTY</h1>
         <button onClick={() => navigate("/")}>GO SHOPPING NOW</button>
       </div> 
       : (
@@ -116,7 +118,7 @@ const CartPage = () => {
           <Row className='checkout-box'>
             <Row>
               <div style={{ display: "flex", marginTop: "3rem" }}>
-                  <button className="clear-cart-btn" onClick={handleClearCart}>
+                  <button className="clear-cart-btn bebas-neue-regular" onClick={handleClearCart}>
                     <FaTrash />
                     CLEAR CART
                   </button>
@@ -125,8 +127,8 @@ const CartPage = () => {
 
             </Row>
             <Row>
-              <div className='place-order-btn'>
-                <button >Check Out</button>
+              <div className='place-order-btn bebas-neue-regular'>
+                <button onClick={() => navigate('/checkout')}>Check Out</button>
               </div>
             </Row>
           </Row>

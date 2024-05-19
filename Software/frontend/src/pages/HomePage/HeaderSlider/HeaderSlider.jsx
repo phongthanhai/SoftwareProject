@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from 'react-router-dom';
 
 const HeaderSlider = () => {
-    
+    const airMaxId = "66483fb1b93ed9922d64b141";
     const navigate = useNavigate();
     function handleClick(id) {
         navigate(`/product/${id}`);
@@ -28,7 +28,7 @@ const HeaderSlider = () => {
                 <div className='slider-content overflow-x-hidden'>
                     <Slider {...settings}>
                         <div className='slider-item'>
-                            <img src="/nike-just-do-it.png" alt="" onClick={() => handleClick("66193ebc2d823fe8ba333e85")}/>
+                            <img src="/nike-just-do-it.png" alt="" onClick={() => handleClick(airMaxId)}/>
                             <div className="description">
                                 <h3 className='subtitle'>Comming soon</h3>
                                 <h1 className='title russo-one-regular'>NIKE AIR MAX DN</h1>
@@ -36,14 +36,14 @@ const HeaderSlider = () => {
                             </div>
                         </div>
                         <div className='slider-item'>
-                            <img src="/nike-1.png" alt="" onClick={() => handleClick("66193ebc2d823fe8ba333e85")}/>
+                            <img src="/nike-1.png" alt="" onClick={() => handleClick(airMaxId)}/>
                             <div className="description">
                                 <h1 className='title anton-regular'>Maxxed Out motion</h1>
                                 <h3 className='body assistant'>Our Dynamic Air unit system features 2 sets of dual-pressure tubes. With the firmest amount of pressure in the heel and the softest amount of pressure towards your midfoot, the air levels shift within each set for a smooth transition as you step.</h3>
                             </div>
                         </div>
                         <div className='slider-item'>
-                            <img src="/nike-2.png" alt="" onClick={() => handleClick("66193ebc2d823fe8ba333e85")}/>
+                            <img src="/nike-2.png" alt="" onClick={() => handleClick(airMaxId)}/>
                             <div className="description">
                                 <h1 className='title anton-regular'>Maxxed Out energy</h1>
                                 <h3 className='body assistant'>
@@ -53,7 +53,7 @@ const HeaderSlider = () => {
                             </div>
                         </div>
                         <div className='slider-item'>
-                            <img src="/nike-3.png" alt="" onClick={() => handleClick("66193ebc2d823fe8ba333e85")}/>
+                            <img src="/nike-3.png" alt="" onClick={() => handleClick(airMaxId)}/>
                             <div className="description">
                                 <h1 className='title anton-regular'>Maxxed Out comfort</h1>
                                 <h3 className='body assistant'>

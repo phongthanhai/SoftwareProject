@@ -15,6 +15,8 @@ import AboutUs from './pages/AboutUs/AboutUs'
 import SignUp from './pages/SignUp/SignUp'
 import SignIn from './pages/SignIn/SignIn'
 import Admin from './pages/Admin/Admin'
+import SignLayout from './pages/Layout/SignLayout'
+import Checkout from './pages/CheckOut/Checkout'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <CartPage />
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />
       },
       {
         path: '/product/:id',
@@ -81,13 +87,19 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: "/sign-up",
-    element: <SignUp />
-  },
-  {
-    path: "/sign-in",
-    element: <SignIn />
-  },
+    element: <SignLayout />,
+    children: [
+      {
+        path: "/sign-up",
+        element: <SignUp />
+      },
+      {
+        path: "/sign-in",
+        element: <SignIn />
+      }
+    ]
+  }
+ ,
   {
     path: "admin",
     element: <Admin/>
@@ -97,7 +109,6 @@ function App() {
 
   return (
     <RouterProvider router={router} />
-
   )
 }
 

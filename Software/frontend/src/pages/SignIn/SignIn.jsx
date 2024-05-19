@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState,useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { GlobalContext } from "../../context/AppContext";
 export default function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitButton, setSubmitButton] = useState(true);
+  const {setIsLogIn} = useContext(GlobalContext);
   const navigate = useNavigate();
 
   function handleEmailChange(event) {
@@ -22,7 +24,10 @@ export default function LogIn() {
   
   function handleSubmit(e) {
     e.preventDefault();
-    if (email === "user" && password === "1") navigate("/");
+    if (email === "user" && password === "1") {
+      setIsLogIn(true);
+      navigate("/");
+    }
     else if (email === "admin" && password === "1") navigate("/admin");
     else window.alert("wrong email or wrong password")
     // fetch("http://localhost:5000/login-user", {
@@ -100,7 +105,7 @@ export default function LogIn() {
           </button>
         </div>
         <p className="forgot-password text-right">
-          Dont't have an account? <a href="/sign-up">Sign Up</a>
+          Dont't have an account? <Link to="/sign-up">Sign Up</Link>
         </p>
       </div>
     </div>

@@ -1,0 +1,37 @@
+.star-rating {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #ffc107; /* Red-orange color */
+}
+
+.rating-value {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #ffc107; /* Red-orange color */
+}
+
+.stars {
+    display: flex;
+}
+
+.star {
+    font-size: 30px;
+}
+
+.star.full {
+    color: #ffc107; /* Red-orange color */
+}
+
+.star.half::before {
+    content: '★';
+    position: absolute;
+    color: #ffc107; /* Red-orange color */
+    width: 50%;
+    overflow: hidden;
+}
+
+.star.empty {
+    color: #ffc107; /* Light grey */
+    opacity: 0.3;
+}
