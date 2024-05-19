@@ -1,5 +1,5 @@
 import React, { useState,useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/AppContext";
 export default function LogIn() {
   const [email, setEmail] = useState("");
@@ -105,7 +105,7 @@ export default function LogIn() {
           </button>
         </div>
         <p className="forgot-password text-right">
-          Dont't have an account? <a href="/sign-up">Sign Up</a>
+          Dont't have an account? <Link to="/sign-up">Sign Up</Link>
         </p>
       </div>
     </div>

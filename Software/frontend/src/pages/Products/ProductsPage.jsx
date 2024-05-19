@@ -1,16 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { Container, Row, Col } from 'react-bootstrap';
 import api from '../../api/axiosConfig';
-import Sidebar from './Sidebar/Sidebar'
+import Sidebar from './Sidebar/Sidebar';
 import Sortbar from './Sortbar/Sortbar';
-import Loader from '../../components/Loader/Loader'
+import Loader from '../../components/Loader/Loader';
 import { useNavigate, useParams } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+
 const ProductsPage = () => {
     const navigate = useNavigate();
-    const { query, category} = useParams();
+    const { query, category } = useParams();
     const [total, setTotal] = useState(null);
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -23,9 +24,9 @@ const ProductsPage = () => {
     const [sortByOption, setSortByOption] = useState(true);
     const [currentPage, setCurrentPage] = useState(0);
     const [size, setSize] = useState(20);
-    const [imagesLoaded, setImagesLoaded] = useState(false);
+    const [loading, setLoading] = useState(true);
     let params = {};
-    let totalImage = 0;
+
     const fetchShoes = async (params) => {
         try {
             const response = await api.get("/product", {
@@ -39,19 +40,22 @@ const ProductsPage = () => {
             setProducts(response.data.data);
             setFilteredProducts(response.data.data);
             setTotal(response.data.total);
+            setTimeout(() => {
+                setLoading(false);
+            }, 1000); // Minimum loader display time of 1 second
         } catch (err) {
             console.log(err);
+            setLoading(false);
         }
     };
 
-    // Get products according to page
     const handlePageClick = async (event, value) => {
         let page = value;
         setCurrentPage(value - 1);
-        navigate(`?page=${page-1}`);
-    }
-       // Check if search or select by category
-    function getParams() {
+        navigate(`?page=${page - 1}`);
+    };
+
+    const getParams = () => {
         switch (category) {
             case "brand":
                 params = { brand: query };
@@ -62,18 +66,21 @@ const ProductsPage = () => {
             default:
                 params = { name: query };
         }
-    }
-    function handleResetRadio() {
-        setRadioResetButtonDisabled(true)
+    };
+
+    const handleResetRadio = () => {
+        setRadioResetButtonDisabled(true);
         const allRadioButtons = document.querySelectorAll('.sidebar-radios');
         allRadioButtons.forEach(value => value.checked = false);
-        setSelectedBrand(null)
-        setSelectedColor(null)
-        setSelectedGender(null)
-        setSelectedPrice(null)
+        setSelectedBrand(null);
+        setSelectedColor(null);
+        setSelectedGender(null);
+        setSelectedPrice(null);
         filteredData();
-    }
+    };
+
     useEffect(() => {
+        setLoading(true);
         setSortByOption(true);
         setSortType(null);
         setCurrentPage(0);
@@ -81,66 +88,50 @@ const ProductsPage = () => {
         fetchShoes(params);
         handleResetRadio();
     }, [query, category]);
+
     useEffect(() => {
-        getParams()
+        setLoading(true);
+        getParams();
         fetchShoes(params);
         handleResetRadio();
     }, [currentPage]);
+
     useEffect(() => {
+        setLoading(true);
         setCurrentPage(0);
-        getParams()
+        getParams();
         fetchShoes(params);
         handleResetRadio();
-    }, [sortType])
+    }, [sortType]);
 
-    // useEffect(() => {
-    //     const loadImages = () => {
-    //       let loadedCount = 0;
-    //       products.forEach(product => {
-    //         const img = new Image();
-    //         img.src = product.image.original;
-    //         img.onload = () => {
-    //           loadedCount++;
-    //           if (loadedCount === products.length) {
-    //             setImagesLoaded(true);
-    //           }
-    //         };
-    //       });
-    //     };
-    
-    //     if (products.length > 0 && !imagesLoaded) {
-    //       loadImages();
-    //     }
-    //   }, [products, imagesLoaded]);
-    // ----------- Radio Filtering -----------
     const handleBrandChange = (event) => {
         let newBrand = event.target.value;
         setSelectedBrand(newBrand);
-        setRadioResetButtonDisabled(false)
-        filteredData(selectedPrice, selectedColor, newBrand, selectedGender)
+        setRadioResetButtonDisabled(false);
+        filteredData(selectedPrice, selectedColor, newBrand, selectedGender);
     };
+
     const handlePriceChange = (event) => {
         setSelectedPrice(event.target.value);
-        setRadioResetButtonDisabled(false)
-        filteredData(selectedPrice, selectedColor, selectedBrand, selectedGender)
-
+        setRadioResetButtonDisabled(false);
+        filteredData(selectedPrice, selectedColor, selectedBrand, selectedGender);
     };
+
     const handleColorChange = (event) => {
-        let newColor = event.target.value
+        let newColor = event.target.value;
         setSelectedColor(newColor);
-        setRadioResetButtonDisabled(false)
-        filteredData(selectedPrice, newColor, selectedBrand, selectedGender)
-
+        setRadioResetButtonDisabled(false);
+        filteredData(selectedPrice, newColor, selectedBrand, selectedGender);
     };
+
     const handleGenderChange = (event) => {
-        let newGender = event.target.value
+        let newGender = event.target.value;
         setSelectedGender(newGender);
-        setRadioResetButtonDisabled(false)
-        filteredData(selectedPrice, selectedColor, selectedBrand, newGender)
-
+        setRadioResetButtonDisabled(false);
+        filteredData(selectedPrice, selectedColor, selectedBrand, newGender);
     };
 
-    function filteredData(selectedPrice, selectedColor, selectedBrand, selectedGender) {
+    const filteredData = (selectedPrice, selectedColor, selectedBrand, selectedGender) => {
         let filteredProducts = products;
         if (selectedColor) {
             filteredProducts = filteredProducts.filter(
@@ -152,26 +143,24 @@ const ProductsPage = () => {
                 ({ brand }) => brand === selectedBrand
             );
         }
-        console.log(filteredProducts);
         if (selectedGender) {
             filteredProducts = filteredProducts.filter(
                 ({ gender }) => gender === selectedGender
             );
         }
-
         setFilteredProducts(filteredProducts);
-    }
-    
-    function handleSortChange(event) {
+    };
+
+    const handleSortChange = (event) => {
         setSortByOption(false);
-        console.log(event.target.value);
         setSortType(event.target.value);
-    }
-    // if(total === 0) return  <div>no product found</div>;
-    // if(products.length === 0 || !imagesLoaded) return <Loader />;
+    };
+
     return (
         <>
-            {total === 0 ? <div>no product found</div> : products.length === 0 ? <Loader /> : (
+            {loading ? (
+                <Loader />
+            ) : (
                 <Container>
                     <Row>
                         <Col md={2}>
@@ -186,45 +175,47 @@ const ProductsPage = () => {
                                 onClick={handleResetRadio}>
                                 CLEAR ALL
                             </button>
-
                         </Col>
-                        {filteredProducts.length === 0 ? <Col md={10}><h1>No products found</h1></Col> : (<Col md={10}>
-                            <Row>
-                                {category ? <span>{category}: {query}</span> : <span>Search result for '{query}':</span>}
-
-                            </Row>
-                            <Row>
-                                <Col md={10}>
-                                    <Row>
-                                        <Stack spacing={2}>
-                                            <Pagination 
-                                                count={Math.ceil(total / size)} 
-                                                page={currentPage+1 ? currentPage + 1 : 1} 
-                                                shape="rounded" 
-                                                onChange={handlePageClick}
-                                                size='large'/>
-                                        </Stack>
-                                        {/* Items count: {result.length} */}
-                                    </Row>
-                                </Col>
-                                <Col md={2}><Sortbar sortByOption={sortByOption} handleSortChange={handleSortChange} /></Col>
-
-                            </Row>
-                            <Row>
+                        {filteredProducts.length === 0 ? (
+                            <Col md={10}>
+                                <h1>No products found</h1>
+                            </Col>
+                        ) : (
+                            <Col md={10}>
                                 <Row>
-                                    {filteredProducts.map(product =>
-                                        <ProductCard key={product.id} product={product} />
-                                    )}
+                                    {category ? <span>{category}: {query}</span> : <span>Search result for '{query}':</span>}
                                 </Row>
-                            </Row>
-                        </Col>)}
-
+                                <Row>
+                                    <Col md={10}>
+                                        <Row>
+                                            <Stack spacing={2}>
+                                                <Pagination
+                                                    count={Math.ceil(total / size)}
+                                                    page={currentPage + 1 ? currentPage + 1 : 1}
+                                                    shape="rounded"
+                                                    onChange={handlePageClick}
+                                                    size='large' />
+                                            </Stack>
+                                        </Row>
+                                    </Col>
+                                    <Col md={2}>
+                                        <Sortbar sortByOption={sortByOption} handleSortChange={handleSortChange} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Row>
+                                        {filteredProducts.map(product =>
+                                            <ProductCard key={product.id} product={product} />
+                                        )}
+                                    </Row>
+                                </Row>
+                            </Col>
+                        )}
                     </Row>
                 </Container>
-                )}
+            )}
         </>
+    );
+};
 
-    )
-}
-
-export default ProductsPage
+export default ProductsPage;

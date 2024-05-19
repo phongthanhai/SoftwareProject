@@ -1,5 +1,6 @@
 import React, { Component, useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/AppContext";
+import { Link } from "react-router-dom";
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -86,7 +87,7 @@ export default function SignUp() {
             </button>
           </div>
           <p className="forgot-password text-right">
-            Already registered <a href="/sign-in">sign in?</a>
+            Already registered <Link to="/sign-in">sign in?</Link>
           </p>
         </form>
       </div>
