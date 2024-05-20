@@ -19,9 +19,6 @@ public class UserDetailRequest {
     @JsonProperty("first_name")
     private String firstName;
 
-    @JsonProperty("middle_name")
-    private String middleName;
-
     @JsonProperty("last_name")
     private String lastName;
 
@@ -57,7 +54,6 @@ public class UserDetailRequest {
                 .userId(user.getUserId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
-                .middleName(user.getMiddleName())
                 .mobile(user.getMobile())
                 .email(user.getEmail())
                 .password(user.getPassword())
@@ -76,7 +72,6 @@ public class UserDetailRequest {
         return User.builder()
                 .firstName(userDetailRequest.getFirstName())
                 .lastName(userDetailRequest.getLastName())
-                .middleName(userDetailRequest.getMiddleName())
                 .mobile(userDetailRequest.getMobile())
                 .email(userDetailRequest.getEmail())
                 .password(userDetailRequest.getPassword())

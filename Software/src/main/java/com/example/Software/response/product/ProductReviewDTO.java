@@ -22,7 +22,7 @@ public class ProductReviewDTO {
     private Date createAt;
 
     public static ProductReviewDTO from(ProductReview productReview, User user) {
-        String username = user.getFirstName() + user.getMiddleName() + user.getLastName();
+        String username = user.getFirstName() + " " + user.getLastName();
         return ProductReviewDTO.builder().productId(productReview.getProductId())
                 .username(username)
                 .title(productReview.getTitle())
