@@ -37,4 +37,8 @@ public class UserService {
             }
         };
     }
+
+    public List<User> getUserByEmails(List<String> userEmails) {
+        return userRepository.findByEmailIn(userEmails);
+    }
 }

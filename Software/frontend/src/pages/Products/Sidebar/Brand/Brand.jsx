@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidecard from '../Sidecard/Sidecard'
 const Brand = ({handleBrandChange}) => {
-    const brands = ['Nike', 'adidas', 'Jordan', 'ASICS', 'Reebok', 'Converse', 'Puma', 'MSCHF'];
+    const brands = ['Nike', 'adidas', 'Jordan', 'ASICS', 'Reebok', 'Converse', 'Puma', 'MSCHF', 'Crocs', 'New Balance'];
     return (
         <div className='sidebar-filter bebas-neue-regular'>
             <h3>Brand</h3>

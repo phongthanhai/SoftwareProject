@@ -1,35 +1,32 @@
 package com.example.Software.model;
 
-import com.example.Software.constant.Rating;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 
-@Document("review")
 @Data
-public class Review {
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collection = "review")
+public class ProductReview {
     @Id
-    private String reviewId;
-
+    private String id;
     @Field("product_id")
     private String productId;
-
-    @Field("rating")
-    private Rating rating;
-
+    @Field("user_email")
+    private String userEmail;
     @Field("title")
     private String title;
-
-    @Field("createAt")
-    private Date creatAt;
-
     @Field("content")
     private String content;
+    @Field("rating")
+    private double rating;
+    @Field("create_at")
+    private Date createAt;
 
-    @Field("name")
-    private String name;
 }

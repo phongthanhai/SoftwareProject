@@ -42,7 +42,7 @@ const Slider = ({relatedProducts}) => {
                             <img
                                 src={shoe.image.original}
                                 alt="shoe"
-                                onClick={() => navigate(`/product/${shoe.id}`)} 
+                                onClick={() => {navigate(`/product/${shoe.id}`);  }} 
                                 style={{cursor:'pointer'}}/>
                             <span>{shoe.name}</span>
                         </div>

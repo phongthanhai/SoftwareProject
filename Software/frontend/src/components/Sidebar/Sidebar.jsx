@@ -8,8 +8,8 @@ const Sidebar = () => {
 
   const { sideBarOn, setSideBarOn } = useContext(GlobalContext);
   const genders = ['men', 'women', 'toddler', 'child', 'preschool', 'infant', 'youth'];
-  const brands = ['Nike', 'adidas', 'Jordan', 'ASICS', 'Reebok', 'Converse', 'Puma', 'MSCHF'];
-
+  const brands = ['Nike', 'adidas', 'Jordan', 'ASICS', 'Reebok', 'Converse', 'Puma', 'MSCHF', 'Crocs', 'New Balance'];
+  {console.log("hi");}
   return (
     <aside className={`sidebar ${sideBarOn ? 'hide-sidebar' : ""}`}>
       {/* <button type="button" className='sidebar-hide-btn' onClick={() => setSideBarOn(false)}>

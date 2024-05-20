@@ -1,7 +1,7 @@
 package com.example.Software.controller.product;
 
-import com.example.Software.action.ProductContainer;
-import com.example.Software.model.Product;
+import com.example.Software.model.ProductReview;
+import com.example.Software.model.User;
 import com.example.Software.response.SearchResult;
 import com.example.Software.response.product.ProductDTOResponse;
 import com.example.Software.response.product.ProductDetailResponse;
@@ -36,21 +36,28 @@ public class ProductController {
         return productService.getProductDetailById(productId);
     }
 
-    @GetMapping("/check")
-    public List<Product> getProducts() {
-        long start = System.currentTimeMillis();
-        List<Product> products = ProductContainer.getProducts();
-        long end = System.currentTimeMillis();
-        System.out.println(end - start);
-        return products;
+    @PostMapping("/review")
+    public void createProductReview(@RequestBody ProductReview productReview) {
+        String userEmail = authService.getUserEmail();
+        productReview.setUserEmail(userEmail);
+        productReview.setCreateAt(new Date());
+        productReviewService.addProductReview(productReview);
     }
 
-    @PostMapping("/update/{productId}")
-    public void updateProduct(@PathVariable String productId) {
-        Product product = productService.getProductById(productId);
-        long start = System.currentTimeMillis();
-        ProductContainer.updateProduct(product);
-        long end = System.currentTimeMillis();
-        System.out.println(end - start);
+    @GetMapping("/review/{productId}")
+    public ListProductReviewResponse getListProductReview(@PathVariable String productId,
+                                                          @RequestParam int page,
+                                                          @RequestParam int size) {
+        List<ProductReviewDTO> reviews = new ArrayList<>();
+        List<ProductReview> productReviews = productReviewService.getProductReviewById(productId, page, size);
+        List<String> userEmails = productReviews.stream().map(ProductReview::getUserEmail).toList();
+        List<User> users = userService.getUserByEmails(userEmails);
+        Map<String, User> userMap = users.stream().collect(Collectors.toMap(User::getEmail, user -> user));
+        for (ProductReview productReview : productReviews) {
+            User user = userMap.get(productReview.getUserEmail());
+            reviews.add(ProductReviewDTO.from(productReview, user));
+        }
+        double averageRating = productReviewService.getAverageRating(productId);
+        return new ListProductReviewResponse(averageRating, reviews);
     }
 }

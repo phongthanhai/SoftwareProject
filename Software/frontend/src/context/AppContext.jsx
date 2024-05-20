@@ -6,8 +6,12 @@ const AppContext = ({ children }) => {
     const [addedToCart, setAddedToCart] = useState(false);
     const [alreadyInCart, setAlreadyInCartCart] = useState(false);
     const [sideBarOn, setSideBarOn] = useState(false)
-
+    const [isLogIn, setIsLogIn] = useState(false);
     function addToCart(cartItem) {
+        if(isLogIn === false) {
+            window.alert("Please log in");
+            return;
+        }
         console.log(cartItem.id);
         let isPresent = false;
         cartList.forEach((product) => {
@@ -29,7 +33,8 @@ const AppContext = ({ children }) => {
             cartList, setCartList,
             isLoading, setIsLoading,
             addToCart, addedToCart, alreadyInCart,
-            sideBarOn, setSideBarOn
+            sideBarOn, setSideBarOn,
+            isLogIn, setIsLogIn
         }}>
             {children}
         </GlobalContext.Provider>

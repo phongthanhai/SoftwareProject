@@ -11,14 +11,18 @@ import { HiBars3 } from "react-icons/hi2";
 
 import SearchBar from './SearchBar/SearchBar';
 export default function Header() {
-  const { cartList, setSideBarOn } = useContext(GlobalContext)
+  const { cartList, setSideBarOn, isLogIn, setIsLogIn } = useContext(GlobalContext)
   const navigate = useNavigate();
-
+  function setSideBar() {
+    console.log("hi");
+    setSideBarOn(true);
+    console.log("hi");
+  }
   return (
     <nav className='nav-wrapper'>
       <Container className='nav-container'>
         <div className="left-nav">
-          <HiBars3 onClick={() => setSideBarOn(true)} style={{cursor:"pointer"}}/>
+          <HiBars3 onClick={setSideBar} style={{ cursor: "pointer" }} />
 
           <Link to='/' className='teko'><SiNike /></Link>
           {/* <Link to="/products" className='teko'>PRODUCTS</Link> */}
@@ -27,18 +31,28 @@ export default function Header() {
 
         <div className="right-nav">
           <div className="cart-icon">
-            <span>{cartList.length}</span>
+            {isLogIn === true ?  <span>{cartList.length}</span> : null}
+           
             <FaShoppingCart onClick={() => navigate('/cart')} />
           </div>
-          <div className="profile">
-            <IoPerson />
-            <div className="profile-dropdown">
-              <Link to='/member/details'>Profile</Link>
-              <Link to='/member/purchase'>Purchase</Link>
-              <Link to='/member/orders'>Orders</Link>
-              <Link to='/sign-in'>Sign In</Link>
-            </div>
-          </div>
+          {isLogIn === true ?
+          // show profile
+            <div className="profile">
+              <IoPerson />
+              <div className="profile-dropdown">
+                <Link to='/member/details'>Profile</Link>
+                <Link to='/member/purchase'>Purchase</Link>
+                <Link to='/member/orders'>Orders</Link>
+                <Link to='/' onClick={() => setIsLogIn(false)}>Log out</Link>
+              </div>
+            </div> :
+            // show log in sign up button
+            <div className='sign-in-up'>
+              <Link className='sign-in-link' to='/sign-in'>Log in</Link>
+              <Link className='sign-up-link' to='/sign-up'>Sign up</Link>
+            </div>}
+
+
         </div>
       </Container>
     </nav>
