@@ -29,11 +29,13 @@ public class ProductDTOResponse {
     @JsonProperty("gender")
     private String gender;
     @JsonProperty("discountPrice")
-    private float discountPrice;
+    private double discountPrice;
     @JsonProperty("retailPrice")
-    private float retailPrice;
+    private double retailPrice;
     @JsonProperty("releaseDate")
     private String releaseDate;
+    @JsonProperty("currentStock")
+    private double currentStock;
 
     public static List<ProductDTOResponse> fromList(List<Product> products) {
         List<ProductDTOResponse> productResponses = new ArrayList<>();
@@ -46,7 +48,8 @@ public class ProductDTOResponse {
                                                                             product.getGender(),
                                                                             product.getDiscountPrice(),
                                                                             product.getRetailPrice(),
-                                                                            product.getReleaseDate());
+                                                                            product.getReleaseDate(),
+                                                                            product.getCurrentStock());
             productResponses.add(listProductResponse);
         }
         return productResponses;

@@ -17,6 +17,13 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
+    public List<Product> getAllProducts(){
+        return productRepository.findAll();
+    }
+
+    public void updateProduct(Product product){
+        productRepository.save(product);
+    }
     public SearchResult<List<ProductDTOResponse>> getProductByFilter(String name, String brand, String gender, String sortType, int page, int size) {
 
         List<Product> products = productRepository.findByFilterIn(name, brand, gender, sortType, page, size);
