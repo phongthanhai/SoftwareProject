@@ -9,7 +9,7 @@ import api from '../../api/axiosConfig';
 import Slider from '../../components/Slider/Slider';
 import { CartItemAddedMessage, CartItemExistMessage } from './CartMessage/CartMessage';
 import Review from './Review/Review';
-import StarRating from './StarRating/StarRating';
+import StarRating from '../../components/StarRating/StarRating';
 
 const ProductPage = () => {
   const [product, setProduct] = useState({});
@@ -102,7 +102,7 @@ const ProductPage = () => {
               </Row>
               <Row style={{ fontSize: "3rem", margin: "2rem 0" }}>
                 <div>
-                  <span> <StarRating rating={2.4} /></span>
+                  <span> <StarRating rating={3.6} /></span>
                 </div>
               </Row>
             </Container>

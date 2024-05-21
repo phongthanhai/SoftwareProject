@@ -3,10 +3,10 @@ import axios from 'axios';
 
 const LocationSelect = ({ onProvinceChange, onDistrictChange, onWardChange }) => {
     const [provinces, setProvinces] = useState([]);
-    const [selectedProvince, setSelectedProvince] = useState('');
     const [districts, setDistricts] = useState([]);
-    const [selectedDistrict, setSelectedDistrict] = useState('');
     const [wards, setWards] = useState([]);
+    const [selectedProvince, setSelectedProvince] = useState('');
+    const [selectedDistrict, setSelectedDistrict] = useState('');
 
     useEffect(() => {
         axios.get('https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json')
@@ -23,6 +23,7 @@ const LocationSelect = ({ onProvinceChange, onDistrictChange, onWardChange }) =>
             const selectedProvince = provinces.find(province => province.Id === provinceId);
             setDistricts(selectedProvince.Districts);
         }
+        // this should be the name of the province same thing for districts and wards , fix this later
         onProvinceChange(provinceId);
     };
 

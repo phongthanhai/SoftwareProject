@@ -3,8 +3,6 @@ import { GlobalContext } from '../../context/AppContext';
 import { Container, Row, Col } from 'react-bootstrap';
 import './CartPage.css'
 import { useNavigate } from 'react-router-dom';
-import { FiMinus } from 'react-icons/fi';
-import { IoAdd } from 'react-icons/io5';
 import { FaTrash } from "react-icons/fa6";
 const CartPage = () => {
   const { cartList, setCartList, isLogIn } = useContext(GlobalContext);
@@ -22,24 +20,31 @@ const CartPage = () => {
     });
     return ind;
   }
-  function handleDecrease(product) {
+  function handleChangeQuantity(product, quantity) {
+    console.log(quantity);
     let ind = findIndexAt(product);
     const tempArr = cartList;
-    if (tempArr[ind].qty - 1 > 0)
-      tempArr[ind].qty -= 1;
-
+    tempArr[ind].qty = quantity;
     setCartList([...tempArr])
   }
+  // function handleDecrease(product) {
+  //   let ind = findIndexAt(product);
+  //   const tempArr = cartList;
+  //   if (tempArr[ind].qty - 1 > 0)
+  //     tempArr[ind].qty -= 1;
 
-  function handleIncrease(product) {
-    const maxStock = 10;
-    let ind = findIndexAt(product);
-    const tempArr = cartList;
-    if (tempArr[ind].qty + 1 <= maxStock)
-      tempArr[ind].qty += 1;
+  //   setCartList([...tempArr])
+  // }
 
-    setCartList([...tempArr])
-  }
+  // function handleIncrease(product) {
+  //   const maxStock = 10;
+  //   let ind = findIndexAt(product);
+  //   const tempArr = cartList;
+  //   if (tempArr[ind].qty + 1 <= maxStock)
+  //     tempArr[ind].qty += 1;
+
+  //   setCartList([...tempArr])
+  // }
 
   function handleRemove(id) {
     const newCart = cartList.filter((item) => item.id !== id);
@@ -49,91 +54,84 @@ const CartPage = () => {
   function handleClearCart() {
     setCartList([])
   }
-  if(!isLogIn) return <div>Please log in to see your cart</div>
+  if (!isLogIn) return <div>Please log in to see your cart</div>
 
   return (
-    <Container style={{height: "100%", marginBottom: "50px"}}>
-      <Row style={{position:"relative"}}>{!(cartList.length > 0) ? 
-      
-      
-      <div className="empty-cart bebas-neue-regular">
-        <h1>YOUR CART IS EMPTY</h1>
-        <button onClick={() => navigate("/")}>GO SHOPPING NOW</button>
-      </div> 
-      : (
-        <>
-          <Row>
-            <Col>
-              <Row className='cart-data-field-container'>
-                <Col md={6} className='cart-data-field cart-data-product'>Product</Col>
-                <Col className='cart-data-field'>Unit Price</Col>
-                <Col className='cart-data-field'>Quantity</Col>
-                <Col className='cart-data-field'>Total Price</Col>
-                <Col className='cart-data-field'>Actions</Col>
-              </Row>
-              {cartList.map(product => {
-                return (
-                  <Row className='cart-data-data-container'>
-                    <Col md={6} className='cart-data-data cart-data-product'>
-                      <Row>
-                        <Col>
-                          <img onClick={() => navigate(`/product/${product.id}`)} src={product.image.original} alt="" style={{ width: "100px" }} />
-                        </Col>
-                        <Col md={9} style={{ display: 'flex', alignItems: 'center' }}>
-                          <div className="cart-product-name">{product.name}</div>
-                        </Col>
-                      </Row>
-                    </Col>
-                    <Col className='cart-data-data'>${product.discountPrice}</Col>
-                    <Col className='cart-data-data'>
-                      <div className='qty-input-bar'>
-                        <button className='qty-btn' onClick={() => handleDecrease(product)}>
-                          <FiMinus />
-                        </button>
-                        <input
-                          type="text"
-                          value={product.qty}
-                          role="spinbutton"
-                          aria-live="assertive"
-                          aria-valuenow={product.qty}
-                        />
-                        <button className='qty-btn' onClick={() => handleIncrease(product)}>
-                          <IoAdd />
-                        </button>
-                      </div>
-                    </Col>
-                    <Col className='cart-data-data'>${product.qty * product.discountPrice}</Col>
-                    <Col className='cart-data-data'>
-                      <button className="remove-btn" onClick={() => handleRemove(product.id)}>Remove</button>
-                    </Col>
-                  </Row>
-                );
-              })
-              }
-            </Col>
-            {/* <Col md={2}>
+    <Container style={{ height: "100%", marginBottom: "50px" }}>
+      <Row style={{ position: "relative" }}>{!(cartList.length > 0) ?
+
+
+        <div className="empty-cart bebas-neue-regular">
+          <h1>YOUR CART IS EMPTY</h1>
+          <button onClick={() => navigate("/")}>GO SHOPPING NOW</button>
+        </div>
+        : (
+          <>
+            <Row>
+              <Col>
+                <Row className='cart-data-field-container'>
+                  <Col md={6} className='cart-data-field cart-data-product'>Product</Col>
+                  <Col className='cart-data-field'>Unit Price</Col>
+                  <Col className='cart-data-field'>Quantity</Col>
+                  <Col className='cart-data-field'>Total Price</Col>
+                  <Col className='cart-data-field'>Actions</Col>
+                </Row>
+                {cartList.map(product => {
+                  return (
+                    <Row className='cart-data-data-container'>
+                      <Col md={6} className='cart-data-data cart-data-product'>
+                        <Row>
+                          <Col>
+                            <img onClick={() => navigate(`/product/${product.id}`)} src={product.image.original} alt="" style={{ width: "100px" }} />
+                          </Col>
+                          <Col md={9} style={{ display: 'flex', alignItems: 'center' }}>
+                            <div className="cart-product-name">{product.name}</div>
+                          </Col>
+                        </Row>
+                      </Col>
+                      <Col className='cart-data-data'>${product.discountPrice}</Col>
+                      <Col className='cart-data-data'>
+                        {/* select drop down */}
+                        <div style={{display:"flex", justifyContent:"center"}}>
+                          <select className="qty-select-bar" value={product.qty} onChange={() => handleChangeQuantity(product, event.target.value )}>
+                            {[...Array(5).keys()].map((_, index) => (
+                              <option key={index+1} value={index+1}>{index+1}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </Col>
+                      <Col className='cart-data-data'>${product.qty * product.discountPrice}</Col>
+                      <Col className='cart-data-data'>
+                        <button className="remove-btn" onClick={() => handleRemove(product.id)}>Remove</button>
+                      </Col>
+                    </Row>
+                  );
+                })
+                }
+              </Col>
+              {/* <Col md={2}>
             
           </Col> */}
-          </Row>
-          <Row className='checkout-box'>
-            <Row>
-              <div style={{ display: "flex", marginTop: "3rem" }}>
+            </Row>
+            <Row className='checkout-box'>
+              <Row>
+                <div style={{ display: "flex", marginTop: "3rem" }}>
                   <button className="clear-cart-btn bebas-neue-regular" onClick={handleClearCart}>
                     <FaTrash />
                     CLEAR CART
                   </button>
-                <div className="cart-subtotal">Total ({cartList.length}) items: <strong style={{color:"#9C1010"}}>${totalCost}</strong></div>
-              </div>
+                  <div className="cart-subtotal">Total ({cartList.length}) items: <strong style={{ color: "#9C1010" }}>${totalCost}</strong></div>
+                </div>
 
+              </Row>
+              <Row>
+                <div className='place-order-btn bebas-neue-regular'>
+                  <button onClick={() => navigate('/checkout')}>Check Out</button>
+                </div>
+              </Row>
             </Row>
-            <Row>
-              <div className='place-order-btn bebas-neue-regular'>
-                <button onClick={() => navigate('/checkout')}>Check Out</button>
-              </div>
-            </Row>
-          </Row>
-        </>
-      )}
+          </>
+        )}
       </Row>
 
     </Container>
