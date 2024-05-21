@@ -20,18 +20,19 @@ public class Product implements Comparable<Product>{
         private String id;
         private String brand;
         private String colorway;
-        private float discountPrice;
+        private double discountPrice;
         private String gender;
         private Image image;
         private String name;
         private String releaseDate;
         private String releaseYear;
-        private float retailPrice;
+        private double retailPrice;
         private String story;
+        private double currentStock;
 
         @Override
         public int compareTo(Product otherProduct) {
-                return Float.compare(this.retailPrice, otherProduct.retailPrice);
+                return Double.compare(this.retailPrice, otherProduct.retailPrice);
         }
 }
 
