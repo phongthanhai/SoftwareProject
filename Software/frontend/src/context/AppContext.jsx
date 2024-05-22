@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ToastUtil from '../utils/utils';
 export const GlobalContext = React.createContext();
 const AppContext = ({ children }) => {
     const [cartList, setCartList] = useState([]);
@@ -9,7 +10,8 @@ const AppContext = ({ children }) => {
     const [isLogIn, setIsLogIn] = useState(false);
     function addToCart(cartItem) {
         if(isLogIn === false) {
-            window.alert("Please log in");
+            ToastUtil.showToastError("Please log in");
+            // window.alert("Please log in");
             return;
         }
         console.log(cartItem.id);
@@ -21,10 +23,13 @@ const AppContext = ({ children }) => {
         if (isPresent) {
             setAlreadyInCartCart(true);
             setTimeout(() => setAlreadyInCartCart(false), 2000);
+            ToastUtil.showToastWarning("Item already in cart");
             return;
         } else {
             setAddedToCart(true);
             setTimeout(() => setAddedToCart(false), 2000);
+            ToastUtil.showToastSuccess("Item added to cart");
+
         }
         setCartList([...cartList, { ...cartItem, qty: 1 }]);
     }
@@ -37,6 +42,7 @@ const AppContext = ({ children }) => {
             isLogIn, setIsLogIn
         }}>
             {children}
+
         </GlobalContext.Provider>
     )
 }

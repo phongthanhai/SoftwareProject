@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import CheckoutProduct from './CheckoutProduct';
 import LocationSelect from '../../components/LocationSelect/LocationSelect';
 import AddressSelect from './AddressSelect/AddressSelect';
-// import AddressSelect from './AddressSelect/AddressSelect';
 
 function Checkout() {
     const addresses = [

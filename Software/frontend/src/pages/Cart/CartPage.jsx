@@ -94,7 +94,7 @@ const CartPage = () => {
                         {/* select drop down */}
                         <div style={{display:"flex", justifyContent:"center"}}>
                           <select className="qty-select-bar" value={product.qty} onChange={() => handleChangeQuantity(product, event.target.value )}>
-                            {[...Array(5).keys()].map((_, index) => (
+                            {[...Array(product.currentStock).keys()].map((_, index) => (
                               <option key={index+1} value={index+1}>{index+1}</option>
                             ))}
                           </select>
