@@ -7,10 +7,8 @@ import { BsCartPlus } from "react-icons/bs";
 import { Container, Row, Col } from 'react-bootstrap';
 import api from '../../api/axiosConfig';
 import Slider from '../../components/Slider/Slider';
-import { CartItemAddedMessage, CartItemExistMessage } from './CartMessage/CartMessage';
 import Review from './Review/Review';
 import StarRating from '../../components/StarRating/StarRating';
-
 const ProductPage = () => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -43,8 +41,8 @@ const ProductPage = () => {
         <Loader />
       ) : (
         <Container>
-          {addedToCart && <CartItemAddedMessage />}
-          {alreadyInCart && <CartItemExistMessage />}
+          {/* {addedToCart && <CartItemAddedMessage />}
+          {alreadyInCart && <CartItemExistMessage />} */}
           <Row className='product-detail-row'>
             <Col md={6}>
               <div className="img-detail-container">

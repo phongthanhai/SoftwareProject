@@ -17,6 +17,7 @@ import SignIn from './pages/SignIn/SignIn'
 import Admin from './pages/Admin/Admin'
 import SignLayout from './pages/Layout/SignLayout'
 import Checkout from './pages/CheckOut/Checkout'
+import { ToastContainer } from 'react-toastify'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
         element: <ProductsPage />
       },
       {
-        path : "/search/:query",
+        path: "/search/:query",
         element: <ProductsPage />
       },
       {
@@ -99,16 +100,19 @@ const router = createBrowserRouter([
       }
     ]
   }
- ,
+  ,
   {
     path: "admin",
-    element: <Admin/>
+    element: <Admin />
   }
 ])
 function App() {
 
   return (
-    <RouterProvider router={router} />
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </>
   )
 }
 
