@@ -45,4 +45,8 @@ public class ProductService {
 
         return new ProductDetailResponse(product, productDTOResponseList);
     }
+
+    public List<Product> getProductsByIds(List<String> productIds) {
+        return productRepository.findByIdIn(productIds);
+    }
 }
