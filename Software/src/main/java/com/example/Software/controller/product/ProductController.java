@@ -64,7 +64,7 @@ public class ProductController {
         List<ProductReview> productReviews = productReviewService.getProductReviewById(productId, page, size);
         List<String> userEmails = productReviews.stream().map(ProductReview::getUserEmail).toList();
         List<User> users = userService.getUserByEmails(userEmails);
-        Map<String, User> userMap = users.stream().collect(Collectors.toMap(User::getEmail, user -> user));
+        Map<String, User> userMap = users.stream().collect(Collectors.toMap(User::getEmail, user -> user, (a, b) -> a));
         for (ProductReview productReview : productReviews) {
             User user = userMap.get(productReview.getUserEmail());
             reviews.add(ProductReviewDTO.from(productReview, user));

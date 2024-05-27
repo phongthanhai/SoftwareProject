@@ -34,7 +34,7 @@ public class CartController {
             productIds.add(cartItem.getProductId());
         }
         List<Product> products = productService.getProductsByIds(productIds);
-        Map<String, Product> productMap = products.stream().collect(Collectors.toMap(Product::getId, product -> product));
+        Map<String, Product> productMap = products.stream().collect(Collectors.toMap(Product::getId, product -> product, (a, b) -> a));
         List<CartItemDTO> data = new ArrayList<>();
         double total = 0;
         for (CartItem cartItem : cartItems) {
