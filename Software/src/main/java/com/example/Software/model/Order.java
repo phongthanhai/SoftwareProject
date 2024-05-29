@@ -26,7 +26,7 @@ public class Order {
     private String addressId;
 
     @Field("tax")
-    private float tax;
+    private double tax;
 
     @Field("create_at")
     private Date createAt;

@@ -21,9 +21,18 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public void createProduct(Product product){
+        productRepository.insert(product);
+    }
+
     public void updateProduct(Product product){
         productRepository.save(product);
     }
+
+    public void deleteProduct(String productId){
+        productRepository.deleteById(productId);
+    }
+
     public SearchResult<List<ProductDTOResponse>> getProductByFilter(String name, String brand, String gender, String sortType, int page, int size) {
 
         List<Product> products = productRepository.findByFilterIn(name, brand, gender, sortType, page, size);

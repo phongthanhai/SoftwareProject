@@ -15,10 +15,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @RestController
@@ -70,6 +73,7 @@ public class ProductController {
             reviews.add(ProductReviewDTO.from(productReview, user));
         }
         double averageRating = productReviewService.getAverageRating(productId);
-        return new ListProductReviewResponse(averageRating, reviews);
+        BigDecimal rating = new BigDecimal(averageRating).setScale(2, RoundingMode.HALF_UP);
+        return new ListProductReviewResponse(rating.doubleValue(), reviews);
     }
 }

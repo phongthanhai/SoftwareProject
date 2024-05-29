@@ -41,8 +41,9 @@ public class SecurityConfig {
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/product/**").permitAll()
-                .requestMatchers("/admin/**").permitAll()
                 .requestMatchers("/point/**").permitAll()
+                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.POST, "product/review").authenticated()
                 .anyRequest().authenticated())
             .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authenticationProvider()).addFilterBefore(
