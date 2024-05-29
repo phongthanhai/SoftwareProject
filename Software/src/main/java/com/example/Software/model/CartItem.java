@@ -1,20 +1,19 @@
 package com.example.Software.model;
 
-import com.example.Software.constant.ShoeColor;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(collection = "cart")
 public class CartItem {
-
+    @Id
+    private String id;
+    private String userId;
     private String productId;
-
-    private String name;
-
-    private Integer quantity;
-
-    private List<ShoeColor> colors;
-
-    private String size;
-
-    private Float price;
+    private int quantity;
 }

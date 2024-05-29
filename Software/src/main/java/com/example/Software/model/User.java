@@ -1,23 +1,32 @@
 package com.example.Software.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 @Document(collection = "user")
 @Data
-public class User {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class User implements UserDetails {
     @Id
     private String userId;
 
     @Field("first_name")
     private String firstName;
-
-    @Field("middle_name")
-    private String middleName;
 
     @Field("last_name")
     private String lastName;
@@ -31,8 +40,11 @@ public class User {
     @Field("password")
     private String password;
 
-    @Field("vendor")
-    private int vendor;
+    @Field("role")
+    private String role;
+
+    @Field("gender")
+    private String gender;
 
     @Field("intro")
     private String intro;
@@ -42,4 +54,34 @@ public class User {
 
     @Field("last_login")
     private Date lastLogin;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role));
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

@@ -1,0 +1,20 @@
+.address-row-bar {
+    border-bottom: 1px solid #ababab;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+}
+.select-address-btn {
+    padding: 2px 40px;
+    background-color: white;
+    border: 1px solid black;
+}
+.select-address-btn:hover {
+    color: rgba(0, 0, 0, 0.67);
+}
+.selected-address-button {
+    padding: 2px 27px;
+    border: 1px solid #378694;
+}
+.v-tick {
+    color: #378694;
+}

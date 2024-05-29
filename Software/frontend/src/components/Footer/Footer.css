@@ -1,0 +1,42 @@
+.footer-container {
+    border-top: 1px solid black;
+    padding: 3rem 0;
+    color: white;
+    background-color: black;
+    margin-top: 10rem;
+}
+.social-row {
+    margin-bottom: 50px;
+}
+.social-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.social-col h3 {
+    padding: 0;
+    margin: 0;
+    text-transform: uppercase;
+    margin-right: 10px;
+}
+.social-item {
+    font-size: 4rem;
+    margin: 0 10px;
+}
+
+/* more about us */
+.footer-col {
+    text-align: center;
+}
+.col-list {
+    padding: 0;
+}
+.footer-col-title {
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+.col-list .col-item {
+    list-style-type: none;
+    display: block;
+    font-size: 1.5rem;
+}
