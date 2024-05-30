@@ -41,7 +41,6 @@ public class SecurityConfig {
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/product/**").permitAll()
-                .requestMatchers("/point/**").permitAll()
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.POST, "product/review").authenticated()
                 .anyRequest().authenticated())
