@@ -42,14 +42,15 @@ public class CartController {
             if (Objects.isNull(product)) {
                 continue;
             }
-            double unitPrice = product.getDiscountPrice();
             double totalPrice = product.getDiscountPrice() * cartItem.getQuantity();
             CartItemDTO cartItemDTO = CartItemDTO.builder()
                                         .id(cartItem.getId())
                                         .productId(product.getId())
                                         .productName(product.getName())
+                                        .imageUrl(product.getImage())
                                         .quantity(cartItem.getQuantity())
-                                        .unitPrice(unitPrice)
+                                        .retailPrice(product.getRetailPrice())
+                                        .discountPrice(product.getDiscountPrice())
                                         .totalPrice(totalPrice)
                                         .build();
             data.add(cartItemDTO);
@@ -64,7 +65,7 @@ public class CartController {
         String userEmail = authService.getUserEmail();
         CartItem cartItem = cartItemService.getCartItemByUserEmailAndProductId(userEmail, productId);
         if (Objects.nonNull(cartItem)) {
-            cartItemService.updateQuantity(cartItem.getId(), quantity);
+            cartItemService.increaseQuantity(cartItem.getId(), quantity);
             return;
         }
         cartItemService.addItem(new CartItem(userEmail, productId, quantity));
@@ -79,5 +80,11 @@ public class CartController {
     public void updateQuantity(@RequestParam String cartItemId,
                                @RequestParam int quantity) {
         cartItemService.updateQuantity(cartItemId, quantity);
+    }
+
+    @DeleteMapping("/removeAll")
+    public void removeAllItems() {
+        String userEmail = authService.getUserEmail();
+        cartItemService.removeCartItemsByEmail(userEmail);
     }
 }

@@ -15,9 +15,15 @@ public interface CartItemRepository extends MongoRepository<CartItem, String> {
     void removeCartItemById(String id);
 
     @Query("{ '_id' :  ?0}")
-    @Update("{'$inc' :  {'quantity' :  ?1}}")
+    @Update("{'$set' :  {'quantity' :  ?1}}")
     void updateCartQuantityByProductId(String productId, int quantity);
+
+    @Query("{ '_id' :  ?0}")
+    @Update("{'$inc' :  {'quantity' :  ?1}}")
+    void increaseCartQuantityByProductId(String productId, int quantity);
 
     @Query("{'userEmail' :  ?0, 'productId' :  ?1}")
     CartItem findCartItemByUserEmailAndProductId(String userEmail, String productId);
+
+    void removeAllByUserEmail(String email);
 }

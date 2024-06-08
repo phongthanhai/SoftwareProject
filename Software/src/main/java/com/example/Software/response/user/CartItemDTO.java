@@ -1,5 +1,6 @@
 package com.example.Software.response.user;
 
+import com.example.Software.model.Image;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +14,9 @@ public class CartItemDTO {
     private String id;
     private String productId;
     private String productName;
+    private Image imageUrl;
     private int quantity;
-    private double unitPrice;
+    private double retailPrice;
+    private double discountPrice;
     private double totalPrice;
 }

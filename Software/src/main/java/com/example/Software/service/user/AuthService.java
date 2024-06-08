@@ -47,6 +47,7 @@ public class AuthService {
             JwtAuthenticationResponse jwtAuthenticationResponse = new JwtAuthenticationResponse();
             jwtAuthenticationResponse.setToken(jwt);
             jwtAuthenticationResponse.setRefreshToken(refreshToken);
+            jwtAuthenticationResponse.setRole(user.getRole());
 
             return jwtAuthenticationResponse;
         } catch (BadCredentialsException e){

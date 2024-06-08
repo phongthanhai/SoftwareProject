@@ -40,7 +40,7 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/auth/**").permitAll()
-                .requestMatchers("/product/**").permitAll()
+                .requestMatchers("/product/**").hasAuthority("ADMIN")
                 .requestMatchers("/point/**").permitAll()
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.POST, "product/review").authenticated()

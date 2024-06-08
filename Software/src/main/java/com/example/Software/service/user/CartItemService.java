@@ -24,11 +24,19 @@ public class CartItemService {
         cartItemRepository.updateCartQuantityByProductId(cartItemId, quantity);
     }
 
+    public void increaseQuantity(String cartItemId, int quantity) {
+        cartItemRepository.increaseCartQuantityByProductId(cartItemId, quantity);
+    }
+
     public void removeItem(String cartItemId) {
         cartItemRepository.removeCartItemById(cartItemId);
     }
 
     public CartItem getCartItemByUserEmailAndProductId(String userEmail, String productId) {
         return cartItemRepository.findCartItemByUserEmailAndProductId(userEmail, productId);
+    }
+
+    public void removeCartItemsByEmail(String userEmail) {
+        cartItemRepository.removeAllByUserEmail(userEmail);
     }
 }

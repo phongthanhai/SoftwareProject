@@ -13,39 +13,17 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 public class UserDetailRequest {
-    @JsonProperty("user_id")
     private String userId;
-
-    @JsonProperty("first_name")
     private String firstName;
-
-    @JsonProperty("last_name")
     private String lastName;
-
-    @JsonProperty("mobile")
     private String mobile;
-
-    @JsonProperty("email")
     private String email;
-
-    @JsonProperty("password")
     private String password;
-
-    @JsonProperty("role")
     private String role;
-
-    @JsonProperty("gender")
     private String gender;
-
-    @JsonProperty("intro")
     private String intro;
-
-    @JsonProperty("register_at")
     private String registerAt;
-
-    @JsonProperty("last_login")
     private String lastLogin;
-
     public static UserDetailRequest from(User user){
         String registerAt = DateTimeFormats.format(user.getRegisterAt(), DateTimeFormats.YYYY_MM_DD_HH_MM_SS_STANDARD);
         String lastLogin = DateTimeFormats.format(user.getLastLogin(), DateTimeFormats.YYYY_MM_DD_HH_MM_SS_STANDARD);
