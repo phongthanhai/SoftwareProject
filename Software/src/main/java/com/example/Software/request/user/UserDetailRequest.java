@@ -22,8 +22,6 @@ public class UserDetailRequest {
     private String role;
     private String gender;
     private String intro;
-    private String registerAt;
-    private String lastLogin;
     public static UserDetailRequest from(User user){
         String registerAt = DateTimeFormats.format(user.getRegisterAt(), DateTimeFormats.YYYY_MM_DD_HH_MM_SS_STANDARD);
         String lastLogin = DateTimeFormats.format(user.getLastLogin(), DateTimeFormats.YYYY_MM_DD_HH_MM_SS_STANDARD);
@@ -38,14 +36,10 @@ public class UserDetailRequest {
                 .role(user.getRole())
                 .gender(user.getGender())
                 .intro(user.getIntro())
-                .registerAt(registerAt)
-                .lastLogin(lastLogin)
                 .build();
     }
 
     public static User convertToUser(UserDetailRequest userDetailRequest){
-        Date registerAt = DateTimeFormats.parse(userDetailRequest.getRegisterAt(), DateTimeFormats.YYYY_MM_DD_HH_MM_SS_STANDARD);
-        Date lastLogin = DateTimeFormats.parse(userDetailRequest.getRegisterAt(), DateTimeFormats.YYYY_MM_DD_HH_MM_SS_STANDARD);
 
         return User.builder()
                 .firstName(userDetailRequest.getFirstName())
@@ -56,8 +50,6 @@ public class UserDetailRequest {
                 .role(userDetailRequest.getRole())
                 .gender(userDetailRequest.getGender())
                 .intro(userDetailRequest.getIntro())
-                .registerAt(registerAt)
-                .lastLogin(lastLogin)
                 .build();
     }
 }
