@@ -1,6 +1,7 @@
 import { toast, ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 import 'react-toastify/dist/ReactToastify.css'
+
 class ToastUtil {
   static showToastSuccess(message) {
     toast.success(message, {
