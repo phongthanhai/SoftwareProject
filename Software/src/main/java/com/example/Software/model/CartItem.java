@@ -13,7 +13,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class CartItem {
     @Id
     private String id;
-    private String userId;
+    private String userEmail;
     private String productId;
     private int quantity;
+
+    public CartItem(String userEmail, String productId, int quantity) {
+        this.userEmail = userEmail;
+        this.productId = productId;
+        this.quantity = quantity;
+    }
 }

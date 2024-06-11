@@ -1,11 +1,13 @@
 import React, { useState,useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/AppContext";
+import api from '../../api/axiosConfig';
+import ToastUtil from '../../utils/utils';
 export default function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitButton, setSubmitButton] = useState(true);
-  const {setIsLogIn} = useContext(GlobalContext);
+  const {setIsLogIn, onNext} = useContext(GlobalContext);
   const navigate = useNavigate();
 
   function handleEmailChange(event) {
@@ -24,36 +26,26 @@ export default function LogIn() {
   
   function handleSubmit(e) {
     e.preventDefault();
-    if (email === "user" && password === "1") {
+    api.post('/auth/login', {
+      email: email,
+      password: password
+    })
+    .then(function (response) {
+      const role = response.data.role
       setIsLogIn(true);
-      navigate("/");
-    }
-    else if (email === "admin" && password === "1") navigate("/admin");
-    else window.alert("wrong email or wrong password")
-    // fetch("http://localhost:5000/login-user", {
-    //   method: "POST",
-    //   crossDomain: true,
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-    //   body: JSON.stringify({
-    //     email,
-    //     password,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data, "userRegister");
-    //     if (data.status == "ok") {
-    //       alert("login successful");
-    //       window.localStorage.setItem("token", data.data);
-    //       window.localStorage.setItem("loggedIn", true);
-
-    //       window.location.href = "./userDetails";
-    //     }
-    //   });
+      if(role === 'ADMIN') navigate('/admin');
+      else if(role === 'USER') {
+        var onNext = localStorage.getItem('onNext');
+        if(onNext) {
+          navigate(onNext);
+        }
+        else navigate('/');
+      }
+      localStorage.setItem('token', response.data.token)
+    })
+    .catch(function (error) {
+      ToastUtil.showToastError("Wrong email or wrong password");
+    });
   }
 
   return (

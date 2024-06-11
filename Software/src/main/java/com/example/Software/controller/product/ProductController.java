@@ -15,10 +15,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @RestController
@@ -64,12 +67,13 @@ public class ProductController {
         List<ProductReview> productReviews = productReviewService.getProductReviewById(productId, page, size);
         List<String> userEmails = productReviews.stream().map(ProductReview::getUserEmail).toList();
         List<User> users = userService.getUserByEmails(userEmails);
-        Map<String, User> userMap = users.stream().collect(Collectors.toMap(User::getEmail, user -> user));
+        Map<String, User> userMap = users.stream().collect(Collectors.toMap(User::getEmail, user -> user, (a, b) -> a));
         for (ProductReview productReview : productReviews) {
             User user = userMap.get(productReview.getUserEmail());
             reviews.add(ProductReviewDTO.from(productReview, user));
         }
         double averageRating = productReviewService.getAverageRating(productId);
-        return new ListProductReviewResponse(averageRating, reviews);
+        BigDecimal rating = new BigDecimal(averageRating).setScale(2, RoundingMode.HALF_UP);
+        return new ListProductReviewResponse(rating.doubleValue(), reviews);
     }
 }

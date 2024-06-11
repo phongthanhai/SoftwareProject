@@ -8,15 +8,25 @@ import { useContext } from 'react';
 import { GlobalContext } from '../../context/AppContext';
 import { SiNike } from "react-icons/si";
 import { HiBars3 } from "react-icons/hi2";
-
+import ToastUtil from '../../utils/utils';
 import SearchBar from './SearchBar/SearchBar';
 export default function Header() {
-  const { cartList, setSideBarOn, isLogIn, setIsLogIn } = useContext(GlobalContext)
+  const { cartList, setSideBarOn, isLogIn, setIsLogIn} = useContext(GlobalContext)
   const navigate = useNavigate();
   function setSideBar() {
-    console.log("hi");
     setSideBarOn(true);
-    console.log("hi");
+  }
+  function logOut() {
+    setIsLogIn(false);
+    localStorage.removeItem('token');
+    localStorage.removeItem('onNext');
+  }
+  function goToCart() {
+    if(localStorage.getItem('token')) {
+      navigate('/cart');
+    }else {
+        ToastUtil.showToastError("Please Log In")
+    }
   }
   return (
     <nav className='nav-wrapper'>
@@ -31,9 +41,9 @@ export default function Header() {
 
         <div className="right-nav">
           <div className="cart-icon">
-            {isLogIn === true ?  <span>{cartList.length}</span> : null}
+            {/* {isLogIn === true ?  <span>{cartList.length}</span> : null} */}
            
-            <FaShoppingCart onClick={() => navigate('/cart')} />
+            <FaShoppingCart onClick={() => goToCart()} />
           </div>
           {isLogIn === true ?
           // show profile
@@ -43,14 +53,15 @@ export default function Header() {
                 <Link to='/member/details'>Profile</Link>
                 <Link to='/member/purchase'>Purchase</Link>
                 <Link to='/member/orders'>Orders</Link>
-                <Link to='/' onClick={() => setIsLogIn(false)}>Log out</Link>
+                <Link to='/' onClick={() => logOut()}>Log out</Link>
               </div>
             </div> :
             // show log in sign up button
             <div className='sign-in-up'>
               <Link className='sign-in-link' to='/sign-in'>Log in</Link>
               <Link className='sign-up-link' to='/sign-up'>Sign up</Link>
-            </div>}
+            </div>
+            }
 
 
         </div>
