@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter, useLocation } from 'react-router-dom'
 import Layout from './pages/Layout/Layout'
 import HomePage from './pages/HomePage/HomePage'
 import ProductDetail from './pages/ProductDetail/ProductDetail'
@@ -18,6 +18,9 @@ import Admin from './pages/Admin/Admin'
 import SignLayout from './pages/Layout/SignLayout'
 import Checkout from './pages/CheckOut/Checkout'
 import { ToastContainer } from 'react-toastify'
+import { useState, useEffect, useContext } from 'react'
+import { GlobalContext } from './context/AppContext'
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -99,18 +102,27 @@ const router = createBrowserRouter([
         element: <SignIn />
       }
     ]
-  }
-  ,
+  },
   {
     path: "admin",
     element: <Admin />
   }
 ])
+
 function App() {
+  useEffect(() => {
+    checkIsLogIn();
+    if(isLogIn)  {
+       getUserCart();
+      console.log('here');
+    }
+  }, [location]);
+  const {isLogIn, checkIsLogIn, getUserCart} = useContext(GlobalContext);
 
   return (
     <>
-      <RouterProvider router={router} />
+      <RouterProvider router={router}>
+      </RouterProvider>
       <ToastContainer />
     </>
   )

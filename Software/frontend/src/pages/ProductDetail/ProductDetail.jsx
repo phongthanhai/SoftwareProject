@@ -13,9 +13,8 @@ const ProductPage = () => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
   const { id } = useParams();
-  const { addToCart, addedToCart, alreadyInCart } = useContext(GlobalContext);
+  const { addToCart} = useContext(GlobalContext);
   const [loading, setLoading] = useState(true);
-
   const getShoeData = async () => {
     try {
       const response = await api.get(`/product/${id}`);

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import './HomePage.css';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import Loader from '../../components/Loader/Loader';
 import api from '../../api/axiosConfig';
 import HeaderSlider from './HeaderSlider/HeaderSlider';
+import { GlobalContext } from '../../context/AppContext';
 
 const HomePage = () => {
     const brands = ['Nike', 'adidas', 'Puma', 'Jordan', 'Converse', 'ASICS'];
@@ -15,7 +16,9 @@ const HomePage = () => {
     const [converse, setConverse] = useState([]);
     const [asics, setAsics] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    
+    // const {checkIsLogIn} = useContext(GlobalContext);
+    // checkIsLogIn();
     const setFunctions = [setNike, setAdidas, setPuma, setJordan, setConverse, setAsics];
 
     const fetchData = async () => {
