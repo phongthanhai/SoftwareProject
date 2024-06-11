@@ -6,7 +6,6 @@ const AppContext = ({ children }) => {
     const [cartList, setCartList] = useState([]);
     const [sideBarOn, setSideBarOn] = useState(false)
     const [isLogIn, setIsLogIn] = useState(false);
-
     function checkIsLogIn() {
         if(localStorage.getItem('token')) setIsLogIn(true);
         else setIsLogIn(false);

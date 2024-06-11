@@ -12,6 +12,8 @@ import StarRating from '../../components/StarRating/StarRating';
 const ProductPage = () => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [avgRating, setAvgRating] = useState();
   const { id } = useParams();
   const { addToCart} = useContext(GlobalContext);
   const [loading, setLoading] = useState(true);
@@ -28,9 +30,19 @@ const ProductPage = () => {
       setLoading(false);
     }
   };
-
+  const getShoeReviews = async () => {
+    try {
+      const response = await api.get(`/product/review/${id}?page=0&size=5`);
+      setReviews(response.data.listReview)
+      setAvgRating(response.data.avarageRating)
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  }
   useEffect(() => {
     getShoeData();
+    getShoeReviews();
     window.scrollTo(0, 0);
   }, [id]);
 
@@ -106,27 +118,13 @@ const ProductPage = () => {
           </Row>
           <Row className='product-detail-row'>
             <Container>
-              <Review
-                username="Van Tuan"
-                rating={5}
-                date="2023-10-13 02:02"
-                title="NICE"
-                deliveryFeedback="Nice shoe, really fit"
-              />
-              <Review
-                username="Hai Phong"
-                rating={1}
-                date="2023-10-13 02:02"
-                title="NICE"
-                deliveryFeedback="The shoe is not like the description. i dislike it"
-              />
-              <Review
-                username="Van Hieu"
-                rating={3}
-                date="2023-10-13 02:02"
-                title="NICE"
-                deliveryFeedback="The shoe is good but delivery was hello slow"
-              />
+              {reviews.map(review => <Review 
+                            username={review.username}
+                            title={review.title}
+                            deliveryFeedback={review.content}
+                            rating={review.rating}
+                            date={review.createdAt}
+              />)}
             </Container>
           </Row>
           <Row className='product-detail-row'>

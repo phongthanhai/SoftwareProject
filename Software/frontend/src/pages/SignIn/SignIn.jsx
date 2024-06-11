@@ -7,7 +7,7 @@ export default function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitButton, setSubmitButton] = useState(true);
-  const {setIsLogIn} = useContext(GlobalContext);
+  const {setIsLogIn, onNext} = useContext(GlobalContext);
   const navigate = useNavigate();
 
   function handleEmailChange(event) {
@@ -34,7 +34,13 @@ export default function LogIn() {
       const role = response.data.role
       setIsLogIn(true);
       if(role === 'ADMIN') navigate('/admin');
-      else if(role === 'USER') navigate('/');
+      else if(role === 'USER') {
+        var onNext = localStorage.getItem('onNext');
+        if(onNext) {
+          navigate(onNext);
+        }
+        else navigate('/');
+      }
       localStorage.setItem('token', response.data.token)
     })
     .catch(function (error) {

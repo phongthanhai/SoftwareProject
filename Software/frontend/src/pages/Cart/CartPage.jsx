@@ -25,7 +25,8 @@ const CartPage = () => {
       setLoading(false); // Directly set loading to false after fetching
     } catch (err) {
       console.error('Error fetching cart:', err);
-      setLoading(false);
+      localStorage.setItem('onNext', '/cart');
+      navigate("/sign-in");
     }
   };
 
@@ -64,9 +65,7 @@ const CartPage = () => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
-      setCartList((prevCartList) => prevCartList.map(item => 
-        item.id === product.id ? { ...item, quantity: response.data.quantity, totalPrice: response.data.totalPrice } : item
-      ));
+      fetchCart();
     } catch (err) {
       console.error('Error changing quantity:', err);
     }

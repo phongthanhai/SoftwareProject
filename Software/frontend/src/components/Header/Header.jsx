@@ -19,6 +19,7 @@ export default function Header() {
   function logOut() {
     setIsLogIn(false);
     localStorage.removeItem('token');
+    localStorage.removeItem('onNext');
   }
   function goToCart() {
     if(localStorage.getItem('token')) {
@@ -40,7 +41,7 @@ export default function Header() {
 
         <div className="right-nav">
           <div className="cart-icon">
-            {isLogIn === true ?  <span>{cartList.length}</span> : null}
+            {/* {isLogIn === true ?  <span>{cartList.length}</span> : null} */}
            
             <FaShoppingCart onClick={() => goToCart()} />
           </div>
