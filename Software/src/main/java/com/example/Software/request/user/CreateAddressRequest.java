@@ -12,7 +12,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class CreateAddressRequest {
     private String email;
     private int type;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String province;
     private String district;
     private String ward;
@@ -22,7 +23,8 @@ public class CreateAddressRequest {
     public static Address toAddress(CreateAddressRequest request) {
         return Address.builder()
                 .userEmail(request.getEmail())
-                .name(request.getName())
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
                 .type(request.getType())
                 .province(request.getProvince())
                 .district(request.getDistrict())

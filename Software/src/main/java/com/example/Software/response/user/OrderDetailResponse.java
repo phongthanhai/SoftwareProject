@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDetailResponse {
-    private Address address;
+    private AddressDTO address;
     private double total;
     private List<CartItemDTO> items;
 }
