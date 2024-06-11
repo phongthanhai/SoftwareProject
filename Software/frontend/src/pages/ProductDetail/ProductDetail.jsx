@@ -15,7 +15,7 @@ const ProductPage = () => {
   const [reviews, setReviews] = useState([]);
   const [avgRating, setAvgRating] = useState();
   const { id } = useParams();
-  const { addToCart} = useContext(GlobalContext);
+  const { addToCart } = useContext(GlobalContext);
   const [loading, setLoading] = useState(true);
   const getShoeData = async () => {
     try {
@@ -34,7 +34,7 @@ const ProductPage = () => {
     try {
       const response = await api.get(`/product/review/${id}?page=0&size=5`);
       setReviews(response.data.listReview)
-      setAvgRating(response.data.avarageRating)
+      setAvgRating(response.data.averageRating)
     } catch (err) {
       console.log(err);
       setLoading(false);
@@ -104,29 +104,37 @@ const ProductPage = () => {
               </Row>
             </Col>
           </Row>
-          <Row className='product-detail-row'>
-            <Container>
+          {console.log(reviews.length)}
+          {reviews.length === 0 ? null :
+            <>
               <Row className='product-detail-row'>
-                <h1 className='hp-title bebas-neue-regular'>Product Ratings</h1>
+                <Container>
+                  <Row className='product-detail-row'>
+                    <h1 className='hp-title bebas-neue-regular'>Product Ratings</h1>
+                  </Row>
+                  <Row style={{ fontSize: "3rem", margin: "2rem 0" }}>
+                    <div>
+                      {console.log(avgRating)}
+                      <span> <StarRating rating={avgRating} /></span>
+                    </div>
+                  </Row>
+                </Container>
               </Row>
-              <Row style={{ fontSize: "3rem", margin: "2rem 0" }}>
-                <div>
-                  <span> <StarRating rating={3.6} /></span>
-                </div>
+              <Row className='product-detail-row'>
+                <Container>
+                  {reviews.map(review => <Review
+                    username={review.username}
+                    title={review.title}
+                    deliveryFeedback={review.content}
+                    rating={review.rating}
+                    date={review.createAt}
+                  />)}
+                </Container>
               </Row>
-            </Container>
-          </Row>
-          <Row className='product-detail-row'>
-            <Container>
-              {reviews.map(review => <Review 
-                            username={review.username}
-                            title={review.title}
-                            deliveryFeedback={review.content}
-                            rating={review.rating}
-                            date={review.createdAt}
-              />)}
-            </Container>
-          </Row>
+            </>
+          }
+
+
           <Row className='product-detail-row'>
             <Container>
               <Row className='product-detail-row'>

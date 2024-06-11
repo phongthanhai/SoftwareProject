@@ -9,10 +9,10 @@ const StarRating = ({ rating }) => {
     const fullStars = Math.floor(rating);
     const halfStar = Math.ceil(rating % 1);
     const emptyStars = Math.floor(maxRating - rating);
-
+    console.log(fullStars);
     return (
         <div className="star-rating">
-            <span className="rating-value">{rating.toFixed(1)}/{maxRating}</span>
+            <span className="rating-value">{rating}/{maxRating}</span>
             <div className="stars">
 
                 {[...Array(fullStars).keys()].map((_, index) => (

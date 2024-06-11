@@ -13,6 +13,8 @@ function Checkout() {
     const [addresses, setAddresses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedAddress, setSelectedAddress] = useState();
+    const [cartList, setCartList ] = useState([]);
+    const [total, setTotal] = useState();
     const navigate = useNavigate();
     async function fetchAddresses() {
         try {
@@ -22,7 +24,8 @@ function Checkout() {
                 }
             });
             setAddresses(response.data);
-
+            if(response.data.length)
+                setSelectedAddress(response.data.find(address => address.type === 1).id);
             setLoading(false); // Directly set loading to false after fetching
         } catch (err) {
             console.error('Error:', err);
@@ -38,7 +41,8 @@ function Checkout() {
                 }
             });
             setCartList(response.data.listItems);
-            if (cartList.length === 0) {
+            setTotal(response.data.total)
+            if (response.data.listItems.length === 0) {
                 ToastUtil.showToastError("Empty Cart");
                 navigate('/cart')
             }
@@ -66,13 +70,9 @@ function Checkout() {
     }, []);
 
     const handleSelectAddress = (id) => {
-        console.log(id);
         setSelectedAddress(id);
     };
-    const { cartList, setCartList } = useContext(GlobalContext);
-    const totalCost = cartList.reduce((price, item) => {
-        return price + (item.discountPrice * item.quantity);
-    }, 0);
+    
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -116,15 +116,17 @@ function Checkout() {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Form submitted:', formData);
-        api.post("/address", {formData}, {
+        // e.preventDefault();
+        api.post("/address", formData, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(function(response) {
+            navigate('/checkout')
+            ToastUtil.showToastSuccess("Create Address Successful")
             console.log(response);
         }) .catch(function(error) {
+            ToastUtil.showToastError("Fail Create Address")
             console.log(error);
         })
         
@@ -251,7 +253,7 @@ function Checkout() {
                                 <h2 style={{ fontSize: "20px" }}>Order Summary | {cartList.length} Item(s) <Link to={'/cart'} className="edit-link">EDIT</Link></h2>
                                 <div className="summary-item" style={{ fontSize: "14px", fontFamily: "sans-serif" }}>
                                     <span> Item(s) subtotal</span>
-                                    <span>${totalCost}</span>
+                                    <span>${total}</span>
                                 </div>
                                 <div className="summary-item" style={{ fontSize: "16px", fontFamily: "sans-serif" }}>
                                     <span>Shipping</span>
@@ -259,15 +261,15 @@ function Checkout() {
                                 </div>
                                 <div className="summary-total" style={{ fontSize: "20px" }}>
                                     <span>SUBTOTAL</span>
-                                    <span>${totalCost}</span>
+                                    <span>${total}</span>
                                 </div>
                                 <div className="summary-item" style={{ fontSize: "14px", fontFamily: "sans-serif" }}>
                                     <span>VAT</span>
-                                    <span>${totalCost / 20}</span>
+                                    <span>${total / 20}</span>
                                 </div>
                                 <div className="order-total" style={{ fontSize: "20px" }}>
                                     <span>ORDER TOTAL</span>
-                                    <span>${totalCost + totalCost / 20}</span>
+                                    <span>${total + total / 20}</span>
                                 </div>
                             </div>
                         </Row>

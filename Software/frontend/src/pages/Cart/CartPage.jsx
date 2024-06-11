@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaTrash } from "react-icons/fa6";
 import api from '../../api/axiosConfig';
 import Loader from '../../components/Loader/Loader';
+import ToastUtil from '../../utils/utils';
 
 const CartPage = () => {
   const { cartList, setCartList } = useContext(GlobalContext);
@@ -22,10 +23,14 @@ const CartPage = () => {
       });
       setCartList(response.data.listItems);
       setTotal(response.data.total);
-      setLoading(false); // Directly set loading to false after fetching
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000); // Loader for 1 second
     } catch (err) {
       console.error('Error fetching cart:', err);
+      setLoading(false);
       localStorage.setItem('onNext', '/cart');
+      ToastUtil.showToastError("Please loggin first");
       navigate("/sign-in");
     }
   };
@@ -37,7 +42,7 @@ const CartPage = () => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
-      setCartList([]);
+      fetchCart();
     } catch (err) {
       console.error('Error clearing cart:', err);
     }
@@ -50,7 +55,7 @@ const CartPage = () => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
-      setCartList((prevCartList) => prevCartList.filter(product => product.id !== productId));
+      fetchCart();
     } catch (err) {
       console.error('Error removing product:', err);
     }

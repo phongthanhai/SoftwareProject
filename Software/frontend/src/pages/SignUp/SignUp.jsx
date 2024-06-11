@@ -43,8 +43,8 @@ export default function SignUp() {
   function handleSubmit(event) {
     event.preventDefault();
     api.post('/auth/signup', {
-      first_name: firstName,
-      last_name: lastName,
+      firstName: firstName,
+      lastName: lastName,
       mobile: mobile,
       email: email,
       password: password,
