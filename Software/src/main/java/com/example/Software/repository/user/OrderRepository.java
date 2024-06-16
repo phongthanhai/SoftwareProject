@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OrderRepository extends MongoRepository<Order, String> {
+public interface OrderRepository extends MongoRepository<Order, String>, OrderRepositoryCustom {
     @Query("{ '_id' :  ?0}")
     @Update("{'$set' :  {'status' :  ?0}}")
     void updateStatusByOrderId(String orderId, int status);

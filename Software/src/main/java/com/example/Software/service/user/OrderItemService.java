@@ -20,4 +20,8 @@ public class OrderItemService {
     public List<OrderItem> getOrderItemsByOrderId(String orderId) {
         return oderItemRepository.findByOrderId(orderId);
     }
+
+    public List<OrderItem> getAllOrderItems() {
+        return oderItemRepository.findAll();
+    }
 }
