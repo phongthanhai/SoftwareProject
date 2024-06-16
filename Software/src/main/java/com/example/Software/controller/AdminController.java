@@ -54,9 +54,4 @@ public class AdminController {
         productService.updateProduct(product);
     }
 
-    @GetMapping("/getProduct/{productId}")
-    public Product getProduct(@PathVariable String productId) {
-        return productService.getProductById(productId);
-    }
-
 }
