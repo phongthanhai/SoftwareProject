@@ -19,4 +19,5 @@ public class CartItemDTO {
     private double retailPrice;
     private double discountPrice;
     private double totalPrice;
+    private double currentStock;
 }

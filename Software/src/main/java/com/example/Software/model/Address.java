@@ -16,8 +16,10 @@ public class Address {
     private String id;
     @Field("user_email")
     private String userEmail;
-    @Field("name")
-    private String name;
+    @Field("first_name")
+    private String firstName;
+    @Field("last_name")
+    private String lastName;
     @Field("type")
     private int type;
     @Field("province")

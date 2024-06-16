@@ -2,6 +2,7 @@ package com.example.Software.controller.user;
 
 import com.example.Software.constant.OrderStatus;
 import com.example.Software.model.*;
+import com.example.Software.response.user.AddressDTO;
 import com.example.Software.response.user.CartItemDTO;
 import com.example.Software.response.user.OrderDetailResponse;
 import com.example.Software.service.product.ProductService;
@@ -84,6 +85,6 @@ public class OrderController {
             listItem.add(cartItemDTO);
             total += totalPrice;
         }
-        return new OrderDetailResponse(address, total, listItem);
+        return new OrderDetailResponse(AddressDTO.from(address), total, listItem);
     }
 }

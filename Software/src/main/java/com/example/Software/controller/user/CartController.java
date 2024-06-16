@@ -51,6 +51,7 @@ public class CartController {
                                         .quantity(cartItem.getQuantity())
                                         .retailPrice(product.getRetailPrice())
                                         .discountPrice(product.getDiscountPrice())
+                                        .currentStock(product.getCurrentStock())
                                         .totalPrice(totalPrice)
                                         .build();
             data.add(cartItemDTO);
