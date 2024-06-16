@@ -5,7 +5,7 @@ import {SearchResult} from "./SearchResult.jsx";
 
 import "./Searchbar.css";
 
-export const SearchBar = ({ setResults }) => {
+const SearchBar = ({ setResults }) => {
     const [input, setInput] = useState("");
 
     const fetchData = (value) => {
@@ -40,3 +40,5 @@ export const SearchBar = ({ setResults }) => {
         </div>
     );
 };
+
+export default SearchBar;

@@ -1,8 +1,12 @@
 import React from "react";
+import Searchbar from "../Searchbar/Searchbar.jsx";
 
 const UpdateProduct = () =>{
     return(
-        <div>Update Product Form</div>
+        <div className="update-product">
+            <Searchbar />
+
+        </div>
     );
 }
 
