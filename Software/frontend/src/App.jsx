@@ -20,6 +20,11 @@ import Checkout from './pages/CheckOut/Checkout'
 import { ToastContainer } from 'react-toastify'
 import { useState, useEffect, useContext } from 'react'
 import { GlobalContext } from './context/AppContext'
+import ListTable from "./components/Admin/ListTable/ListTable.jsx";
+import UpdateProduct from "./components/Admin/UpdateProduct/UpdateProduct.jsx";
+import DeleteProduct from "./components/Admin/DeleteProduct/DeleteProduct.jsx";
+import Dash from "./components/Admin/Dashboard/Dash.jsx";
+import NewProductForm from "./components/Admin/NewProductForm/NewProductForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -104,8 +109,31 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: "admin",
-    element: <Admin />
+    path: "admin/*",
+    element: <Admin />,
+    children: [
+        {
+          path: "",
+          element: <Dash />
+
+      },
+      {
+        path: "createProduct",
+        element: <NewProductForm />
+      },
+      {
+        path: "store",
+        element: <ListTable />
+      },
+      {
+        path: "updateProduct",
+        element: <UpdateProduct />
+      },{
+        path: "deleteProduct",
+        element: <DeleteProduct />
+      }
+
+    ]
   }
 ])
 
