@@ -11,6 +11,7 @@ import "./ProductTable.css";
 import api from "../../../api/axiosConfig.jsx";
 import Loader from "../../Loader/Loader.jsx";
 import {useNavigate} from "react-router-dom";
+import {FaCircleInfo} from "react-icons/fa6";
 
 const PAGE_SIZE = 5;
 
@@ -71,10 +72,11 @@ const ProductTable = ({ products, query }) => {
                                     <TableCell align="left" style={{width: "10%"}}>Colorway</TableCell>
                                     <TableCell align="left" style={{width: "10%"}}>Gender</TableCell>
                                     <TableCell align="left" style={{width: "20%"}}>Release Date</TableCell>
-                                    <TableCell align="left" style={{width: "20%"}}>Release Year</TableCell>
+                                    <TableCell align="left" style={{width: "5%"}}>Release Year</TableCell>
                                     <TableCell align="left" style={{width: "10%"}}>Retail Price</TableCell>
                                     <TableCell align="left" style={{width: "10%"}}>Discounted Price</TableCell>
                                     <TableCell align="left" style={{width: "30%"}}>Product Photo</TableCell>
+                                    <TableCell align="left" style={{width: "10%"}}></TableCell>
                                 </TableRow>
                             </TableHead>
 
@@ -96,7 +98,14 @@ const ProductTable = ({ products, query }) => {
                                             <img src={product.image.original} alt={product.name}
                                                  style={{maxWidth: "100%", maxHeight: "auto"}}/>
                                         </TableCell>
+
+                                        <TableCell align="left" style={{width: "10%"}}>
+                                            <div className="icon">
+                                                <FaCircleInfo />
+                                            </div>
+                                        </TableCell>
                                     </TableRow>
+
                                 ))}
                             </TableBody>
                         </Table>

@@ -104,21 +104,39 @@ const BasicTable = () => {
         navigate(`?page=${page}`);
     };
 
+    const token = localStorage.getItem("token");
+
     const handleStatusChange = async (orderId, status) => {
         try {
-            const token = localStorage.getItem("token");
-            await api.put("/order", {
-                orderId: orderId,
-                status: status,
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            const response = await api.put(
+                `/admin/order`,
+                null,
+                {
+                    params: {
+                        orderId: orderId,
+                        status: status
+                    },
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                }
+            );
+            console.log('Order status updated successfully', response.data);
+            updateRowStatus(orderId, status);
         } catch (error) {
-            console.error("Error updating order status:", error);
+            console.error('Error updating order status', error);
         }
     };
+
+    const updateRowStatus = (orderId, status) => {
+        setRows((prevRows) =>
+            prevRows.map((row) =>
+                row.orderId === orderId ? { ...row, status: parseInt(status) } : row
+            )
+        );
+    };
+
+
 
     if (loading) {
         return <Loader />;
@@ -166,10 +184,10 @@ const BasicTable = () => {
                                         value={row.status}
                                         onChange={(e) => handleStatusChange(row.orderId, e.target.value)}
                                     >
-                                        <option value="1">Approved</option>
-                                        <option value="2">Delivery</option>
-                                        <option value="3">Terminated</option>
-                                        <option value="4">Reject</option>
+                                        <option value="1">{getStatusText(1)}</option>
+                                        <option value="2">{getStatusText(2)}</option>
+                                        <option value="3">{getStatusText(3)}</option>
+                                        <option value="4">{getStatusText(4)}</option>
                                     </select>
                                 </TableCell>
                             </TableRow>

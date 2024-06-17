@@ -12,15 +12,6 @@ const ListTable = () => {
 
     const PAGE_SIZE = 5;
 
-    // Function to fetch products from API with pagination
-    const fetchProducts = async (page, size, query) => {
-        try {
-
-        } catch (error) {
-
-        }
-    };
-
     const handleSearch = (searchQuery) => {
         setQuery(searchQuery);
         setCurrentPage(1);
