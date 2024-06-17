@@ -8,30 +8,39 @@ const Card = (props) => {
     );
 }
 
-function CompactCard({param}){
+function CompactCard({ param }) {
     const Png = param.png;
-    return(
-        <div className="CompactCard"
-        style={{
-            background: param.color.backGround,
-            boxShadow: param.color.boxShadow
-        }}>
-            <div className="card-title">
 
+    // Function to format value based on card title
+    const formatValue = () => {
+        if (param.title === "Product Sold") {
+            return param.value;
+        } else {
+            return `$${param.value}`; // Add dollar sign for Revenue and Expenses
+        }
+    };
+
+    return (
+        <div
+            className="CompactCard"
+            style={{
+                background: param.color.backGround,
+                boxShadow: param.color.boxShadow,
+            }}
+        >
+            <div className="card-title">
                 <span>{param.title}</span>
             </div>
 
             <div className="detail">
+                <Png />
 
-                    <Png />
-
-                <span>${param.value}</span>
+                <span>{formatValue()}</span>
                 <span>All time metric</span>
             </div>
-
-
         </div>
     );
 }
+
 
 export default Card;

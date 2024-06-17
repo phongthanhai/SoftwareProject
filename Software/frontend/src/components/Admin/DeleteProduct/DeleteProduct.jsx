@@ -1,8 +1,8 @@
 import React from "react";
 
-const DeleteProduct = () =>{
+const DeleteProduct = () => {
     return(
-        <div>Delete Product Form</div>
+        <div>Delete Product</div>
     );
 }
 

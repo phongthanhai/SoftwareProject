@@ -1,44 +1,33 @@
-import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
-import {SearchResultsList} from "./SearchResultList.jsx";
-import {SearchResult} from "./SearchResult.jsx";
+import React, { useState } from 'react';
+import { CiSearch } from 'react-icons/ci';
+import './Searchbar.css';
 
-import "./Searchbar.css";
+const Searchbar = ({ onSearch }) => {
+    const [query, setQuery] = useState('');
 
-const SearchBar = ({ setResults }) => {
-    const [input, setInput] = useState("");
-
-    const fetchData = (value) => {
-        fetch("https://jsonplaceholder.typicode.com/users")
-            .then((response) => response.json())
-            .then((json) => {
-                const results = json.filter((user) => {
-                    return (
-                        value &&
-                        user &&
-                        user.name &&
-                        user.name.toLowerCase().includes(value)
-                    );
-                });
-                setResults(results);
-            });
-    };
-
-    const handleChange = (value) => {
-        setInput(value);
-        fetchData(value);
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (query.trim()) {
+            onSearch(query.trim());
+        }
     };
 
     return (
-        <div className="input-wrapper">
-            <FaSearch id="search-icon" />
-            <input
-                placeholder="Type to search..."
-                value={input}
-                onChange={(e) => handleChange(e.target.value)}
-            />
+        <div className="search-form">
+            <form className="search-bar" onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Search"
+                    name="search"
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                />
+                <button type="submit">
+                    <CiSearch />
+                </button>
+            </form>
         </div>
     );
 };
 
-export default SearchBar;
+export default Searchbar;

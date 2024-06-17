@@ -1,57 +1,28 @@
-import React, { useState } from "react";
-import {
-    MDBBtn,
-    MDBModal,
-    MDBModalDialog,
-    MDBModalContent,
-    MDBModalHeader,
-    MDBModalTitle,
-    MDBModalBody,
-    MDBModalFooter,
-} from "mdb-react-ui-kit";
+import React from 'react';
+import './Popup.css';
 
+const Popup = ({ show, newProduct, handleSubmit, onClose }) => {
+    if (!show) {
+        return null;
+    }
 
-
-export default function Popup({ handleSubmit, newProduct, setNewProduct }) {
-    const [basicModal, setBasicModal] = useState(false);
-
-    const toggleShow = () => setBasicModal(!basicModal);
-
-    const handleConfirmChanges = () => {
-        handleSubmit(); // Trigger form submission from parent component
-        setBasicModal(false); // Close the modal after confirmation
+    const handleConfirm = () => {
+        handleSubmit();
+        onClose();
     };
 
     return (
-        <>
-            <button type="button" id="submit-btn" onClick={toggleShow}>
-                Save Changes
-            </button>
-
-            <MDBModal show={basicModal} onHide={() => setBasicModal(false)} tabIndex="-1">
-                <MDBModalDialog>
-                    <MDBModalContent>
-                        <MDBModalHeader>
-                            <MDBModalTitle>Confirm Changes</MDBModalTitle>
-                            <MDBBtn
-                                className="btn-close"
-                                color="none"
-                                onClick={() => setBasicModal(false)}
-                            ></MDBBtn>
-                        </MDBModalHeader>
-                        <MDBModalBody>
-                            <p>Are you sure you want to save these changes?</p>
-                        </MDBModalBody>
-
-                        <MDBModalFooter>
-                            <MDBBtn color="secondary" onClick={() => setBasicModal(false)}>
-                                Close
-                            </MDBBtn>
-                            <MDBBtn onClick={handleConfirmChanges}>Confirm</MDBBtn>
-                        </MDBModalFooter>
-                    </MDBModalContent>
-                </MDBModalDialog>
-            </MDBModal>
-        </>
+        <div className="popup">
+            <div className="popup-inner">
+                <h3>Confirm Product Creation</h3>
+                <p>Are you sure you want to create this product?</p>
+                <div className="popup-buttons">
+                    <button className="confirm" onClick={handleConfirm}>Confirm</button>
+                    <button className="cancel" onClick={onClose}>Cancel</button>
+                </div>
+            </div>
+        </div>
     );
-}
+};
+
+export default Popup;
