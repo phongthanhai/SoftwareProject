@@ -17,6 +17,7 @@ import SignIn from './pages/SignIn/SignIn'
 import Admin from './pages/Admin/Admin'
 import SignLayout from './pages/Layout/SignLayout'
 import Checkout from './pages/CheckOut/Checkout'
+import ReviewPost from './pages/ProductDetail/Review/ReviewPost'
 import { ToastContainer } from 'react-toastify'
 import { useState, useEffect, useContext } from 'react'
 import { GlobalContext } from './context/AppContext'
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: '/product/:id',
         element: <ProductDetail />
+      },
+      {
+        path: '/product/review/:id',
+        element: <ReviewPost />
       },
       {
         path: "/member",

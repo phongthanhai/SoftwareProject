@@ -1,21 +1,26 @@
 import React from 'react'
-import OrderItem from './OrderItem';
+import OrderContainer from './OrderContainer';
 import { useState, useEffect } from 'react';
 import api from '../../../api/axiosConfig'
 import Loader from '../../../components/Loader/Loader';
+
+
 export default function Orders() {
 
-  const {orders, setOrders} = useState([]);
+  //store array of orders
+  const [orders, setOrders] = useState([]);
+  
   const [loading, setLoading] = useState(true);
-  const fetchOrder = () =>{
+  async function fetchOrders() {
     try{
-      const response = api.get('/order', {
+      const response = await api.get('/order', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
 
       });
-      console.log(response);
+      
+      //console.log(response.data);
       setOrders(response.data);
       setLoading(false);
       
@@ -26,16 +31,17 @@ export default function Orders() {
   }
 
   useEffect(() => {
-    fetchOrder();
+    fetchOrders();
   },[])
+
   return <>
     {loading? (<Loader />)
     :(
     <div className="order-container">
       
-      {/* {orders.map((order) =>(
-        <OrderItem product={order} />
-      ))} */}
+      {orders.map((order) =>(
+        <OrderContainer order={order} />
+      ))}
       
     </div>
   )}

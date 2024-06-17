@@ -15,12 +15,17 @@ export default function ProfileDetail() {
             }
         });
         setUserInfo(response.data);
-        console.log(response.data);
+        console.log(response);
         setLoading(false); // Directly set loading to false after fetching
     } catch (err) {
         console.error('Error:', err);
     }
 }
+
+  
+
+
+
 
   useEffect(() =>{
     console.log('HELUUO');

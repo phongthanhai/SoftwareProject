@@ -1,53 +1,48 @@
 import React from 'react';
-import PurchasedProduct from './Product Components/PurchasedProduct';
+import { useState, useEffect } from 'react';
+import api from '../../../api/axiosConfig'
+import Loader from '../../../components/Loader/Loader';
+import PurchaseContainer from './PurchaseContainer'
 
 function Purchase() {
-  const purchases = [
-    {
+  const [loading, setLoading] = useState(true);
+  //fecth order of user
+  const [orders, setOrders] = useState([]);
+  async function fetchAllOrders() {
+    try{
+      const response = await api.get('/order', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
 
-      name: 'Nike 4 Protro Philly (2024)',
-      price: '$190',
-      size: '42',
-      gender: 'Male',
-      date: '13/4/2023',
-      img: './Images/shoes1.png',
-    },
-    {
-      name: 'Nike Kobe 6 Protro Italian Camo (2024)',
-      price: '$190',
-      size: '42',
-      gender: 'Male',
-      date: '13/4/2023',
-      img: './Images/shoes2.png',
-    },
-    {
-      name: 'Jordan 5 Retro SE Sail',
-      price: '$210',
-      size: '42',
-      gender: 'Male',
-      date: '13/4/2023',
-      img: 'link-to-image3',
-    },
-    {
-      name: 'Nike Kobe 8 Protro Venice Beach (2024)',
-      price: '$190',
-      size: '42',
-      gender: 'Male',
-      date: '13/4/2023',
-      img: 'link-to-image4',
-    },
-  ];
-  return (
-    <div className="purchases">
-      <div>
-        <img src={"../Images/shoes2.png"}/>
-      </div>
-      {purchases.map((purchase) =>(
-        <PurchasedProduct product={purchase} />
+      });
+      
+      //console.log(response.data[0].status);
+      setOrders(response.data);
+      setLoading(false);
+      
+    }
+    catch(err){
+
+    }
+  }
+
+  useEffect(() => {   
+    fetchAllOrders();
+  },[])
+  
+  return <>
+    {loading? (<Loader />)
+    :(
+      <div className="order-container">
+      
+      {orders.map((order) =>(
+        <PurchaseContainer order={order} />
       ))}
       
     </div>
-  );
+  )}
+  </>
 }
 
-export default Purchase;
+export default Purchase

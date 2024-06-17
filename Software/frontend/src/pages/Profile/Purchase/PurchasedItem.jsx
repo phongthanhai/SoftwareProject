@@ -1,7 +1,7 @@
 import React from 'react';
-import './OrderItem.css';
+import './PurchasedItem.css';
 import { useNavigate } from 'react-router-dom';
-const OrderItem = (props) => {
+const PurchasedItem = (props) => {
   const navigate = useNavigate();
   console.log(props.product.productId);
   var item = props.product;
@@ -17,13 +17,13 @@ const OrderItem = (props) => {
           <h4 class="item-name">{item.productName}</h4>
           <p>Price: {item.discountPrice}</p>
           <p>Quantity: {item.quantity}</p>
-          <p>Order Address: {props.address.addressDetails} - {props.address.ward} - {props.address.district} - {props.address.province}</p>
+          
         </div>
         
       </div> 
-      {/* <button className="review-button" onClick={() => navigate(`/product/review/${item.productId}`)}>Write a Review</button> */}
+      <button className="review-button" onClick={() => navigate(`/product/review/${item.productId}`)}>Write a Review</button>
     </div>
   );
 };
 
-export default OrderItem;
+export default PurchasedItem;
