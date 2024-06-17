@@ -30,4 +30,8 @@ public class OrderService {
     public List<Order> getOrderByUserEmail(String userEmail) {
         return orderRepository.findByEmail(userEmail);
     }
+
+    public List<Order> getListOrder(int page, int size) {
+        return orderRepository.findOrders(page, size);
+    }
 }
