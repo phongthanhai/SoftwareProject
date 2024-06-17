@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends MongoRepository<Order, String>, OrderRepositoryCustom {
     @Query("{ '_id' :  ?0}")
-    @Update("{'$set' :  {'status' :  ?0}}")
+    @Update("{'$set' :  {'status' :  ?1}}")
     void updateStatusByOrderId(String orderId, int status);
 
     List<Order> findByEmail(String email);
