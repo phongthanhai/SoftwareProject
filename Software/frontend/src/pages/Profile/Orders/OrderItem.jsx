@@ -3,7 +3,6 @@ import './OrderItem.css';
 import { useNavigate } from 'react-router-dom';
 const OrderItem = (props) => {
   const navigate = useNavigate();
-  console.log(props.product.productId);
   var item = props.product;
   ;
 

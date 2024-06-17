@@ -10,8 +10,9 @@ export default function OrderContainer(order){
     const [items, setItems] = useState([]);
     const [address, setAddress] = useState([]);
     const [loading, setLoading] = useState(true);
+    
     async function fetchItemsInOrder(){
-        
+      
         try{
           const response = await api.get(`/order/${order.order.orderId}`, {
             headers: {
@@ -35,6 +36,21 @@ export default function OrderContainer(order){
         fetchItemsInOrder();
     },[])
 
+    function setOrderStatus(status){
+      if (status == 1){
+        return "ACCEPTED"
+      }
+      else if (status == 2){
+        return "DELIVERY"
+      }
+      else if (status == 3){
+        return "TERMINATED"
+      }
+      else if (status == 0){
+        return "REJECTED"
+      }
+    }
+
     //process order date part
     const datetimeString = order.order.createAt;
     const datePart = datetimeString.split('T')[0];
@@ -43,7 +59,7 @@ export default function OrderContainer(order){
     {loading? (<Loader />)
     :(
     <div>
-      <h3>Order in {datePart}</h3>
+      <h3>Order in {datePart} - {setOrderStatus(order.order.status)}</h3>
       <div className="item-container">
         {items.map((item) =>(
             <OrderItem product={item} address={address}/>
