@@ -1,26 +1,20 @@
+.profile-container{
+    padding-left: 20px;
+}
+
 .profile-title {
     text-transform: uppercase;
-    padding: 20px 0;
-    border-bottom: 1px solid grey;
-    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+    
+    
 }
-.profile-descript {
-    padding: 10px 0;
-    margin-left: 20px;
+.profile-descript span {
+    font-size: 16px;
 }
-.profile-img-container {
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    border-left: 1px solid grey
+
+.profile-descript h4{
+    display: inline;
+    margin-right: 10px;
 }
-/* .profile-img {
-    display: flex;
-    justify-content: center;
-    border-left: 1px solid grey;
-    padding: 10px 0;
-} */
-.profile-img img {
-    width: 200px;
-    border-radius: 50%;
-}
+

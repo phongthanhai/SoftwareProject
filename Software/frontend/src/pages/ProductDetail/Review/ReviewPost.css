@@ -1,0 +1,87 @@
+.review-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 20px;
+    margin-left: 20px;
+    
+}
+
+.review-form{
+    width: 900px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    margin-right: 50px;
+}
+
+.rating div{
+    display: inline;
+    margin-left: 50px;
+}
+.rating label{
+    height: 50px; /* Adjust height as needed */
+  line-height: 50px; /* Same as height */
+  text-align: center; /* For horizontal centering */
+}
+
+.review-comment label{
+    height: 50px; /* Adjust height as needed */
+  line-height: 50px; /* Same as height */
+  text-align: start; /* For horizontal centering */
+}
+
+.review-title input{
+    margin-left: 20px;
+    width: 600px;
+    height: 30px;
+    font-size: 18px;
+}
+
+textarea{
+    margin-left: 38px;
+    width: 600px;
+    height: 100px;
+    font-size: 18px;
+}
+
+.rating{
+    margin-bottom: 20px;
+}
+
+.review-title{
+    margin-bottom: 20px;
+}
+
+.review-comment{
+    margin-bottom: 20px;
+}
+
+.confirm-btn{
+    text-transform: uppercase;
+    width: 200px;
+    height: 50px;
+    background-color: black;
+    color: #f5f5f5;
+    font-size: 20px;
+}
+
+.confirm-btn:hover {
+    background-color: rgba(0, 0, 0, 0.707);
+    cursor: pointer;
+}
+.product-image{
+    width: 300px;
+    height: 300px;
+}
+
+.product-info p{
+    font-size: 16px;
+}
+
+.product-title{
+    margin: 40px;
+}
+
+
+
