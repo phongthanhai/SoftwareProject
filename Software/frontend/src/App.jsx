@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter, useLocation } from 'react-router-dom'
 import Layout from './pages/Layout/Layout'
 import HomePage from './pages/HomePage/HomePage'
 import ProductDetail from './pages/ProductDetail/ProductDetail'
@@ -18,6 +18,14 @@ import Admin from './pages/Admin/Admin'
 import SignLayout from './pages/Layout/SignLayout'
 import Checkout from './pages/CheckOut/Checkout'
 import { ToastContainer } from 'react-toastify'
+import { useState, useEffect, useContext } from 'react'
+import { GlobalContext } from './context/AppContext'
+import ListTable from "./components/Admin/ListTable/ListTable.jsx";
+import UpdateProduct from "./components/Admin/UpdateProduct/UpdateProduct.jsx";
+import DeleteProduct from "./components/Admin/DeleteProduct/DeleteProduct.jsx";
+import Dash from "./components/Admin/Dashboard/Dash.jsx";
+import NewProductForm from "./components/Admin/NewProductForm/NewProductForm.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -99,18 +107,50 @@ const router = createBrowserRouter([
         element: <SignIn />
       }
     ]
-  }
-  ,
+  },
   {
-    path: "admin",
-    element: <Admin />
+    path: "admin/*",
+    element: <Admin />,
+    children: [
+        {
+          path: "",
+          element: <Dash />
+
+      },
+      {
+        path: "createProduct",
+        element: <NewProductForm />
+      },
+      {
+        path: "store",
+        element: <ListTable />
+      },
+      {
+        path: "updateProduct",
+        element: <UpdateProduct />
+      },{
+        path: "deleteProduct",
+        element: <DeleteProduct />
+      }
+
+    ]
   }
 ])
+
 function App() {
+  useEffect(() => {
+    checkIsLogIn();
+    if(isLogIn)  {
+       getUserCart();
+      console.log('here');
+    }
+  }, [location]);
+  const {isLogIn, checkIsLogIn, getUserCart} = useContext(GlobalContext);
 
   return (
     <>
-      <RouterProvider router={router} />
+      <RouterProvider router={router}>
+      </RouterProvider>
       <ToastContainer />
     </>
   )

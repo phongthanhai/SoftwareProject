@@ -22,4 +22,6 @@ public class UserController {
         String userEmail = authService.getUserEmail();
         return ResponseEntity.ok(userService.getUserByEmail(userEmail));
     }
+
+
 }

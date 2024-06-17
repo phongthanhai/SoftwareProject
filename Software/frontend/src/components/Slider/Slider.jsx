@@ -5,7 +5,6 @@ import 'react-multi-carousel/lib/styles.css';
 import './Slider.css'
 import { useNavigate } from 'react-router-dom';
 const Slider = ({relatedProducts}) => {
-    console.log(relatedProducts);
     const navigate = useNavigate();
     const responsive = {
         desktop: {

@@ -1,5 +1,6 @@
 package com.example.Software.controller.user;
 
+import com.example.Software.constant.Role;
 import com.example.Software.model.User;
 import com.example.Software.request.user.LoginRequest;
 import com.example.Software.request.user.UserDetailRequest;
@@ -16,6 +17,7 @@ public class AuthController {
     private final AuthService authService;
     @PostMapping("/signup")
     public ResponseEntity<User> signup(@RequestBody UserDetailRequest userDetailRequest){
+        userDetailRequest.setRole(Role.USER);
         return ResponseEntity.ok(authService.signup(userDetailRequest));
     }
 

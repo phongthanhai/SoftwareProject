@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 
 @Service
@@ -31,6 +32,8 @@ public class AuthService {
     public User signup(UserDetailRequest userDetailRequest){
         User user = UserDetailRequest.convertToUser(userDetailRequest);
         user.setPassword(passwordEncoder.encode(userDetailRequest.getPassword()));
+        user.setRegisterAt(new Date());
+        user.setLastLogin(new Date());
         return userRepository.save(user);
     }
 
@@ -47,6 +50,8 @@ public class AuthService {
             JwtAuthenticationResponse jwtAuthenticationResponse = new JwtAuthenticationResponse();
             jwtAuthenticationResponse.setToken(jwt);
             jwtAuthenticationResponse.setRefreshToken(refreshToken);
+            jwtAuthenticationResponse.setRole(user.getRole());
+            user.setLastLogin(new Date());
 
             return jwtAuthenticationResponse;
         } catch (BadCredentialsException e){

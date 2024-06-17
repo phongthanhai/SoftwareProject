@@ -1,0 +1,30 @@
+.admin{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.admin-container {
+    display: grid;
+    height: 97%;
+    width: 97%;
+    border-radius: 2rem;
+    gap: 16px;
+    grid-template-columns: 20rem auto 5rem;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1200px) {
+    .admin-container{
+        grid-template-columns: 10% 50% auto;
+        overflow-y: scroll;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .admin-container{
+        grid-template-columns: 1fr;
+    }
+}

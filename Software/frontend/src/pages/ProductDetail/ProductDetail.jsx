@@ -12,10 +12,11 @@ import StarRating from '../../components/StarRating/StarRating';
 const ProductPage = () => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [avgRating, setAvgRating] = useState();
   const { id } = useParams();
-  const { addToCart, addedToCart, alreadyInCart } = useContext(GlobalContext);
+  const { addToCart } = useContext(GlobalContext);
   const [loading, setLoading] = useState(true);
-
   const getShoeData = async () => {
     try {
       const response = await api.get(`/product/${id}`);
@@ -29,9 +30,19 @@ const ProductPage = () => {
       setLoading(false);
     }
   };
-
+  const getShoeReviews = async () => {
+    try {
+      const response = await api.get(`/product/review/${id}?page=0&size=5`);
+      setReviews(response.data.listReview)
+      setAvgRating(response.data.averageRating)
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  }
   useEffect(() => {
     getShoeData();
+    getShoeReviews();
     window.scrollTo(0, 0);
   }, [id]);
 
@@ -93,43 +104,37 @@ const ProductPage = () => {
               </Row>
             </Col>
           </Row>
-          <Row className='product-detail-row'>
-            <Container>
+          {console.log(reviews.length)}
+          {reviews.length === 0 ? null :
+            <>
               <Row className='product-detail-row'>
-                <h1 className='hp-title bebas-neue-regular'>Product Ratings</h1>
+                <Container>
+                  <Row className='product-detail-row'>
+                    <h1 className='hp-title bebas-neue-regular'>Product Ratings</h1>
+                  </Row>
+                  <Row style={{ fontSize: "3rem", margin: "2rem 0" }}>
+                    <div>
+                      {console.log(avgRating)}
+                      <span> <StarRating rating={avgRating} /></span>
+                    </div>
+                  </Row>
+                </Container>
               </Row>
-              <Row style={{ fontSize: "3rem", margin: "2rem 0" }}>
-                <div>
-                  <span> <StarRating rating={3.6} /></span>
-                </div>
+              <Row className='product-detail-row'>
+                <Container>
+                  {reviews.map(review => <Review
+                    username={review.username}
+                    title={review.title}
+                    deliveryFeedback={review.content}
+                    rating={review.rating}
+                    date={review.createAt}
+                  />)}
+                </Container>
               </Row>
-            </Container>
-          </Row>
-          <Row className='product-detail-row'>
-            <Container>
-              <Review
-                username="Van Tuan"
-                rating={5}
-                date="2023-10-13 02:02"
-                title="NICE"
-                deliveryFeedback="Nice shoe, really fit"
-              />
-              <Review
-                username="Hai Phong"
-                rating={1}
-                date="2023-10-13 02:02"
-                title="NICE"
-                deliveryFeedback="The shoe is not like the description. i dislike it"
-              />
-              <Review
-                username="Van Hieu"
-                rating={3}
-                date="2023-10-13 02:02"
-                title="NICE"
-                deliveryFeedback="The shoe is good but delivery was hello slow"
-              />
-            </Container>
-          </Row>
+            </>
+          }
+
+
           <Row className='product-detail-row'>
             <Container>
               <Row className='product-detail-row'>

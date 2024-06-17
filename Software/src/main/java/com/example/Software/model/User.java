@@ -24,34 +24,24 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     private String userId;
-
     @Field("first_name")
     private String firstName;
-
     @Field("last_name")
     private String lastName;
-
     @Field("mobile")
     private String mobile;
-
     @Field("email")
     private String email;
-
     @Field("password")
     private String password;
-
     @Field("role")
     private String role;
-
     @Field("gender")
     private String gender;
-
     @Field("intro")
     private String intro;
-
     @Field("register_at")
     private Date registerAt;
-
     @Field("last_login")
     private Date lastLogin;
 
