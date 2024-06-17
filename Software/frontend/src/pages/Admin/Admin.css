@@ -12,7 +12,7 @@
     width: 97%;
     border-radius: 2rem;
     gap: 16px;
-    grid-template-columns: 20rem auto 15rem;
+    grid-template-columns: 20rem auto 5rem;
     overflow: hidden;
 }
 

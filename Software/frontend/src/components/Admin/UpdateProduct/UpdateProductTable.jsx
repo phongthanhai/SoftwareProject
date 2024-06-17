@@ -108,7 +108,7 @@ export default function UpdateProductTable() {
                                     <img src={row.image} alt={row.name} style={{ maxWidth: "100%", maxHeight: "auto" }} />
                                 </TableCell>
                                 <TableCell align="left" style={{ width: "10%" }}>
-                                    <span className="update-icon" onClick={}>
+                                    <span className="update-icon">
                                         <FaRegPenToSquare />
                                     </span>
                                 </TableCell>

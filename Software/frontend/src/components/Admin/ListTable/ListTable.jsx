@@ -17,7 +17,7 @@ function ListTable() {
             </div>
 
 
-            <div className="table">
+            <div className="Table">
                 <ProductTable />
             </div>
 
