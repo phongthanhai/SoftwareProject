@@ -74,6 +74,12 @@ public class AdminController {
         return orderService.getListOrder(page, size);
     }
 
+    @PutMapping("/order")
+    public void updateOrderStatus(@RequestParam String orderId,
+                                  @RequestParam int status) {
+        orderService.updateOrderStatus(orderId, status);
+    }
+
     @GetMapping("/store")
     public StoreDashBoardResponse getStoreDashBoardResponse() {
         int productSold = 0;

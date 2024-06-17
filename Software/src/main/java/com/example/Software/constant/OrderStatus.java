@@ -6,7 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum OrderStatus {
-    APPROVED(1),
+    PENDING(1),
     DELIVERY(2),
     TERMINATED(3),
     REJECT(0);
