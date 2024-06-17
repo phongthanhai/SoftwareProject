@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import api from "axios";
+import api from "../../../api/axiosConfig.jsx";
 import './Cards.css';
 import Card from "../Card/Card";
 import Loader from "../../Loader/Loader.jsx";
-
+import {CardsData} from "../Data.js";
+import {FaBoxOpen, FaMoneyBillTransfer, FaMoneyCheckDollar} from "react-icons/fa6";
 const Cards = () => {
     const [storeData, setStoreData] = useState({
         productSold: 0,
@@ -56,7 +57,7 @@ const Cards = () => {
                     }}
                     barValue={70}
                     value={storeData.productSold}
-                    png={() => <span>Icon Component</span>} // Replace with your actual icon component
+                    png={FaBoxOpen}
                 />
             </div>
             <div className="parentContainer">
@@ -68,7 +69,7 @@ const Cards = () => {
                     }}
                     barValue={80}
                     value={storeData.revenue}
-                    png={() => <span>Icon Component</span>} // Replace with your actual icon component
+                    png={FaMoneyBillTransfer} // Replace with your actual icon component
                 />
             </div>
             <div className="parentContainer">
@@ -80,7 +81,7 @@ const Cards = () => {
                     }}
                     barValue={70}
                     value={storeData.expenses}
-                    png={() => <span>Icon Component</span>} // Replace with your actual icon component
+                    png={FaMoneyCheckDollar} // Replace with your actual icon component
                 />
             </div>
         </div>
