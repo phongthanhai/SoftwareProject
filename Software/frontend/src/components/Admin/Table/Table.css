@@ -19,6 +19,10 @@ th {
     border-radius: 0.7rem !important;
 }
 
+.status {
+    padding: 8px;
+    border-radius: 9px;
+}
 
 .Details {
     color: #00b5ff !important;

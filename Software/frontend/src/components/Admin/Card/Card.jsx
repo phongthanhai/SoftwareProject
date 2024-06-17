@@ -26,7 +26,7 @@ function CompactCard({param}){
                     <Png />
 
                 <span>${param.value}</span>
-                <span>Last 24 Hours</span>
+                <span>All time metric</span>
             </div>
 
 
