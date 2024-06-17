@@ -10,7 +10,7 @@ import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
 import Loader from "../../Loader/Loader.jsx"; // Placeholder for Loader component
 import "./Table.css";
-import api from "axios";
+import api from '../../../api/axiosConfig.jsx';
 
 const PAGE_SIZE = 10; // Assuming 10 items per page
 
@@ -75,7 +75,7 @@ const BasicTable = () => {
             setLoading(true);
             const token = localStorage.getItem("token");
             const response = await api.get(
-                `https://localhost:60/admin/order?page=0&size=20`,
+                `/admin/order?page=0&size=20`,
                 {
                     headers: {
                         'Authorization': `Bearer ${token}`,

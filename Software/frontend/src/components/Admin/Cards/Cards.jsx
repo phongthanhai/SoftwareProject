@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import api from "axios";
+import api from "../../../api/axiosConfig.jsx";
 import './Cards.css';
 import Card from "../Card/Card";
 import Loader from "../../Loader/Loader.jsx";
