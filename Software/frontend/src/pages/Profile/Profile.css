@@ -7,20 +7,20 @@
 }
 .profile-link {
     list-style-type: none;
-
+    font-size: 18px;
 }
 .profile-link a {
-    color: black;
+    color: rgba(0, 0, 0, 0.5);
     text-decoration: none;
 }
 .profile-link a:hover {
-    color: #378694;
+    color: black;
 }
 .profile-link a:focus {
     font-weight: bold;
 }
 
 .profile-content {
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
 }
 
