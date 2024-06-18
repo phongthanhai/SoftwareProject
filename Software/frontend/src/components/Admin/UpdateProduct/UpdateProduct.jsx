@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Searchbar from "../Searchbar/Searchbar";
 import UpdateProductTable from "./UpdateProductTable.jsx";
-import UpdateForm from "./UpdateForm.jsx"; // Import UpdateForm component
+import UpdateForm from "./UpdateForm.jsx";
 import "./UpdateProduct.css";
 
 const UpdateProduct = () => {
@@ -57,9 +57,11 @@ const UpdateProduct = () => {
 
     return (
         <div className="update-product-container">
-            <div className="search-bar-container">
-                <Searchbar onSearch={handleSearch} />
-            </div>
+            {!selectedProduct && ( // Render Searchbar only if selectedProduct is null
+                <div className="search-bar-container">
+                    <Searchbar onSearch={handleSearch} />
+                </div>
+            )}
             <div className="product-table-container">
                 {!selectedProduct ? (
                     <UpdateProductTable

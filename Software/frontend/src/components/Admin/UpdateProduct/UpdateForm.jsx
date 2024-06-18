@@ -28,12 +28,16 @@ const UpdateForm = ({ productId, onCancel, onSubmit }) => {
     const fetchProductData = async (productId) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await api.get(`/admin/updateProduct?productId=${productId}`, {
+            const response = await api.get(`/admin/updateProduct`, {
+                params:{
+                    'productId' : productId
+                },
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
-            const productData = response.data;
+            const productData = response.data.data;
+            console.log(productData);
             setFormValues(productData);
         } catch (error) {
             console.error('Error fetching product data:', error.message);
@@ -260,7 +264,6 @@ const UpdateForm = ({ productId, onCancel, onSubmit }) => {
                     {errors.image && <span className="error">{errors.image}</span>}
                 </label>
 
-                {/* Add more fields or customizations as needed */}
 
                 <div className="form-buttons">
                     <button type="button" className="cancel-button" onClick={onCancel}>Cancel</button>
