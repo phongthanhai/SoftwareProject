@@ -28,7 +28,6 @@ export default function ProfileDetail() {
 
 
   useEffect(() =>{
-    console.log('HELUUO');
     fetchUserInfo();
   },[])
   return  <>

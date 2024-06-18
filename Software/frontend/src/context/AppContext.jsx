@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import ToastUtil from '../utils/utils';
 import api from '../api/axiosConfig'
 export const GlobalContext = React.createContext();
@@ -6,9 +6,22 @@ const AppContext = ({ children }) => {
     const [cartList, setCartList] = useState([]);
     const [sideBarOn, setSideBarOn] = useState(false)
     const [isLogIn, setIsLogIn] = useState(false);
+    const [userInfo, setUserInfo] = useState();
+    const [loading, setLoading] = useState(true);
+    async function fetchUserInfo() {
+            const response = await api.get('/user/information', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+    }
+
     function checkIsLogIn() {
-        if(localStorage.getItem('token')) setIsLogIn(true);
-        else setIsLogIn(false);
+        try {
+            fetchUserInfo();
+        }catch (err) {
+            setIsLogIn(false)
+        }
     }
     function addToCart(cartItem) {
         if(isLogIn === false) {

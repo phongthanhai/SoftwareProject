@@ -42,6 +42,7 @@ export default function LogIn() {
         else navigate('/');
       }
       localStorage.setItem('token', response.data.token)
+      ToastUtil.showToastSuccess("Login successfully")
     })
     .catch(function (error) {
       ToastUtil.showToastError("Wrong email or wrong password");

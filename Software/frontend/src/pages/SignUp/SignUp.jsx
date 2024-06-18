@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import api from '../../api/axiosConfig'
+import ToastUtil from "../../utils/utils.jsx";
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,6 +53,7 @@ export default function SignUp() {
     })
     .then(function (response) {
       navigate('/sign-in')
+      ToastUtil.showToastSuccess("Sign Up successully")
     })
     .catch(function (error) {
       ToastUtil.showToastError("Please try again.");

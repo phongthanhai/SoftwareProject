@@ -4,14 +4,14 @@ import './Header.css'
 import { IoPerson } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom'
-import { useContext } from 'react';
+import {useContext, useEffect} from 'react';
 import { GlobalContext } from '../../context/AppContext';
 import { SiNike } from "react-icons/si";
 import { HiBars3 } from "react-icons/hi2";
 import ToastUtil from '../../utils/utils';
 import SearchBar from './SearchBar/SearchBar';
 export default function Header() {
-  const { cartList, setSideBarOn, isLogIn, setIsLogIn} = useContext(GlobalContext)
+  const { setSideBarOn, isLogIn, setIsLogIn} = useContext(GlobalContext)
   const navigate = useNavigate();
   function setSideBar() {
     setSideBarOn(true);
@@ -28,6 +28,8 @@ export default function Header() {
         ToastUtil.showToastError("Please Log In")
     }
   }
+
+
   return (
     <nav className='nav-wrapper'>
       <Container className='nav-container'>
@@ -45,7 +47,7 @@ export default function Header() {
            
             <FaShoppingCart onClick={() => goToCart()} />
           </div>
-          {isLogIn === true ?
+          {localStorage.getItem("token") ?
           // show profile
             <div className="profile">
               <IoPerson />
