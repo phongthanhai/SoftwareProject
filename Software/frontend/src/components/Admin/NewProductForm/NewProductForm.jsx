@@ -1,8 +1,9 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { Link } from 'react-router-dom'; // Import Link
 import './NewProductForm.css';
-import Popup from './Popup';
+import api from "../../../api/axiosConfig.jsx";
 
 const NewProductForm = () => {
     const [newProduct, setNewProduct] = useState({
@@ -15,10 +16,10 @@ const NewProductForm = () => {
         story: '',
         retailPrice: '',
         discountPrice: '',
-        image: null
+        image: ''
     });
 
-    const [imagePreview, setImagePreview] = useState(null);
+    const [isSaved, setIsSaved] = useState(false);
 
     useEffect(() => {
         const year = newProduct.releaseDate.getFullYear().toString();
@@ -37,22 +38,7 @@ const NewProductForm = () => {
         setNewProduct({ ...newProduct, releaseDate: date });
     };
 
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        setNewProduct({ ...newProduct, image: file });
-
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-            };
-            reader.readAsDataURL(file);
-        } else {
-            setImagePreview(null);
-        }
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Check for null or empty values
@@ -63,7 +49,6 @@ const NewProductForm = () => {
             !newProduct.gender ||
             !newProduct.retailPrice ||
             !newProduct.discountPrice ||
-            !newProduct.story ||
             !newProduct.releaseDate ||
             !newProduct.image
         ) {
@@ -71,7 +56,21 @@ const NewProductForm = () => {
             return;
         }
 
-        console.log('New Product saved:', newProduct);
+        try {
+
+            await api.post('/admin/createProduct', newProduct, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+
+            console.log('New Product saved:', newProduct);
+            setIsSaved(true);
+            alert('Product Saved!.');
+        } catch (error) {
+            console.error('Error saving product:', error);
+
+        }
     };
 
     return (
@@ -154,21 +153,25 @@ const NewProductForm = () => {
                 </label>
 
                 <label htmlFor="image">
-                    <span className="form-label">Upload Product Photo <span className="required">(*)</span></span>
-                    <input type="file" id="image" name="image" onChange={handleFileChange} accept="image/*"/>
+                    <span className="form-label">Product Image URL <span className="required">(*)</span></span>
+                    <input
+                        type="text"
+                        id="image"
+                        name="image"
+                        value={newProduct.image}
+                        onChange={handleChange}
+                        placeholder="Enter product image URL..."
+                    />
                 </label>
 
-                {imagePreview && (
-                    <div className="image-preview">
-                        <img src={imagePreview} alt="Product Preview" className="preview-image"/>
-                    </div>
-                )}
-
-                {/* Display Popup when button clicked */}
-                {/* <Popup handleSubmit={handleSubmit} newProduct={newProduct} setNewProduct={setNewProduct} />*/}
                 <button type="button" id="submit-btn" onClick={handleSubmit}>
                     Save Changes
                 </button>
+
+                {isSaved && (
+
+                    <p className="save-message">New Product Saved! <Link to="/admin">Click Here</Link> to go to homepage!</p>
+                )}
             </form>
         </div>
     );

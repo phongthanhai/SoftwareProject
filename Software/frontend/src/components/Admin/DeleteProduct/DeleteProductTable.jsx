@@ -7,21 +7,23 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
-import "./ProductTable.css";
+import "./DeleteProductTable.css";
 import api from "../../../api/axiosConfig.jsx";
 import Loader from "../../Loader/Loader.jsx";
 import {useNavigate} from "react-router-dom";
-import {FaCircleInfo} from "react-icons/fa6";
+import {FaCircleXmark} from "react-icons/fa6";
 
 const PAGE_SIZE = 5;
 
-const ProductTable = ({ products, query }) => {
+const DeleteProductTable = ({ products, query }) => {
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(1);
     const [product, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [total, setTotal] = useState(null);
+
+
 
     const fetchShoes = async () => {
         try {
@@ -56,13 +58,36 @@ const ProductTable = ({ products, query }) => {
         navigate(`?page=${page - 1}`);
     };
 
+    const handleDeleteProduct = async (productId) => {
+        try {
+            const confirmed = window.confirm("Are you sure you want to delete this product?");
+            if (confirmed) {
+                const token = localStorage.getItem("token");
+                await api.delete("/admin/deleteProduct", {
+                    params: {
+                        productId: productId
+                    },
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                // After successful deletion, you can fetch the updated product list
+                fetchShoes();
+                console.log("Product Deleted Successfully!");
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <>
             {loading? (
                 <Loader />
             ): (
                 <div className="product-table">
-                    <h2>Product Table</h2>
+                    <h2>Delete Product Table</h2>
                     <TableContainer component={Paper}>
                         <Table sx={{minWidth: 650}} aria-label="simple table">
                             <TableHead>
@@ -72,11 +97,11 @@ const ProductTable = ({ products, query }) => {
                                     <TableCell align="left" style={{width: "10%"}}>Colorway</TableCell>
                                     <TableCell align="left" style={{width: "10%"}}>Gender</TableCell>
                                     <TableCell align="left" style={{width: "20%"}}>Release Date</TableCell>
-                                    <TableCell align="left" style={{width: "5%"}}>Release Year</TableCell>
+                                    <TableCell align="left" style={{width: "10%"}}>Release Year</TableCell>
                                     <TableCell align="left" style={{width: "10%"}}>Retail Price</TableCell>
                                     <TableCell align="left" style={{width: "10%"}}>Discounted Price</TableCell>
                                     <TableCell align="left" style={{width: "30%"}}>Product Photo</TableCell>
-                                    <TableCell align="left" style={{width: "10%"}}></TableCell>
+                                    <TableCell align="left" style={{width: "20%"}}></TableCell>
                                 </TableRow>
                             </TableHead>
 
@@ -90,7 +115,7 @@ const ProductTable = ({ products, query }) => {
                                         <TableCell align="left" style={{width: "10%"}}>{product.colorway}</TableCell>
                                         <TableCell align="left" style={{width: "10%"}}>{product.gender}</TableCell>
                                         <TableCell align="left" style={{width: "20%"}}>{product.releaseDate}</TableCell>
-                                        <TableCell align="left" style={{width: "20%"}}>{product.releaseYear}</TableCell>
+                                        <TableCell align="left" style={{width: "10%"}}>{product.releaseYear}</TableCell>
                                         <TableCell align="left" style={{width: "10%"}}>{product.retailPrice}</TableCell>
                                         <TableCell align="left"
                                                    style={{width: "10%"}}>{product.discountPrice}</TableCell>
@@ -99,13 +124,10 @@ const ProductTable = ({ products, query }) => {
                                                  style={{maxWidth: "100%", maxHeight: "auto"}}/>
                                         </TableCell>
 
-                                        <TableCell align="left" style={{width: "10%"}}>
-                                            <div className="icon">
-                                                <FaCircleInfo />
-                                            </div>
+                                        <TableCell align="left" style={{width: "20%", color:"red"}} onClick={() => handleDeleteProduct(product.id)}>
+                                            <FaCircleXmark />
                                         </TableCell>
                                     </TableRow>
-
                                 ))}
                             </TableBody>
                         </Table>
@@ -134,4 +156,4 @@ const ProductTable = ({ products, query }) => {
     );
 };
 
-export default ProductTable;
+export default DeleteProductTable;

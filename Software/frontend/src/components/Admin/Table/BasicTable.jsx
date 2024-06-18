@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../../api/axiosConfig.jsx";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,11 +8,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
-import Loader from "../../Loader/Loader.jsx"; // Placeholder for Loader component
+import Loader from "../../Loader/Loader.jsx";
 import "./Table.css";
 import api from '../../../api/axiosConfig.jsx';
+import { useNavigate } from "react-router-dom";
 
-const PAGE_SIZE = 10; // Assuming 10 items per page
+const PAGE_SIZE = 5;
 
 const makeStyle = (status) => {
     let style = {
@@ -60,51 +61,91 @@ const getStatusText = (status) => {
 };
 
 const BasicTable = () => {
-    const [currentPage, setCurrentPage] = useState(0); // Start with page 0
-    const [rows, setRows] = useState([]); // Initialize rows state as an empty array
+    const navigate = useNavigate();
+    const [currentPage, setCurrentPage] = useState(0);
+    const [rows, setRows] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null); // State to handle errors
-
-    useEffect(() => {
-        fetchData(currentPage); // Initial fetch of data when component mounts
-    }, []); // Empty dependency array ensures this effect runs only once, like componentDidMount
+    const [error, setError] = useState(null);
+    const [total,setTotal] = useState(0);
 
     const fetchData = async (page) => {
         try {
             setLoading(true);
             const token = localStorage.getItem("token");
+<<<<<<< HEAD
             const response = await api.get(
                 `/admin/order?page=0&size=20`,
+=======
+            const response = await api.get("/admin/order", {
+                params: {
+                    page: page,
+                    size: PAGE_SIZE,
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setRows(response.data);
+            setTotal(response.data.total);
+            const totalPagesFromResponse = response.headers["x-total-pages"];
+            setTotalPages(totalPagesFromResponse || 0);
+            setError(null);
+        } catch (error) {
+            console.error("Error fetching orders:", error);
+            setError(error.response?.data?.message || "Something went wrong.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchData(currentPage);
+    }, [currentPage]);
+
+    const handlePageClick = (event, value) => {
+        let page = value - 1; // Adjusting page number for 0-based index
+        setCurrentPage(page);
+        navigate(`?page=${page}`);
+    };
+
+    const token = localStorage.getItem("token");
+
+    const handleStatusChange = async (orderId, status) => {
+        try {
+            const response = await api.put(
+                `/admin/order`,
+                null,
+>>>>>>> f84e3954c1588da71eadb673b36a85eb624b9b5e
                 {
+                    params: {
+                        orderId: orderId,
+                        status: status
+                    },
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },
                 }
             );
-            setRows(response.data); // Set rows state with data fetched from API
-            // Extract total pages from response headers or response itself if available
-            const totalPagesFromResponse = response.headers["x-total-pages"];
-            setTotalPages(totalPagesFromResponse || 0);
-            setError(null); // Reset error state on successful fetch
+            console.log('Order status updated successfully', response.data);
+            updateRowStatus(orderId, status);
         } catch (error) {
-            console.error("Error fetching orders:", error);
-            setError(error.response?.data?.message || "Something went wrong."); // Handle specific error messages from API
-        } finally {
-            setLoading(false); // Ensure loading indicator is turned off after request completes
+            console.error('Error updating order status', error);
         }
     };
 
-    useEffect(() => {
-        fetchData(currentPage); // Initial fetch of data when component mounts
-    }, []); // Empty dependency array ensures this effect runs only once, like componentDidMount
-
-    const handleChangePage = (event, newPage) => {
-        setCurrentPage(newPage - 1); // Adjust page number to 0-based index for API
+    const updateRowStatus = (orderId, status) => {
+        setRows((prevRows) =>
+            prevRows.map((row) =>
+                row.orderId === orderId ? { ...row, status: parseInt(status) } : row
+            )
+        );
     };
 
+
+
     if (loading) {
-        return <Loader />; // Display loader while data is being fetched
+        return <Loader />;
     }
 
     return (
@@ -144,10 +185,16 @@ const BasicTable = () => {
                                 <TableCell align="left">{row.addressId}</TableCell>
                                 <TableCell align="left">{row.vat}</TableCell>
                                 <TableCell align="left">{row.createAt}</TableCell>
-                                <TableCell align="left">
-                                    <span className="status" style={makeStyle(row.status)}>
-                                        {getStatusText(row.status)}
-                                    </span>
+                                <TableCell>
+                                    <select
+                                        value={row.status}
+                                        onChange={(e) => handleStatusChange(row.orderId, e.target.value)}
+                                    >
+                                        <option value="1">{getStatusText(1)}</option>
+                                        <option value="2">{getStatusText(2)}</option>
+                                        <option value="3">{getStatusText(3)}</option>
+                                        <option value="4">{getStatusText(4)}</option>
+                                    </select>
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -157,14 +204,14 @@ const BasicTable = () => {
 
             <div className="pagination-container">
                 <Pagination
-                    count={totalPages}
-                    page={currentPage + 1} // Display current page correctly in pagination
-                    onChange={handleChangePage}
+                    count={Math.ceil(30 / 5)}
+                    page={currentPage + 1 ? currentPage + 1 :1}
+                    onChange={handlePageClick}
                     sx={{
                         "& .MuiPaginationItem-root": {
-                            minWidth: "unset", // Unset the minimum width
-                            padding: "2rem", // Adjust padding as needed
-                            margin: "0 3px", // Adjust margin as needed
+                            minWidth: "unset",
+                            padding: "2rem",
+                            margin: "0 3px",
                         },
                     }}
                 />

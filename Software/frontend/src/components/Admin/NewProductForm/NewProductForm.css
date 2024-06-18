@@ -60,17 +60,10 @@ div h2{
     margin-top: 24px;
 }
 
-.image-preview {
-    margin-top: 10px;
-    max-width: 770px; /* Adjust max-width as per your design */
-    max-height: 700px; /* Adjust max-height as per your design */
-    overflow: hidden; /* Hide any overflow if image exceeds dimensions */
+.save-message {
+    font-size: 14px;
+    color: green;
+    font-weight: bold;
+    margin-top: 14px;
 }
 
-.preview-image {
-    width: 100%; /* Ensure the image takes full width within the container */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Fit the image within its container without stretching */
-    border-radius: 4px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}

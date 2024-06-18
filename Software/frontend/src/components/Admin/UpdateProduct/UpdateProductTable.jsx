@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,130 +8,121 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
 import "./UpdateProductTable.css";
-import { FaRegPenToSquare } from "react-icons/fa6";
+import api from "../../../api/axiosConfig.jsx";
+import Loader from "../../Loader/Loader.jsx";
+import { useNavigate } from "react-router-dom";
+import { FaPenToSquare } from "react-icons/fa6";
 
-// Function to create shoe data entries
-function createData(name, brand, colorway, gender, releaseDate, releaseYear, story, retailPrice, discountPrice, image) {
-    return {
-        name,
-        brand,
-        colorway,
-        gender,
-        releaseDate,
-        releaseYear,
-        story,
-        retailPrice,
-        discountPrice,
-        image
-    };
-}
+const UpdateProductTable = ({ products, query, onEdit }) => {
+    const navigate = useNavigate();
+    const [currentPage, setCurrentPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(1);
+    const [product, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [total, setTotal] = useState(null);
 
-// Example shoe data entries
-const rows = [
-    createData(
-        "Nike Air Force 1 Low",
-        "Nike",
-        "White/Black",
-        "Male",
-        new Date("2023-06-15"),
-        "2023",
-        "The Nike Air Force 1 Low 'White/Black' remains one of the most iconic sneakers of all time.",
-        120,
-        110,
-        "https://example.com/image1.jpg" // Example image URL
-    ),
-    // Add more shoe data entries as needed
-];
+    const PAGE_SIZE = 5;
 
-const PAGE_SIZE = 5;
+    const fetchProducts = async () => {
+        try {
+            const response = await api.get("/product", {
+                params: {
+                    page: currentPage,
+                    size: 5,
+                    name: query
+                }
+            });
+            setProducts(response.data.data);
+            setTotal(response.data.total);
 
-export default function UpdateProductTable() {
-    const [currentPage, setCurrentPage] = React.useState(1);
-    const totalPageCount = Math.ceil(rows.length / PAGE_SIZE);
-
-    const handleChangePage = (event, newPage) => {
-        setCurrentPage(newPage);
+            setTimeout(() => {
+                setLoading(false);
+            }, 1000); // Minimum loader display time of 1 second
+        } catch (err) {
+            console.log(err);
+            setLoading(false);
+        }
     };
 
-    const visibleRows = rows.slice(
-        (currentPage - 1) * PAGE_SIZE,
-        currentPage * PAGE_SIZE
-    );
+    useEffect(() => {
+        fetchProducts();
+    }, [products, query, currentPage]);
+
+    const handlePageClick = async (event, value) => {
+        let page = value;
+        setCurrentPage(value - 1);
+        navigate(`?page=${page - 1}`);
+    };
 
     return (
-        <div className="Table">
-            <h2>Store</h2>
-            <TableContainer
-                component={Paper}
-                style={{
-                    boxShadow: "0px 13px 20px 0px #80808029",
-                    overflowY: "scroll",
-                    minHeight: "270px"
-                }}
-            >
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell style={{ width: "30%" }}>Product Name</TableCell>
-                            <TableCell align="left" style={{ width: "10%" }}>Brand</TableCell>
-                            <TableCell align="left" style={{ width: "10%" }}>Colorway</TableCell>
-                            <TableCell align="left" style={{ width: "10%" }}>Gender</TableCell>
-                            <TableCell align="left" style={{ width: "20%" }}>Release Date</TableCell>
-                            <TableCell align="left" style={{ width: "20%" }}>Release Year</TableCell>
-                            <TableCell align="left" style={{ width: "10%" }}>Retail Price</TableCell>
-                            <TableCell align="left" style={{ width: "10%" }}>Discounted Price</TableCell>
-                            <TableCell align="left" style={{ width: "30%" }}>Product Photo</TableCell>
-                            <TableCell align="left" style={{ width: "10%" }}></TableCell>
+        <>
+            {loading ? (
+                <Loader />
+            ) : (
+                <div className="update-product-table">
+                    <h2>Update Product Table</h2>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell style={{ width: "30%" }}>Product Name</TableCell>
+                                    <TableCell align="left" style={{ width: "10%" }}>Brand</TableCell>
+                                    <TableCell align="left" style={{ width: "10%" }}>Colorway</TableCell>
+                                    <TableCell align="left" style={{ width: "10%" }}>Gender</TableCell>
+                                    <TableCell align="left" style={{ width: "20%" }}>Release Date</TableCell>
+                                    <TableCell align="left" style={{ width: "10%" }}>Release Year</TableCell>
+                                    <TableCell align="left" style={{ width: "10%" }}>Retail Price</TableCell>
+                                    <TableCell align="left" style={{ width: "10%" }}>Discounted Price</TableCell>
+                                    <TableCell align="left" style={{ width: "30%" }}>Product Photo</TableCell>
+                                    <TableCell align="left" style={{ width: "20%" }}>Actions</TableCell>
+                                </TableRow>
+                            </TableHead>
 
-                        </TableRow>
-                    </TableHead>
+                            <TableBody>
+                                {product.map((product) => (
+                                    <TableRow key={product.name}>
+                                        <TableCell component="th" scope="row" style={{ width: "30%" }}>
+                                            {product.name}
+                                        </TableCell>
+                                        <TableCell align="left" style={{ width: "10%" }}>{product.brand}</TableCell>
+                                        <TableCell align="left" style={{ width: "10%" }}>{product.colorway}</TableCell>
+                                        <TableCell align="left" style={{ width: "10%" }}>{product.gender}</TableCell>
+                                        <TableCell align="left" style={{ width: "20%" }}>{product.releaseDate}</TableCell>
+                                        <TableCell align="left" style={{ width: "10%" }}>{product.releaseYear}</TableCell>
+                                        <TableCell align="left" style={{ width: "10%" }}>{product.retailPrice}</TableCell>
+                                        <TableCell align="left" style={{ width: "10%" }}>{product.discountPrice}</TableCell>
+                                        <TableCell align="left" style={{ width: "30%" }}>
+                                            <img src={product.image.original} alt={product.name}
+                                                 style={{ maxWidth: "100%", maxHeight: "auto" }} />
+                                        </TableCell>
 
-                    <TableBody style={{ color: "white" }}>
-                        {visibleRows.map((row) => (
-                            <TableRow
-                                key={row.name}
-                                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row" style={{ width: "30%" }}>
-                                    <div style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                                        {row.name}
-                                    </div>
-                                </TableCell>
-                                <TableCell align="left" style={{ width: "10%" }}>{row.brand}</TableCell>
-                                <TableCell align="left" style={{ width: "10%" }}>{row.colorway}</TableCell>
-                                <TableCell align="left" style={{ width: "10%" }}>{row.gender}</TableCell>
-                                <TableCell align="left" style={{ width: "20%" }}>{row.releaseDate.toLocaleDateString()}</TableCell>
-                                <TableCell align="left" style={{ width: "20%" }}>{row.releaseYear}</TableCell>
-                                <TableCell align="left" style={{ width: "10%" }}>{row.retailPrice}</TableCell>
-                                <TableCell align="left" style={{ width: "10%" }}>{row.discountPrice}</TableCell>
-                                <TableCell align="left" style={{ width: "30%" }}>
-                                    <img src={row.image} alt={row.name} style={{ maxWidth: "100%", maxHeight: "auto" }} />
-                                </TableCell>
-                                <TableCell align="left" style={{ width: "10%" }}>
-                                    <span className="update-icon">
-                                        <FaRegPenToSquare />
-                                    </span>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                                        <TableCell align="left" style={{ width: "20%" }}>
+                                            <FaPenToSquare onClick={() => onEdit(product)} className="edit-icon" />
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
 
-            <div className="pagination-container">
-                <Pagination
-                    count={totalPageCount}
-                    page={currentPage}
-                    onChange={handleChangePage}
-                    sx={{
-                        '& .MuiPaginationItem-root': {
-                            minWidth: 'unset',
-                            padding: '2rem',
-                            margin: '0 3px',
-                        },
-                    }}
-                />
-            </div>
-        </div>
+                    <div className="pagination-container">
+                        <Pagination
+                            count={Math.ceil(total / 5)}
+                            page={currentPage + 1 ? currentPage + 1 : 1}
+                            onChange={handlePageClick}
+                            sx={{
+                                '& .MuiPaginationItem-root': {
+                                    minWidth: 'unset',
+                                    padding: '2rem',
+                                    margin: '0 3px',
+                                },
+                            }}
+                        />
+                    </div>
+                </div>
+            )}
+        </>
     );
-}
+};
+
+export default UpdateProductTable;

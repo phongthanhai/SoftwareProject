@@ -31,7 +31,7 @@ public class OrderController {
         Order order = Order.builder()
                         .email(userEmail)
                         .addressId(addressId)
-                        .status(OrderStatus.APPROVED.getStatus())
+                        .status(OrderStatus.PENDING.getStatus())
                         .vat(0.1)
                         .createAt(new Date())
                         .updateAt(new Date())
