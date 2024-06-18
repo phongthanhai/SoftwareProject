@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Searchbar from "../Searchbar/Searchbar";
 import ProductTable from "./ProductTable";
-import api from "../../../api/axiosConfig";
 import "./ListTable.css";
 
 const ListTable = () => {
@@ -29,9 +28,10 @@ const ListTable = () => {
             <div className="product-table-container">
                 <ProductTable
                     products={products}
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={handlePageChange}
+                    query={query}
+                    // currentPage={currentPage}
+                    // totalPages={totalPages}
+                    // onPageChange={handlePageChange}
                 />
             </div>
         </div>

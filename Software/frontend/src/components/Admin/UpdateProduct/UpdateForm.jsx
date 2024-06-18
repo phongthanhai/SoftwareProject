@@ -4,14 +4,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './UpdateForm.css';
 import api from "../../../api/axiosConfig.jsx";
 
-const UpdateForm = ({ productId, onCancel, onSubmit }) => {
+const UpdateForm = ({ formData, onCancel, onSubmit }) => {
     const [formValues, setFormValues] = useState({
         name: '',
         brand: '',
         colorway: '',
         gender: '',
-        releaseDate: null,
-        releaseYear: '',
+        releaseDate: '',
         retailPrice: '',
         discountPrice: '',
         image: '',
@@ -19,24 +18,10 @@ const UpdateForm = ({ productId, onCancel, onSubmit }) => {
     });
     const [errors, setErrors] = useState({});
 
-    useEffect(() => {
-        if (productId) {
-            fetchProductData(productId);
-        }
-    }, [productId]);
-
     const fetchProductData = async (productId) => {
         try {
-            const token = localStorage.getItem('token');
-            const response = await api.get(`/admin/updateProduct`, {
-                params:{
-                    'productId' : productId
-                },
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            const productData = response.data.data;
+            const response = await api.get(`/product/${formData.id}`);
+            const productData = response.data.product;
             console.log(productData);
             setFormValues(productData);
         } catch (error) {
@@ -44,6 +29,12 @@ const UpdateForm = ({ productId, onCancel, onSubmit }) => {
             alert('Failed to fetch product data. Please try again later.');
         }
     };
+
+    useEffect(() => {
+        fetchProductData()
+        // console.log(formData)
+        // setFormValues(formData)
+    },[] );
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -132,7 +123,7 @@ const UpdateForm = ({ productId, onCancel, onSubmit }) => {
                         name="name"
                         value={formValues.name}
                         onChange={handleChange}
-                        placeholder="Enter product name..."
+                        placeholder={formData.name}
                         required
                     />
                     {errors.name && <span className="error">{errors.name}</span>}
@@ -176,8 +167,8 @@ const UpdateForm = ({ productId, onCancel, onSubmit }) => {
                         required
                     >
                         <option value="">Select gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option value="men">Male</option>
+                        <option value="women">Female</option>
                         <option value="Unisex">Unisex</option>
                     </select>
                     {errors.gender && <span className="error">{errors.gender}</span>}
@@ -198,18 +189,18 @@ const UpdateForm = ({ productId, onCancel, onSubmit }) => {
                     {errors.releaseDate && <span className="error">{errors.releaseDate}</span>}
                 </label>
 
-                <label htmlFor="releaseYear">
-                    <span className="form-label">Release Year <span className="required">(*)</span></span>
-                    <input
-                        type="number"
-                        id="releaseYear"
-                        name="releaseYear"
-                        value={formValues.releaseYear}
-                        onChange={handleChange}
-                        placeholder="Enter release year..."
-                        required
-                    />
-                </label>
+                {/*<label htmlFor="releaseYear">*/}
+                {/*    <span className="form-label">Release Year <span className="required">(*)</span></span>*/}
+                {/*    <input*/}
+                {/*        type="number"*/}
+                {/*        id="releaseYear"*/}
+                {/*        name="releaseYear"*/}
+                {/*        value={formValues.releaseYear}*/}
+                {/*        onChange={handleChange}*/}
+                {/*        placeholder="Enter release year..."*/}
+                {/*        required*/}
+                {/*    />*/}
+                {/*</label>*/}
 
                 <label htmlFor="retailPrice">
                     <span className="form-label">Retail Price <span className="required">(*)</span></span>
@@ -256,7 +247,7 @@ const UpdateForm = ({ productId, onCancel, onSubmit }) => {
                         type="text"
                         id="image"
                         name="image"
-                        value={formValues.image}
+                        value={formValues.image.original}
                         onChange={handleChange}
                         placeholder="Enter product image URL..."
                         required

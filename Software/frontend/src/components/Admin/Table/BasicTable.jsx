@@ -10,7 +10,6 @@ import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
 import Loader from "../../Loader/Loader.jsx";
 import "./Table.css";
-import api from '../../../api/axiosConfig.jsx';
 import { useNavigate } from "react-router-dom";
 
 const PAGE_SIZE = 5;
@@ -64,7 +63,6 @@ const BasicTable = () => {
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(0);
     const [rows, setRows] = useState([]);
-    const [totalPages, setTotalPages] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [total,setTotal] = useState(0);
@@ -73,10 +71,6 @@ const BasicTable = () => {
         try {
             setLoading(true);
             const token = localStorage.getItem("token");
-<<<<<<< HEAD
-            const response = await api.get(
-                `/admin/order?page=0&size=20`,
-=======
             const response = await api.get("/admin/order", {
                 params: {
                     page: page,
@@ -86,10 +80,17 @@ const BasicTable = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
+            const totalRes = await api.get("/admin/order", {
+                params: {
+                    page: 0,
+                    size: 100000,
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             setRows(response.data);
-            setTotal(response.data.total);
-            const totalPagesFromResponse = response.headers["x-total-pages"];
-            setTotalPages(totalPagesFromResponse || 0);
+            setTotal(totalRes.data.length);
             setError(null);
         } catch (error) {
             console.error("Error fetching orders:", error);
@@ -116,7 +117,6 @@ const BasicTable = () => {
             const response = await api.put(
                 `/admin/order`,
                 null,
->>>>>>> f84e3954c1588da71eadb673b36a85eb624b9b5e
                 {
                     params: {
                         orderId: orderId,
@@ -204,7 +204,7 @@ const BasicTable = () => {
 
             <div className="pagination-container">
                 <Pagination
-                    count={Math.ceil(30 / 5)}
+                    count={Math.ceil(total / 5)}
                     page={currentPage + 1 ? currentPage + 1 :1}
                     onChange={handlePageClick}
                     sx={{
